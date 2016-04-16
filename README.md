@@ -1,2 +1,3 @@
-# system_monitor
-Linux application to visually manage processes
+# Linux System Monitor
+
+Linux application to visually manage processes.
