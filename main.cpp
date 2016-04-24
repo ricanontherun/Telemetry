@@ -1,6 +1,3 @@
-#include <exception>
-#include <iostream>
-
 #include "api/API.h"
 
 using namespace std;
