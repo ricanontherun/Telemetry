@@ -13,6 +13,7 @@ bool Process::LoadProcessName()
     string dir = this->process_base_path + "/" + Process::PD_CMDLINE;
     char buf[BUFSIZ];
 
+    // ENC: GetFile(file_name, mode)
     FILE *fp = fopen(dir.c_str(), "r");
 
     if ( fp == NULL ) {
@@ -22,6 +23,7 @@ bool Process::LoadProcessName()
         fclose(fp);
         return false;
     }
+    // END GetFile
 
     if ( fgets(buf, BUFSIZ, fp) == NULL ) {
         fclose(fp);
