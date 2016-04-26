@@ -1,5 +1,5 @@
-#ifndef SYSTEM_MONITOR_PROCESS_H
-#define SYSTEM_MONITOR_PROCESS_H
+#ifndef CORE_PROCESS_H
+#define CORE_PROCESS_H
 
 #include <iostream>
 #include <stdint.h>
@@ -7,13 +7,13 @@
 using namespace std;
 
 struct ProcessMemory {
-    uint64_t m_program;
-    uint64_t m_num_portions;
-    uint64_t m_num_shared_pages;
-    uint64_t m_num_code_pages;
-    uint64_t m_num_stack_pages;
-    uint64_t m_num_lib_pages;
-    uint64_t m_num_dirty_pages;
+    uint64_t size;
+    uint64_t resident;
+    uint64_t share;
+    uint64_t text;
+    uint64_t lib;
+    uint64_t data;
+    uint64_t dirty;
 };
 
 class Process

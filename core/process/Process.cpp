@@ -1,7 +1,10 @@
-#include <string.h>
-
 #include "Process.h"
+
+#include <string.h>
+#include <stdio.h>
+
 #include "../util/str.h"
+#include "../util/file.h"
 
 using namespace std;
 
@@ -13,13 +16,10 @@ bool Process::LoadProcessName()
     string dir = this->process_base_path + "/" + Process::PD_CMDLINE;
     char buf[BUFSIZ];
 
-    FILE *fp = fopen(dir.c_str(), "r");
+    const char *mode = "r";
+    FILE *fp = GetFile(dir.c_str(), mode);
 
     if ( fp == NULL ) {
-        // TODO: What is the appropriate action to take here?
-        // I would say straight remove this object from the parent thinger.
-
-        fclose(fp);
         return false;
     }
 
@@ -64,11 +64,19 @@ bool Process::LoadProcessMemory()
     fclose(fp);
 
 
-    // Split the 
-    string mem_str(buf);
-    vector<string> mem_parts = split(mem_str, ' ');
+    // Split the string of memory data.
+    string memory_string(buf);
+    vector<string> memory_vector = split(memory_string, ' ');
 
-     
+    // TODO: Add some validation, in case split fails.
+    // Assign to this->memory
+    this->memory->size      = atoi(memory_vector[0].c_str());
+    this->memory->resident  = atoi(memory_vector[1].c_str());
+    this->memory->share     = atoi(memory_vector[2].c_str());
+    this->memory->text      = atoi(memory_vector[3].c_str());
+    this->memory->lib       = atoi(memory_vector[4].c_str());
+    this->memory->data      = atoi(memory_vector[5].c_str());
+    this->memory->dirty     = atoi(memory_vector[6].c_str());
 
     return true;
 }
