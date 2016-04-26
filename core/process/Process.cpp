@@ -22,6 +22,7 @@ bool Process::LoadProcessName()
     if ( fp == NULL ) {
         return false;
     }
+    // END GetFile
 
     if ( fgets(buf, BUFSIZ, fp) == NULL ) {
         fclose(fp);
