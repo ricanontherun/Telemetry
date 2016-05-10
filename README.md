@@ -1,3 +1,3 @@
 # Linux System Monitor
 
-Linux application to visually manage processes.
+Manage system processes via a GUI.
