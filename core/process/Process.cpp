@@ -61,7 +61,7 @@ bool Process::LoadProcessMemory()
 
     // Split the string of memory data.
     std::string memory_string(buf);
-    std::vector<string> memory_vector = split(memory_string, ' ');
+    std::vector<std::string> memory_vector = split(memory_string, ' ');
 
     // TODO: Add some validation, in case split fails.
     // Assign to this->memory
@@ -87,7 +87,7 @@ bool Process::LoadProcessData()
 Process::Process(uint32_t pid)
 {
     this->pid = pid;
-    this->process_base_path = "/proc/" + to_string(this->pid);
+    this->process_base_path = "/proc/" + std::to_string(this->pid);
 
     this->LoadProcessData();
 }

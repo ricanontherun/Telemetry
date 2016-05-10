@@ -1,12 +1,13 @@
+#ifndef CORE_UTIL_STR_H
+#define CORE_UTIL_STR_H
+
 #include <string>
 #include <vector>
 #include <sstream>
 
-using namespace std;
-
-vector<string> &split(const string &s, char delim, vector<string> &elems) {
-   stringstream ss(s);
-   string item;
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
+   std::stringstream ss(s);
+   std::string item;
 
    while ( getline(ss, item, delim) ) {
        elems.push_back(item);
@@ -21,9 +22,11 @@ vector<string> &split(const string &s, char delim, vector<string> &elems) {
  *  @s: String to be split.
  *  @delim: Delimeter to split off of.
  */
-vector<string> split(const string &s, char delim) {
-    vector<string> elems;
+std::vector<std::string> split(const std::string &s, char delim) {
+    std::vector<std::string> elems;
     split(s, delim, elems);
 
     return elems;
 }
+
+#endif
