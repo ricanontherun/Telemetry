@@ -4,8 +4,6 @@
 #include <iostream>
 #include <stdint.h>
 
-using namespace std;
-
 struct ProcessMemory {
     uint64_t size;
     uint64_t resident;
@@ -30,12 +28,12 @@ class Process
          | Static mappings to linux /proc/PID directories.
          |--------------------------------------------------
         */
-        static const string PD_STATM, PD_CMDLINE;
+        static const std::string PD_STATM, PD_CMDLINE;
 
         uint32_t pid;
-        string process_base_path;
+        std::string process_base_path;
 
-        string command;
+        std::string command;
         struct ProcessMemory *memory;
 
         bool LoadProcessData();

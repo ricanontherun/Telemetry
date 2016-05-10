@@ -1,13 +1,7 @@
-#ifndef SYSTEM_MONITOR_API_H
-#define SYSTEM_MONITOR_API_H
-
-/**
- * Class used to manage API singletons.
- */
+#ifndef API_API_H 
+#define API_API_H 
 
 #include <map>
-
-using namespace std;
 
 class API
 {
@@ -20,10 +14,10 @@ class API
             PROCESS, NETWORK
         };
 
-        static API *Create(API_TYPES type);
+        static API *Instance(API_TYPES type);
 
     private:
-        static map<API_TYPES, API *> instances;
+        static std::map<API_TYPES, API *> instances;
 };
 
 #endif

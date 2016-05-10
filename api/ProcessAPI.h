@@ -1,15 +1,14 @@
-#ifndef SYSTEM_MONITOR_PROCESS_API_H
-#define SYSTEM_MONITOR_PROCESS_API_H
+#ifndef API_PROCESS_H
+#define API_PROCESS_H
 
 #include <dirent.h>
 #include <stdint.h>
-#include <iostream>
 #include <map>
 
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <pwd.h>
+#include <sys/sysinfo.h>
 
 #include "../core/process/Process.h"
 #include "API.h"
@@ -21,8 +20,11 @@ class ProcessAPI : public API
         ~ProcessAPI();
 
     private:
-        static string proc_root;
-        map<uint32_t, Process *> process_list;
+        static std::string proc_root;
+
+        struct sysinfo system_memory;
+
+        std::map<uint32_t, Process *> process_list;
 
         void LoadProcessList();
         uint64_t GetStringInteger(char *string);

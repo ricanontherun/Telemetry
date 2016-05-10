@@ -1,19 +1,16 @@
-#include "Process.h"
-
 #include <string.h>
 #include <stdio.h>
 
+#include "Process.h"
 #include "../util/str.h"
 #include "../util/file.h"
 
-using namespace std;
-
-const string Process::PD_STATM   = "statm";
-const string Process::PD_CMDLINE = "cmdline";
+const std::string Process::PD_STATM   = "statm";
+const std::string Process::PD_CMDLINE = "cmdline";
 
 bool Process::LoadProcessName()
 {
-    string dir = this->process_base_path + "/" + Process::PD_CMDLINE;
+    std::string dir = this->process_base_path + "/" + Process::PD_CMDLINE;
     char buf[BUFSIZ];
 
     const char *mode = "r";
@@ -22,7 +19,7 @@ bool Process::LoadProcessName()
     if ( fp == NULL ) {
         return false;
     }
-    // END GetFile
+
 
     if ( fgets(buf, BUFSIZ, fp) == NULL ) {
         fclose(fp);
@@ -41,13 +38,12 @@ bool Process::LoadProcessMemory()
 
     // TODO: Can we somehow encapsulate this logic?
     // It is used in both LoadProcessMemory AND LoadProcessName...
-    string dir = this->process_base_path + "/" + Process::PD_STATM;
+    std::string dir = this->process_base_path + "/" + Process::PD_STATM;
 
     char buf[BUFSIZ];
-    FILE *fp = fopen(dir.c_str(), "r");
+    FILE *fp = GetFile(dir.c_str(), "r");
 
     if ( fp == NULL ) {
-        fclose(fp);
         return false;
     }
 
@@ -61,13 +57,11 @@ bool Process::LoadProcessMemory()
         buf[len - 1] = '\0';
     }
 
-
     fclose(fp);
 
-
     // Split the string of memory data.
-    string memory_string(buf);
-    vector<string> memory_vector = split(memory_string, ' ');
+    std::string memory_string(buf);
+    std::vector<string> memory_vector = split(memory_string, ' ');
 
     // TODO: Add some validation, in case split fails.
     // Assign to this->memory
@@ -87,6 +81,7 @@ bool Process::LoadProcessData()
     this->LoadProcessName();
 
     this->LoadProcessMemory();
+
 }
 
 Process::Process(uint32_t pid)

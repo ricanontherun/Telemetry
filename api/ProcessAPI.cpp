@@ -7,12 +7,16 @@
 
 #include "../core/process/Process.h"
 
-using namespace std;
-
-string ProcessAPI::proc_root = "/proc/";
+std::string ProcessAPI::proc_root = "/proc/";
 
 ProcessAPI::ProcessAPI()
 {
+    // Query the kernel for the machine's sysinfo
+    // We're going to need this when we start converting process memory
+    // usage from mem_units into percentages.
+    sysinfo(&this->system_memory);
+
+    std::cout << this->system_memory.totalram << std::endl;
     this->LoadProcessList();
 }
 
@@ -22,7 +26,7 @@ ProcessAPI::ProcessAPI()
 ProcessAPI::~ProcessAPI()
 {
     // We create an iterator for map<uint32_t, Process *> map.
-    map<uint32_t, Process *>::iterator it;
+    std::map<uint32_t, Process *>::iterator it;
 
     // Iterate over the process_list and free each object.
     // TODO: Make sure we add some more validation here?
@@ -65,15 +69,15 @@ void ProcessAPI::LoadProcessList()
             continue;
         }
 
-        string dir_name(de->d_name);
-        string full_process_path = ProcessAPI::proc_root + dir_name;
+        std::string dir_name(de->d_name);
+        std::string full_process_path = ProcessAPI::proc_root + dir_name;
 
         stat_i = stat(full_process_path.c_str(), &info);
         if (stat_i == -1)
         {
             // TODO: Determine appropriate action. If the file doesn't exist,
             // that probably shouldn't be an error. Else, write to a log?
-            cout << strerror(errno) << endl;
+            std::cout << strerror(errno) << std::endl;
             continue;
         }
 
