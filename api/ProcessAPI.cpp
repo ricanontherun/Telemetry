@@ -11,18 +11,9 @@ std::string ProcessAPI::proc_root = "/proc/";
 
 ProcessAPI::ProcessAPI()
 {
-    // Query the kernel for the machine's sysinfo
-    // We're going to need this when we start converting process memory
-    // usage from mem_units into percentages.
-    sysinfo(&this->system_memory);
-
-    std::cout << this->system_memory.totalram << std::endl;
     this->LoadProcessList();
 }
 
-/**
- * Clean up. Free all memory take up by the list of processes.
- */
 ProcessAPI::~ProcessAPI()
 {
     // We create an iterator for map<uint32_t, Process *> map.
@@ -35,6 +26,12 @@ ProcessAPI::~ProcessAPI()
         delete it->second;
     }
 }
+
+/*
+|--------------------------------------------------
+| Private
+|--------------------------------------------------
+*/
 
 uint64_t ProcessAPI::GetStringInteger(char *string)
 {
@@ -61,6 +58,8 @@ void ProcessAPI::LoadProcessList()
     struct stat info;
     int stat_i;
     uint64_t pid;
+
+    Process::LoadSystemInfo();
 
     while (de = readdir(d))
     {

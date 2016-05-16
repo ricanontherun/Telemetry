@@ -22,8 +22,6 @@ class ProcessAPI : public API
     private:
         static std::string proc_root;
 
-        struct sysinfo system_memory;
-
         std::map<uint32_t, Process *> process_list;
 
         void LoadProcessList();

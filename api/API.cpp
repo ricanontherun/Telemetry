@@ -1,7 +1,6 @@
 #include "API.h"
 #include "ProcessAPI.h"
 
-// Initialize the static member.
 std::map<API::API_TYPES, API *> API::instances;
 
 API *API::Instance(API_TYPES type)
@@ -11,7 +10,6 @@ API *API::Instance(API_TYPES type)
 
     if (it != API::instances.end())
     {
-        // Is this REALLY how you access the value in a map iterator?
         return it->second;
     }
 

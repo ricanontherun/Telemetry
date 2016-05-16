@@ -14,6 +14,13 @@ class API
             PROCESS, NETWORK
         };
 
+        /**
+        * @brief Get a singleton instance of an API.
+        *
+        * @param type
+        *
+        * @return 
+        */
         static API *Instance(API_TYPES type);
 
     private:
