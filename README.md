@@ -1,3 +1,3 @@
 # Linux System Monitor
 
-Manage system processes via a GUI.
+Desktop application for managing Linux processes.
