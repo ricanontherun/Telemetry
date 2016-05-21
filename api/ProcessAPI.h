@@ -6,9 +6,6 @@
 #include <map>
 
 #include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/sysinfo.h>
 
 #include "../core/process/Process.h"
 #include "API.h"

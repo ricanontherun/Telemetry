@@ -1,0 +1,78 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+API	api/API.h	/^class API$/;"	c
+API_API_H	api/API.h	2;"	d
+API_PROCESS_H	api/ProcessAPI.h	2;"	d
+API_TYPES	api/API.h	/^        enum class API_TYPES$/;"	c	class:API
+CATCH_CONFIG_MAIN	tests/test_header.h	1;"	d
+COMPILER	makefile	/^COMPILER=g++$/;"	m
+CORE_PROCESS_H	core/process/Process.h	2;"	d
+CORE_PROCESS_MEMORY_H	core/process/memory.h	2;"	d
+CORE_PROCESS_SYSTEMMEMORY_H	core/process/SystemMemory.h	2;"	d
+CORE_UTIL_FILE_H	core/util/file.h	2;"	d
+CORE_UTIL_STR_H	core/util/str.h	2;"	d
+EXECUTABLE	makefile	/^EXECUTABLE=p$/;"	m
+FILES	makefile	/^FILES=main.cpp api\/API.cpp api\/ProcessAPI.cpp core\/process\/Process.cpp core\/util\/file.c$/;"	m
+FLAGS	makefile	/^FLAGS=-g -std=c++11$/;"	m
+GetFile	core/util/file.c	/^FILE *GetFile(const char *path, const char *mode) {$/;"	f
+GetMemoryUsage	core/process/Process.cpp	/^Process::Memory *Process::GetMemoryUsage() const$/;"	f	class:Process
+GetStringInteger	api/ProcessAPI.cpp	/^uint64_t ProcessAPI::GetStringInteger(char *string)$/;"	f	class:ProcessAPI
+Instance	api/API.cpp	/^API *API::Instance(API_TYPES type)$/;"	f	class:API
+LoadProcessData	core/process/Process.cpp	/^bool Process::LoadProcessData()$/;"	f	class:Process
+LoadProcessList	api/ProcessAPI.cpp	/^void ProcessAPI::LoadProcessList()$/;"	f	class:ProcessAPI
+LoadProcessMemory	core/process/Process.cpp	/^bool Process::LoadProcessMemory()$/;"	f	class:Process
+LoadProcessName	core/process/Process.cpp	/^bool Process::LoadProcessName()$/;"	f	class:Process
+LoadSystemInfo	core/process/Process.cpp	/^void Process::LoadSystemInfo()$/;"	f	class:Process
+Memory	core/process/Process.h	/^        struct Memory {$/;"	s	class:Process
+PD_CMDLINE	core/process/Process.cpp	/^const std::string Process::PD_CMDLINE = "cmdline";$/;"	m	class:Process	file:
+PD_CMDLINE	core/process/Process.h	/^        static const std::string PD_STATM, PD_CMDLINE;$/;"	m	class:Process
+PD_STATM	core/process/Process.cpp	/^const std::string Process::PD_STATM   = "statm";$/;"	m	class:Process	file:
+PD_STATM	core/process/Process.h	/^        static const std::string PD_STATM, PD_CMDLINE;$/;"	m	class:Process
+PROCESS	api/API.h	/^            PROCESS, NETWORK$/;"	m	class:API::API_TYPES
+Process	core/process/Process.cpp	/^Process::Process(uint32_t pid)$/;"	f	class:Process
+Process	core/process/Process.h	/^class Process$/;"	c
+ProcessAPI	api/ProcessAPI.cpp	/^ProcessAPI::ProcessAPI()$/;"	f	class:ProcessAPI
+ProcessAPI	api/ProcessAPI.h	/^class ProcessAPI : public API$/;"	c
+command	core/process/Process.h	/^        std::string command;$/;"	m	class:Process
+data	core/process/Process.h	/^            uint64_t data;$/;"	m	struct:Process::Memory
+data	core/process/memory.h	/^    uint64_t data;$/;"	m	struct:process_memory
+dirty	core/process/Process.h	/^            uint64_t dirty;$/;"	m	struct:Process::Memory
+dirty	core/process/memory.h	/^    uint64_t dirty;$/;"	m	struct:process_memory
+instances	api/API.cpp	/^std::map<API::API_TYPES, API *> API::instances;$/;"	m	class:API	file:
+instances	api/API.h	/^        static std::map<API_TYPES, API *> instances;$/;"	m	class:API
+lib	core/process/Process.h	/^            uint64_t lib;$/;"	m	struct:Process::Memory
+lib	core/process/memory.h	/^    uint64_t lib;$/;"	m	struct:process_memory
+main	main.cpp	/^int main()$/;"	f
+memory	core/process/Process.h	/^        struct Memory *memory;$/;"	m	class:Process	typeref:struct:Process::Memory
+operator <<	core/process/Process.cpp	/^std::ostream &operator<<(std::ostream &stream, const Process &process)$/;"	f
+page_size	core/process/memory.h	/^    uint64_t        page_size;$/;"	m	struct:system_memory
+pid	core/process/Process.h	/^        uint32_t pid;$/;"	m	class:Process
+proc_root	api/ProcessAPI.cpp	/^std::string ProcessAPI::proc_root = "\/proc\/";$/;"	m	class:ProcessAPI	file:
+proc_root	api/ProcessAPI.h	/^        static std::string proc_root;$/;"	m	class:ProcessAPI
+process_base_path	core/process/Process.h	/^        std::string process_base_path;$/;"	m	class:Process
+process_list	api/ProcessAPI.h	/^        std::map<uint32_t, Process *> process_list;$/;"	m	class:ProcessAPI
+process_memory	core/process/memory.h	/^struct process_memory {$/;"	s
+resident	core/process/Process.h	/^            uint64_t resident;$/;"	m	struct:Process::Memory
+resident	core/process/memory.h	/^    uint64_t resident;$/;"	m	struct:process_memory
+share	core/process/Process.h	/^            uint64_t share;$/;"	m	struct:Process::Memory
+share	core/process/memory.h	/^    uint64_t share;$/;"	m	struct:process_memory
+size	core/process/Process.h	/^            uint64_t size;$/;"	m	struct:Process::Memory
+size	core/process/memory.h	/^    uint64_t size;$/;"	m	struct:process_memory
+split	core/util/str.h	/^std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {$/;"	f
+split	core/util/str.h	/^std::vector<std::string> split(const std::string &s, char delim) {$/;"	f
+system_info	core/process/Process.cpp	/^struct sysinfo Process::system_info;$/;"	m	class:Process	typeref:struct:Process::	file:
+system_info	core/process/Process.h	/^        static struct sysinfo system_info;$/;"	m	class:Process	typeref:struct:Process::sysinfo
+system_info	core/process/memory.h	/^    struct sysinfo  system_info;$/;"	m	struct:system_memory	typeref:struct:system_memory::sysinfo
+system_memory	core/process/Process.cpp	/^struct system_memory Process::system_memory;$/;"	m	class:Process	typeref:struct:Process::	file:
+system_memory	core/process/Process.h	/^        static struct system_memory system_memory;$/;"	m	class:Process	typeref:struct:Process::system_memory
+system_memory	core/process/memory.h	/^struct system_memory {$/;"	s
+text	core/process/Process.h	/^            uint64_t text;$/;"	m	struct:Process::Memory
+text	core/process/memory.h	/^    uint64_t text;$/;"	m	struct:process_memory
+total_ram_bytes	core/process/memory.h	/^    uint64_t        total_ram_bytes;$/;"	m	struct:system_memory
+~API	api/API.h	/^        virtual ~API() {}$/;"	f	class:API
+~Process	core/process/Process.cpp	/^Process::~Process()$/;"	f	class:Process
+~ProcessAPI	api/ProcessAPI.cpp	/^ProcessAPI::~ProcessAPI()$/;"	f	class:ProcessAPI

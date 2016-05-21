@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #include "Process.h"
 #include "../util/str.h"
@@ -9,9 +10,11 @@ const std::string Process::PD_STATM   = "statm";
 const std::string Process::PD_CMDLINE = "cmdline";
 
 struct sysinfo Process::system_info;
+struct system_memory Process::system_memory;
 
 Process::Process(uint32_t pid)
 {
+    
     this->pid = pid;
     this->process_base_path = "/proc/" + std::to_string(this->pid);
 
@@ -30,13 +33,32 @@ Process::Memory *Process::GetMemoryUsage() const
 
 void Process::LoadSystemInfo()
 {
+    // TODO: We need a data structure here.
+    // One that can hold the total system ram, system page size and stuff like that.
     // Query the kernel for the machine's sysinfo.
     // We're going to need this when we start converting process
     // memory usage from mem_units into percentages.
-    sysinfo(&Process::system_info);
+    int reti = sysinfo(&Process::system_memory.system_info);
 
-    unsigned long total_memory_bytes = Process::system_info.totalram * Process::system_info.mem_unit;
-    std::cout << total_memory_bytes << std::endl;
+    if ( reti == -1 ) {
+        std::cerr << "Failed to query system information" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    Process::system_memory.page_size = getpagesize();
+    Process::system_memory.total_ram_bytes = Process::system_memory.system_info.totalram 
+                                             * Process::system_memory.system_info.mem_unit;
+}
+
+/*
+|--------------------------------------------------
+| Operator Overloads
+|--------------------------------------------------
+*/
+std::ostream &operator<<(std::ostream &stream, const Process &process)
+{
+    double mem_usage_percentage = (process.memory->size * Process::system_memory.page_size);
+    stream << process.command;
 }
 
 /*
@@ -116,6 +138,9 @@ bool Process::LoadProcessMemory()
     this->memory->lib       = atoi(memory_vector[4].c_str());
     this->memory->data      = atoi(memory_vector[5].c_str());
     this->memory->dirty     = atoi(memory_vector[6].c_str());
+
+    unsigned long total_ram_bytes = Process::system_info.totalram * Process::system_info.mem_unit;
+    std::cout << total_ram_bytes << std::endl;
 
     return true;
 }

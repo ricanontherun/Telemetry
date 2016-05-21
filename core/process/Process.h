@@ -7,6 +7,8 @@
 #include <sys/stat.h>
 #include <sys/sysinfo.h>
 
+#include "memory.h"
+
 class Process
 {
     public:
@@ -51,6 +53,8 @@ class Process
         * @brief Load the local machine's system stats.
         */
         static void LoadSystemInfo();
+
+        friend std::ostream &operator<<(std::ostream &stream, const Process &process);
     private:
         /*
          |--------------------------------------------------
@@ -59,6 +63,7 @@ class Process
         */
         static const std::string PD_STATM, PD_CMDLINE;
 
+        static struct system_memory system_memory;
         static struct sysinfo system_info;
 
         uint32_t pid;
