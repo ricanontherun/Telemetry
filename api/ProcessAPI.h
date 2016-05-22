@@ -1,14 +1,7 @@
 #ifndef API_PROCESS_H
 #define API_PROCESS_H
 
-#include <dirent.h>
-#include <stdint.h>
-#include <map>
-
-#include <unistd.h>
-
 #include "../core/process/Process.h"
-#include "API.h"
 
 class ProcessAPI : public API
 {

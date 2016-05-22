@@ -2,9 +2,14 @@
 #include <limits>
 #include <string.h>
 #include <errno.h>
+#include <dirent.h>
+#include <stdint.h>
+#include <map>
+#include <unistd.h>
 
+#include "API.h"
 #include "ProcessAPI.h"
-#include "../core/process/Process.h"
+#include "../core/sys/SystemInfo.h"
 
 std::string ProcessAPI::proc_root = "/proc/";
 
@@ -58,7 +63,7 @@ void ProcessAPI::LoadProcessList()
     int stat_i;
     uint64_t pid;
 
-    Process::LoadSystemInfo();
+    SystemInfo::Capture();
 
     while (de = readdir(d))
     {
@@ -88,6 +93,8 @@ void ProcessAPI::LoadProcessList()
         // Add it to the process list. Instantiating the process object
         // will fill it with relevant data.
         this->process_list[pid] = new Process(pid);
+
+        std::cout << *(this->process_list[pid]) << std::endl;
     }
 
     closedir(d);

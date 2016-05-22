@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>780</x>
-      <y>100</y>
+      <x>510</x>
+      <y>30</y>
       <w>310</w>
       <h>80</h>
     </coordinates>
@@ -21,18 +20,19 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>220</x>
-      <y>270</y>
+      <x>50</x>
+      <y>150</y>
       <w>470</w>
-      <h>350</h>
+      <h>300</h>
     </coordinates>
     <panel_attributes>ProcessManager
 --
 This class will manage a list of processes, loading, deleting and querying
 the kernel for their informatioin.
 --
--string proc_root
--map&lt;uint32_t, Process *&gt; process_list
+- string proc_root
+- map&lt;uint32_t, Process *&gt; process_list
+- static SystemInfo *info
 --
 +Constructor
 +Reload</panel_attributes>
@@ -41,12 +41,33 @@ the kernel for their informatioin.
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>170</y>
-      <w>370</w>
-      <h>120</h>
+      <x>260</x>
+      <y>100</y>
+      <w>270</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>350.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>250.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>540</y>
+      <w>450</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>SystemInfo
+--
+This class will manage OS information needed by the app.
+--
+- static struct sysinfo sysinfo
+- static int page_size
+--
++ static void Capture()
++ static uint64_t GetTotalSystemRam()
++ static int GetPageSize()
+</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

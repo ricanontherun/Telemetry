@@ -1,20 +1,23 @@
+#include <iostream>
+#include <stdint.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/sysinfo.h>
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
 
 #include "Process.h"
+#include "../sys/SystemInfo.h"
 #include "../util/str.h"
 #include "../util/file.h"
 
 const std::string Process::PD_STATM   = "statm";
 const std::string Process::PD_CMDLINE = "cmdline";
 
-struct sysinfo Process::system_info;
-struct system_memory Process::system_memory;
-
 Process::Process(uint32_t pid)
 {
-    
+
     this->pid = pid;
     this->process_base_path = "/proc/" + std::to_string(this->pid);
 
@@ -26,28 +29,19 @@ Process::~Process()
     delete this->memory;
 }
 
-Process::Memory *Process::GetMemoryUsage() const
+double Process::GetActualMemoryUsage() const
 {
-    return this->memory;    
+    // What constitutes as a process's memory footprint?
+    return this->memory->resident;
 }
 
-void Process::LoadSystemInfo()
+double Process::GetRelativeMemoryUsage() const
 {
-    // TODO: We need a data structure here.
-    // One that can hold the total system ram, system page size and stuff like that.
-    // Query the kernel for the machine's sysinfo.
-    // We're going to need this when we start converting process
-    // memory usage from mem_units into percentages.
-    int reti = sysinfo(&Process::system_memory.system_info);
+    double process_memory_bytes = static_cast<double>(this->GetActualMemoryUsage() * SystemInfo::GetPageSize());
 
-    if ( reti == -1 ) {
-        std::cerr << "Failed to query system information" << std::endl;
-        exit(EXIT_FAILURE);
-    }
+    unsigned long system_memory_bytes = SystemInfo::GetTotalSystemMemory();
 
-    Process::system_memory.page_size = getpagesize();
-    Process::system_memory.total_ram_bytes = Process::system_memory.system_info.totalram 
-                                             * Process::system_memory.system_info.mem_unit;
+    return (process_memory_bytes / system_memory_bytes) * 100.00;
 }
 
 /*
@@ -57,8 +51,8 @@ void Process::LoadSystemInfo()
 */
 std::ostream &operator<<(std::ostream &stream, const Process &process)
 {
-    double mem_usage_percentage = (process.memory->size * Process::system_memory.page_size);
-    stream << process.command;
+    double relative_memory_usage = process.GetRelativeMemoryUsage();
+    stream << process.pid << ":" << process.command << " " << relative_memory_usage;
 }
 
 /*
@@ -138,9 +132,6 @@ bool Process::LoadProcessMemory()
     this->memory->lib       = atoi(memory_vector[4].c_str());
     this->memory->data      = atoi(memory_vector[5].c_str());
     this->memory->dirty     = atoi(memory_vector[6].c_str());
-
-    unsigned long total_ram_bytes = Process::system_info.totalram * Process::system_info.mem_unit;
-    std::cout << total_ram_bytes << std::endl;
 
     return true;
 }
