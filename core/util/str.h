@@ -14,7 +14,7 @@ std::vector<std::string> &split(const std::string &s, char delim, std::vector<st
         // So, we need to catch case.
         if ( item.compare(s) != 0 ) {
             elems.push_back(item);
-        }   
+        }
     }
 
     return elems;

@@ -1,10 +1,13 @@
-#include <sys/sysinfo.h>
-#include "api/API.h"
+#include <iostream>
+
+#include "manager/Manager.h"
+#include "manager/ProcessManager.h"
 
 int main()
 {
-    API *process_api = API::Instance(API::API_TYPES::PROCESS);
+    ProcessManager *manager = dynamic_cast<ProcessManager *>(ProcessManager::Instance(ProcessManager::MANAGER_TYPE::PROCESS));
 
-    delete process_api;
+    manager->Load();
+    delete manager;
     return 0;
 }

@@ -6,8 +6,8 @@ class Process
     public:
 
         /**
-        * @brief A light representation of the process's memory usage.
-        */
+         * @brief Representation of proc/PID/statm columns
+         */
         struct Memory {
             uint64_t size;      // Total Program Size
             uint64_t resident;  // Resident Set Size
@@ -28,19 +28,17 @@ class Process
         ~Process();
 
         /**
-        * @brief Refresh the process data.
-        *
-        * @return true if all goes well, false if the process has been terminated.
-        */
-        bool Refresh();
-
-        /**
          * @brief Get the "actual" memory usage of a process.
          *
          * @return
          */
         double GetActualMemoryUsage() const;
 
+        /**
+         * @brief Get the relative memory usage of a process.
+         *
+         * @return
+         */
         double GetRelativeMemoryUsage() const;
 
         friend std::ostream &operator<<(std::ostream &stream, const Process &process);
@@ -51,10 +49,20 @@ class Process
          |--------------------------------------------------
         */
         static const std::string PD_STATM, PD_CMDLINE;
-        uint32_t pid;
-        std::string process_base_path;
-        std::string command;
 
+        // Linux process ID
+        uint32_t pid;
+
+        // Base path to process /proc/this->pid
+        std::string process_base_path;
+
+        // Executable name
+        std::string executable;
+
+        // Path to executable
+        std::string path;
+
+        // Memory usage of this process.
         struct Memory *memory;
 
         /**

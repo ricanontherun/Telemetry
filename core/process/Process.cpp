@@ -15,6 +15,11 @@
 const std::string Process::PD_STATM   = "statm";
 const std::string Process::PD_CMDLINE = "cmdline";
 
+/**
+* @brief Load all of the data associated with /proc/pid
+*
+* @param pid
+*/
 Process::Process(uint32_t pid)
 {
 
@@ -29,12 +34,22 @@ Process::~Process()
     delete this->memory;
 }
 
+/**
+ * @brief Get the "actual" memory usage of a process.
+ *
+ * @return
+ */
 double Process::GetActualMemoryUsage() const
 {
     // What constitutes as a process's memory footprint?
     return this->memory->resident;
 }
 
+/**
+ * @brief Get the relative memory usage of a process.
+ *
+ * @return
+ */
 double Process::GetRelativeMemoryUsage() const
 {
     double process_memory_bytes = static_cast<double>(this->GetActualMemoryUsage() * SystemInfo::GetPageSize());
@@ -52,7 +67,7 @@ double Process::GetRelativeMemoryUsage() const
 std::ostream &operator<<(std::ostream &stream, const Process &process)
 {
     double relative_memory_usage = process.GetRelativeMemoryUsage();
-    stream << process.pid << ":" << process.command << " " << relative_memory_usage;
+    stream << process.pid << ":" << process.executable << " " << relative_memory_usage;
 }
 
 /*
@@ -88,7 +103,7 @@ bool Process::LoadProcessName()
         return false;
     }
 
-    this->command = buf;
+    this->executable = buf;
 
     fclose(fp);
     return true;

@@ -27,7 +27,7 @@ TEST_CASE("split()")
 
         std::vector<std::string>::iterator it;
         for ( it = parts.begin(); it != parts.end(); it++ ) {
-            REQUIRE((*it).length() == 0); 
+            REQUIRE((*it).length() == 0);
         }
     }
 }
