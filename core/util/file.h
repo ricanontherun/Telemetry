@@ -5,4 +5,5 @@
 
 FILE *GetFile(const char *path, const char *mode);
 
+
 #endif

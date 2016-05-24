@@ -41,6 +41,8 @@ class Process
          */
         double GetRelativeMemoryUsage() const;
 
+        std::string GetExecutable() const;
+
         friend std::ostream &operator<<(std::ostream &stream, const Process &process);
     private:
         /*

@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdexcept>
 
 #include "Process.h"
 #include "../sys/SystemInfo.h"
@@ -59,6 +60,11 @@ double Process::GetRelativeMemoryUsage() const
     return (process_memory_bytes / system_memory_bytes) * 100.00;
 }
 
+std::string Process::GetExecutable() const
+{
+    return this->executable;
+}
+
 /*
 |--------------------------------------------------
 | Operator Overloads
@@ -67,7 +73,8 @@ double Process::GetRelativeMemoryUsage() const
 std::ostream &operator<<(std::ostream &stream, const Process &process)
 {
     double relative_memory_usage = process.GetRelativeMemoryUsage();
-    stream << process.pid << ":" << process.executable << " " << relative_memory_usage;
+    stream << process.pid << ":" << process.executable << " " << std::endl;
+    stream << "%MEM: " << relative_memory_usage;
 }
 
 /*
@@ -78,7 +85,11 @@ std::ostream &operator<<(std::ostream &stream, const Process &process)
 
 bool Process::LoadProcessData()
 {
-    // TODO: Check that the process actually exists before doing any of this.
+    // Clearly, if the process directory doesn't exist, an error has occured.
+    if ( GetFile(this->process_base_path.c_str(), "r") == NULL) {
+        throw std::runtime_error(this->process_base_path + std::string(" does not exist."));
+    }
+
     this->LoadProcessName();
 
     this->LoadProcessMemory();

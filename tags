@@ -7,8 +7,9 @@
 API_API_H	api/API.h	2;"	d
 API_PROCESS_H	api/ProcessAPI.h	2;"	d
 API_PROCESS_H	api/ProcessManager.h	2;"	d
-CATCH_CONFIG_MAIN	tests/test_header.h	1;"	d
+CATCH_CONFIG_MAIN	tests/process.cpp	1;"	d	file:
 COMPILER	makefile	/^COMPILER=g++$/;"	m
+COMPILER	tests/makefile	/^COMPILER=g++$/;"	m
 CORE_PROCESS_H	core/process/Process.h	2;"	d
 CORE_PROCESS_MEMORY_H	core/process/memory.h	2;"	d
 CORE_PROCESS_SYSTEMMEMORY_H	core/process/SystemMemory.h	2;"	d
@@ -20,9 +21,13 @@ CORE_UTIL_STR_H	core/util/str.h	2;"	d
 Capture	core/SystemUser.cpp	/^void SystemUser::Capture()$/;"	f	class:SystemUser
 Capture	core/sys/SystemInfo.cpp	/^void SystemInfo::Capture()$/;"	f	class:SystemInfo
 EXECUTABLE	makefile	/^EXECUTABLE=p$/;"	m
-FILES	makefile	/^FILES=main.cpp manager\/Manager.cpp manager\/ProcessManager.cpp core\/process\/Process.cpp core\/util\/file.c core\/sys\/SystemInfo.cpp core\/SystemUser.cpp$/;"	m
+EXECUTABLE	tests/makefile	/^EXECUTABLE=tests$/;"	m
+FILES	makefile	/^FILES=main.cpp manager\/Manager.cpp manager\/ProcessManager.cpp core\/process\/Process.cpp core\/util\/file.c core\/sys\/SystemInfo.cpp core\/SystemUser.cpp core\/util\/str.cpp$/;"	m
+FILES	tests/makefile	/^FILES=utils.cpp process.cpp ..\/core\/process\/Process.cpp ..\/core\/util\/file.c ..\/core\/sys\/SystemInfo.cpp ..\/core\/SystemUser.cpp ..\/core\/util\/str.cpp$/;"	m
 FLAGS	makefile	/^FLAGS=-g -std=c++11$/;"	m
+FLAGS	tests/makefile	/^FLAGS=-g -std=c++11$/;"	m
 GetActualMemoryUsage	core/process/Process.cpp	/^double Process::GetActualMemoryUsage() const$/;"	f	class:Process
+GetExecutable	core/process/Process.cpp	/^std::string Process::GetExecutable() const$/;"	f	class:Process
 GetFile	core/util/file.c	/^FILE *GetFile(const char *path, const char *mode) {$/;"	f
 GetGroupID	core/SystemUser.cpp	/^gid_t SystemUser::GetGroupID()$/;"	f	class:SystemUser
 GetPageSize	core/sys/SystemInfo.cpp	/^int SystemInfo::GetPageSize()$/;"	f	class:SystemInfo
@@ -63,11 +68,12 @@ ProcessAPI	api/ProcessAPI.h	/^        ProcessAPI() {}$/;"	f	class:ProcessAPI
 ProcessAPI	api/ProcessAPI.h	/^class ProcessAPI : public Manager$/;"	c
 ProcessAPI	api/ProcessManager.h	/^        ProcessAPI() {}$/;"	f	class:ProcessAPI
 ProcessAPI	api/ProcessManager.h	/^class ProcessAPI : public Manager$/;"	c
-ProcessManager	manager/ProcessManager.h	/^        ProcessManager() {}$/;"	f	class:ProcessManager
+ProcessManager	manager/ProcessManager.cpp	/^ProcessManager::ProcessManager()$/;"	f	class:ProcessManager
 ProcessManager	manager/ProcessManager.h	/^class ProcessManager : public Manager$/;"	c
 SystemInfo	core/sys/SystemInfo.h	/^class SystemInfo$/;"	c
 SystemUser	SystemUser.h	/^class SystemUser {$/;"	c
 SystemUser	core/SystemUser.h	/^class SystemUser {$/;"	c
+TESTS_HEADER_H	tests/test_header.h	2;"	d
 data	core/process/Process.h	/^            uint64_t data;      \/\/ data\/stack$/;"	m	struct:Process::Memory
 data	core/process/memory.h	/^    uint64_t data;$/;"	m	struct:process_memory
 dirty	core/process/Process.h	/^            uint64_t dirty;     \/\/ dirty pages$/;"	m	struct:Process::Memory
@@ -109,8 +115,8 @@ share	core/process/Process.h	/^            uint64_t share;     \/\/ Shared Pages
 share	core/process/memory.h	/^    uint64_t share;$/;"	m	struct:process_memory
 size	core/process/Process.h	/^            uint64_t size;      \/\/ Total Program Size$/;"	m	struct:Process::Memory
 size	core/process/memory.h	/^    uint64_t size;$/;"	m	struct:process_memory
-split	core/util/str.h	/^std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {$/;"	f
-split	core/util/str.h	/^std::vector<std::string> split(const std::string &s, char delim) {$/;"	f
+split	core/util/str.cpp	/^std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {$/;"	f
+split	core/util/str.cpp	/^std::vector<std::string> split(const std::string &s, char delim) {$/;"	f
 system_info	core/process/memory.h	/^    struct sysinfo  system_info;$/;"	m	struct:system_memory	typeref:struct:system_memory::sysinfo
 system_memory	core/process/memory.h	/^struct system_memory {$/;"	s
 text	core/process/Process.h	/^            uint64_t text;      \/\/ code$/;"	m	struct:Process::Memory

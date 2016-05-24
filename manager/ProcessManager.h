@@ -6,7 +6,7 @@
 class ProcessManager : public Manager
 {
     public:
-        ProcessManager() {}
+        ProcessManager();
         ~ProcessManager();
 
         /**

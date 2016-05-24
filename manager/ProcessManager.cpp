@@ -15,14 +15,18 @@
 
 std::string ProcessManager::proc_root = "/proc/";
 
+ProcessManager::ProcessManager()
+{
+    // Capture some static data needed.
+    SystemUser::Capture();
+    SystemInfo::Capture();
+}
+
 /**
  * @brief Load the process list.
  */
 void ProcessManager::Load()
 {
-    SystemUser::Capture();
-    SystemInfo::Capture();
-
     this->LoadProcessList();
 }
 
@@ -120,6 +124,8 @@ void ProcessManager::Load(uint64_t pid)
     try {
         Process *process = new Process(pid);
         this->process_list[pid] = process;
+
+        std::cout << *(process) << std::endl;
     } catch( std::runtime_error &error ) {
         std::cerr << error.what() << std::endl;
     }
