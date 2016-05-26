@@ -4,7 +4,7 @@
 
 int main()
 {
-    SystemMonitor::ProcessManager *manager = new SystemMonitor::ProcessManager;
+    SystemMonitor::Manager::ProcessManager *manager = new SystemMonitor::Manager::ProcessManager;
     manager->Load();
     delete manager;
     return 0;
