@@ -9,16 +9,19 @@
 #include <unistd.h>
 #include <iostream>
 
-class SystemInfo
+namespace SystemMonitor
 {
-    public:
-        static void Capture();
-        static uint64_t GetTotalSystemMemory();
-        static int GetPageSize();
-    private:
-        static struct sysinfo info;
-        static int pagesize;
+    class SystemInfo
+    {
+        public:
+            static void Capture();
+            static uint64_t GetTotalSystemMemory();
+            static int GetPageSize();
+        private:
+            static struct sysinfo info;
+            static int pagesize;
 
-};
+    };
+}
 
 #endif

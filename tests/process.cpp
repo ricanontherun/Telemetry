@@ -14,7 +14,7 @@ TEST_CASE("Process")
 
         bool error_thrown = false;
         try {
-            Process *process = new Process(0);
+            SystemMonitor::Process *process = new SystemMonitor::Process(0);
         } catch( std::runtime_error &e ) {
             error_thrown = true;
         }
@@ -26,7 +26,7 @@ TEST_CASE("Process")
     // representing the current process.
 
     pid_t current_pid = getpid();
-    Process *process = new Process(current_pid);
+    SystemMonitor::Process *process = new SystemMonitor::Process(current_pid);
 
     REQUIRE(process);
 
