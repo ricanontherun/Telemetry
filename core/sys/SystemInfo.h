@@ -11,17 +11,30 @@
 
 namespace SystemMonitor
 {
-    class SystemInfo
-    {
-        public:
-            static void Capture();
-            static uint64_t GetTotalSystemMemory();
-            static int GetPageSize();
-        private:
-            static struct sysinfo info;
-            static int pagesize;
 
-    };
+class SystemInfo
+{
+    public:
+        /**
+         * Capture information about the host machine.
+         */
+        static void Capture();
+
+        /**
+         * Get the host machine's amount of RAM in bytes.
+         */
+        static uint64_t GetTotalSystemMemory();
+
+        /**
+         * Get the host system's page size.
+         */
+        static int GetPageSize();
+    private:
+        static struct sysinfo info;
+        static int pagesize;
+
+};
+
 }
 
 #endif

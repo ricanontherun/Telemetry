@@ -8,6 +8,9 @@ API_API_H	api/API.h	2;"	d
 API_PROCESS_H	api/ProcessAPI.h	2;"	d
 API_PROCESS_H	api/ProcessManager.h	2;"	d
 CATCH_CONFIG_MAIN	tests/process.cpp	1;"	d	file:
+CMAKE_BINARY_DIR	Makefile	/^CMAKE_BINARY_DIR = \/home\/croman\/projects\/system_monitor$/;"	m
+CMAKE_COMMAND	Makefile	/^CMAKE_COMMAND = \/usr\/bin\/cmake$/;"	m
+CMAKE_SOURCE_DIR	Makefile	/^CMAKE_SOURCE_DIR = \/home\/croman\/projects\/system_monitor$/;"	m
 COMPILER	makefile	/^COMPILER=g++$/;"	m
 COMPILER	tests/makefile	/^COMPILER=g++$/;"	m
 CORE_PROCESS_H	core/process/Process.h	2;"	d
@@ -15,69 +18,76 @@ CORE_PROCESS_MEMORY_H	core/process/memory.h	2;"	d
 CORE_PROCESS_SYSTEMMEMORY_H	core/process/SystemMemory.h	2;"	d
 CORE_SYSTEM_USER_H	SystemUser.h	2;"	d
 CORE_SYSTEM_USER_H	core/SystemUser.h	2;"	d
+CORE_SYSTEM_USER_H	core/sys/SystemUser.h	2;"	d
 CORE_SYS_SYSTEMINFO_H	core/sys/SystemInfo.h	2;"	d
 CORE_UTIL_FILE_H	core/util/file.h	2;"	d
 CORE_UTIL_STR_H	core/util/str.h	2;"	d
 Capture	core/SystemUser.cpp	/^    void SystemUser::Capture()$/;"	f	class:SystemMonitor::SystemUser
-Capture	core/sys/SystemInfo.cpp	/^    void SystemInfo::Capture()$/;"	f	class:SystemMonitor::SystemInfo
-Capture	core/sys/SystemUser.cpp	/^    void SystemUser::Capture()$/;"	f	class:SystemMonitor::SystemUser
-Core	core/process/Process.cpp	/^    namespace Core$/;"	n	namespace:SystemMonitor	file:
-Core	core/process/Process.h	/^    namespace Core$/;"	n	namespace:SystemMonitor
+Capture	core/sys/SystemInfo.cpp	/^void SystemInfo::Capture()$/;"	f	class:SystemMonitor::SystemInfo
+Capture	core/sys/SystemUser.cpp	/^void SystemUser::Capture()$/;"	f	class:SystemMonitor::SystemUser
+Core	core/process/Process.cpp	/^namespace Core$/;"	n	namespace:SystemMonitor	file:
+Core	core/process/Process.h	/^namespace Core$/;"	n	namespace:SystemMonitor
+EQUALS	Makefile	/^EQUALS = =$/;"	m
 EXECUTABLE	makefile	/^EXECUTABLE=p$/;"	m
 EXECUTABLE	tests/makefile	/^EXECUTABLE=tests$/;"	m
 FILES	makefile	/^FILES=main.cpp manager\/ProcessManager.cpp core\/process\/Process.cpp core\/util\/file.c core\/sys\/SystemInfo.cpp core\/sys\/SystemUser.cpp core\/util\/str.cpp$/;"	m
 FILES	tests/makefile	/^FILES=utils.cpp process.cpp ..\/core\/process\/Process.cpp ..\/core\/util\/file.c ..\/core\/sys\/SystemInfo.cpp ..\/core\/sys\/SystemUser.cpp ..\/core\/util\/str.cpp$/;"	m
 FLAGS	makefile	/^FLAGS=-g -std=c++11$/;"	m
 FLAGS	tests/makefile	/^FLAGS=-g -std=c++11$/;"	m
-GetActualMemoryUsage	core/process/Process.cpp	/^        double Process::GetActualMemoryUsage() const$/;"	f	class:SystemMonitor::Core::Process
-GetExecutable	core/process/Process.cpp	/^        std::string Process::GetExecutable() const$/;"	f	class:SystemMonitor::Core::Process
+GetActualMemoryUsage	core/process/Process.cpp	/^double Process::GetActualMemoryUsage() const$/;"	f	class:SystemMonitor::Core::Process
+GetExecutable	core/process/Process.cpp	/^std::string Process::GetExecutable() const$/;"	f	class:SystemMonitor::Core::Process
 GetFile	core/util/file.c	/^FILE *GetFile(const char *path, const char *mode) {$/;"	f
+GetFile	core/util/file.cpp	/^FILE *GetFile(const char *path, const char *mode) {$/;"	f
 GetGroupID	core/SystemUser.cpp	/^    gid_t SystemUser::GetGroupID()$/;"	f	class:SystemMonitor::SystemUser
-GetGroupID	core/sys/SystemUser.cpp	/^    gid_t SystemUser::GetGroupID()$/;"	f	class:SystemMonitor::SystemUser
-GetPageSize	core/sys/SystemInfo.cpp	/^    int SystemInfo::GetPageSize()$/;"	f	class:SystemMonitor::SystemInfo
-GetRelativeMemoryUsage	core/process/Process.cpp	/^        double Process::GetRelativeMemoryUsage() const$/;"	f	class:SystemMonitor::Core::Process
+GetGroupID	core/sys/SystemUser.cpp	/^gid_t SystemUser::GetGroupID()$/;"	f	class:SystemMonitor::SystemUser
+GetPageSize	core/sys/SystemInfo.cpp	/^int SystemInfo::GetPageSize()$/;"	f	class:SystemMonitor::SystemInfo
+GetRelativeMemoryUsage	core/process/Process.cpp	/^double Process::GetRelativeMemoryUsage() const$/;"	f	class:SystemMonitor::Core::Process
 GetStringInteger	api/ProcessAPI.cpp	/^uint64_t ProcessAPI::GetStringInteger(char *string)$/;"	f	class:ProcessAPI
 GetStringInteger	api/ProcessManager.cpp	/^uint64_t ProcessAPI::GetStringInteger(char *string)$/;"	f	class:ProcessAPI
-GetStringInteger	manager/ProcessManager.cpp	/^        uint64_t ProcessManager::GetStringInteger(char *string)$/;"	f	class:SystemMonitor::Manager::ProcessManager
-GetTotalSystemMemory	core/sys/SystemInfo.cpp	/^    uint64_t SystemInfo::GetTotalSystemMemory()$/;"	f	class:SystemMonitor::SystemInfo
+GetStringInteger	manager/ProcessManager.cpp	/^uint64_t ProcessManager::GetStringInteger(char *string)$/;"	f	class:SystemMonitor::Manager::ProcessManager
+GetTotalSystemMemory	core/sys/SystemInfo.cpp	/^uint64_t SystemInfo::GetTotalSystemMemory()$/;"	f	class:SystemMonitor::SystemInfo
 GetUserID	core/SystemUser.cpp	/^    uid_t SystemUser::GetUserID()$/;"	f	class:SystemMonitor::SystemUser
-GetUserID	core/sys/SystemUser.cpp	/^    uid_t SystemUser::GetUserID()$/;"	f	class:SystemMonitor::SystemUser
+GetUserID	core/sys/SystemUser.cpp	/^uid_t SystemUser::GetUserID()$/;"	f	class:SystemMonitor::SystemUser
 Instance	api/API.cpp	/^Manager *Manager::Instance(MANAGER_TYPE type)$/;"	f	class:Manager
 Instance	manager/Manager.cpp	/^    Manager *Manager::Instance(MANAGER_TYPE type)$/;"	f	class:SystemMonitor::Manager
+Kill	core/process/Process.cpp	/^bool Process::Kill()$/;"	f	class:SystemMonitor::Core::Process
 Load	api/ProcessAPI.cpp	/^void ProcessAPI::Load()$/;"	f	class:ProcessAPI
 Load	api/ProcessManager.cpp	/^void ProcessAPI::Load()$/;"	f	class:ProcessAPI
-Load	manager/ProcessManager.cpp	/^        void ProcessManager::Load()$/;"	f	class:SystemMonitor::Manager::ProcessManager
-Load	manager/ProcessManager.cpp	/^        void ProcessManager::Load(uint64_t pid)$/;"	f	class:SystemMonitor::Manager::ProcessManager
-LoadProcessData	core/process/Process.cpp	/^        bool Process::LoadProcessData()$/;"	f	class:SystemMonitor::Core::Process
+Load	manager/ProcessManager.cpp	/^void ProcessManager::Load()$/;"	f	class:SystemMonitor::Manager::ProcessManager
+Load	manager/ProcessManager.cpp	/^void ProcessManager::Load(uint64_t pid)$/;"	f	class:SystemMonitor::Manager::ProcessManager
+LoadProcessData	core/process/Process.cpp	/^bool Process::LoadProcessData()$/;"	f	class:SystemMonitor::Core::Process
 LoadProcessList	api/ProcessAPI.cpp	/^void ProcessAPI::LoadProcessList()$/;"	f	class:ProcessAPI
 LoadProcessList	api/ProcessManager.cpp	/^void ProcessAPI::LoadProcessList()$/;"	f	class:ProcessAPI
-LoadProcessList	manager/ProcessManager.cpp	/^        void ProcessManager::LoadProcessList()$/;"	f	class:SystemMonitor::Manager::ProcessManager
-LoadProcessMemory	core/process/Process.cpp	/^        bool Process::LoadProcessMemory()$/;"	f	class:SystemMonitor::Core::Process
-LoadProcessName	core/process/Process.cpp	/^        bool Process::LoadProcessName()$/;"	f	class:SystemMonitor::Core::Process
+LoadProcessList	manager/ProcessManager.cpp	/^void ProcessManager::LoadProcessList()$/;"	f	class:SystemMonitor::Manager::ProcessManager
+LoadProcessMemory	core/process/Process.cpp	/^bool Process::LoadProcessMemory()$/;"	f	class:SystemMonitor::Core::Process
+LoadProcessName	core/process/Process.cpp	/^bool Process::LoadProcessName()$/;"	f	class:SystemMonitor::Core::Process
 MANAGER_H	manager/Manager.h	2;"	d
 MANAGER_PROCESS_H	manager/ProcessManager.h	2;"	d
 MANAGER_TYPE	api/API.h	/^        enum class MANAGER_TYPE$/;"	c	class:Manager
 MANAGER_TYPE	manager/Manager.h	/^            enum class MANAGER_TYPE$/;"	c	class:SystemMonitor::Manager
 Manager	api/API.h	/^class Manager$/;"	c
 Manager	manager/Manager.h	/^    class Manager$/;"	c	namespace:SystemMonitor
-Manager	manager/ProcessManager.cpp	/^    namespace Manager$/;"	n	namespace:SystemMonitor	file:
-Manager	manager/ProcessManager.h	/^    namespace Manager$/;"	n	namespace:SystemMonitor
-Memory	core/process/Process.h	/^                struct Memory {$/;"	s	class:SystemMonitor::Core::Process
-PD_CMDLINE	core/process/Process.cpp	/^        const std::string Process::PD_CMDLINE = "cmdline";$/;"	m	class:SystemMonitor::Core::Process	file:
-PD_CMDLINE	core/process/Process.h	/^                static const std::string PD_STATM, PD_CMDLINE;$/;"	m	class:SystemMonitor::Core::Process
-PD_STATM	core/process/Process.cpp	/^        const std::string Process::PD_STATM   = "statm";$/;"	m	class:SystemMonitor::Core::Process	file:
-PD_STATM	core/process/Process.h	/^                static const std::string PD_STATM, PD_CMDLINE;$/;"	m	class:SystemMonitor::Core::Process
+Manager	manager/ProcessManager.cpp	/^namespace Manager$/;"	n	namespace:SystemMonitor	file:
+Manager	manager/ProcessManager.h	/^namespace Manager$/;"	n	namespace:SystemMonitor
+Memory	core/process/Process.h	/^        struct Memory {$/;"	s	class:SystemMonitor::Core::Process
+PD_CMDLINE	core/process/Process.cpp	/^const std::string Process::PD_CMDLINE = "cmdline";$/;"	m	class:SystemMonitor::Core::Process	file:
+PD_CMDLINE	core/process/Process.h	/^        static const std::string PD_STATM, PD_CMDLINE;$/;"	m	class:SystemMonitor::Core::Process
+PD_STATM	core/process/Process.cpp	/^const std::string Process::PD_STATM   = "statm";$/;"	m	class:SystemMonitor::Core::Process	file:
+PD_STATM	core/process/Process.h	/^        static const std::string PD_STATM, PD_CMDLINE;$/;"	m	class:SystemMonitor::Core::Process
 PROCESS	api/API.h	/^            PROCESS, NETWORK$/;"	m	class:Manager::MANAGER_TYPE
 PROCESS	manager/Manager.h	/^                PROCESS, NETWORK$/;"	m	class:SystemMonitor::Manager::MANAGER_TYPE
-Process	core/process/Process.cpp	/^        Process::Process(uint32_t pid)$/;"	f	class:SystemMonitor::Core::Process
-Process	core/process/Process.h	/^        class Process$/;"	c	namespace:SystemMonitor::Core
+Process	core/process/Process.cpp	/^Process::Process(uint32_t pid)$/;"	f	class:SystemMonitor::Core::Process
+Process	core/process/Process.h	/^class Process$/;"	c	namespace:SystemMonitor::Core
 ProcessAPI	api/ProcessAPI.h	/^        ProcessAPI() {}$/;"	f	class:ProcessAPI
 ProcessAPI	api/ProcessAPI.h	/^class ProcessAPI : public Manager$/;"	c
 ProcessAPI	api/ProcessManager.h	/^        ProcessAPI() {}$/;"	f	class:ProcessAPI
 ProcessAPI	api/ProcessManager.h	/^class ProcessAPI : public Manager$/;"	c
-ProcessManager	manager/ProcessManager.cpp	/^        ProcessManager::ProcessManager()$/;"	f	class:SystemMonitor::Manager::ProcessManager
-ProcessManager	manager/ProcessManager.h	/^        class ProcessManager$/;"	c	namespace:SystemMonitor::Manager
-SystemInfo	core/sys/SystemInfo.h	/^    class SystemInfo$/;"	c	namespace:SystemMonitor
+ProcessManager	manager/ProcessManager.cpp	/^ProcessManager::ProcessManager()$/;"	f	class:SystemMonitor::Manager::ProcessManager
+ProcessManager	manager/ProcessManager.h	/^class ProcessManager$/;"	c	namespace:SystemMonitor::Manager
+RM	Makefile	/^RM = \/usr\/bin\/cmake -E remove -f$/;"	m
+SHELL	Makefile	/^SHELL = \/bin\/sh$/;"	m
+SUFFIXES	Makefile	/^SUFFIXES =$/;"	m
+SystemInfo	core/sys/SystemInfo.h	/^class SystemInfo$/;"	c	namespace:SystemMonitor
 SystemMonitor	core/SystemUser.cpp	/^namespace SystemMonitor$/;"	n	file:
 SystemMonitor	core/SystemUser.h	/^namespace SystemMonitor$/;"	n
 SystemMonitor	core/process/Process.cpp	/^namespace SystemMonitor$/;"	n	file:
@@ -85,6 +95,7 @@ SystemMonitor	core/process/Process.h	/^namespace SystemMonitor$/;"	n
 SystemMonitor	core/sys/SystemInfo.cpp	/^namespace SystemMonitor$/;"	n	file:
 SystemMonitor	core/sys/SystemInfo.h	/^namespace SystemMonitor$/;"	n
 SystemMonitor	core/sys/SystemUser.cpp	/^namespace SystemMonitor$/;"	n	file:
+SystemMonitor	core/sys/SystemUser.h	/^namespace SystemMonitor$/;"	n
 SystemMonitor	core/util/str.cpp	/^namespace SystemMonitor$/;"	n	file:
 SystemMonitor	core/util/str.h	/^namespace SystemMonitor$/;"	n
 SystemMonitor	manager/Manager.cpp	/^namespace SystemMonitor$/;"	n	file:
@@ -93,65 +104,68 @@ SystemMonitor	manager/ProcessManager.cpp	/^namespace SystemMonitor$/;"	n	file:
 SystemMonitor	manager/ProcessManager.h	/^namespace SystemMonitor$/;"	n
 SystemUser	SystemUser.h	/^class SystemUser {$/;"	c
 SystemUser	core/SystemUser.h	/^    class SystemUser {$/;"	c	namespace:SystemMonitor
+SystemUser	core/sys/SystemUser.h	/^class SystemUser {$/;"	c	namespace:SystemMonitor
 TESTS_HEADER_H	tests/test_header.h	2;"	d
-Utils	core/util/str.cpp	/^    namespace Utils$/;"	n	namespace:SystemMonitor	file:
-Utils	core/util/str.h	/^    namespace Utils$/;"	n	namespace:SystemMonitor
-data	core/process/Process.h	/^                    uint64_t data;      \/\/ data\/stack$/;"	m	struct:SystemMonitor::Core::Process::Memory
+Utils	core/util/str.cpp	/^namespace Utils$/;"	n	namespace:SystemMonitor	file:
+Utils	core/util/str.h	/^namespace Utils$/;"	n	namespace:SystemMonitor
+data	core/process/Process.h	/^            uint64_t data;      \/\/ data\/stack$/;"	m	struct:SystemMonitor::Core::Process::Memory
 data	core/process/memory.h	/^    uint64_t data;$/;"	m	struct:process_memory
-dirty	core/process/Process.h	/^                    uint64_t dirty;     \/\/ dirty pages$/;"	m	struct:SystemMonitor::Core::Process::Memory
+dirty	core/process/Process.h	/^            uint64_t dirty;     \/\/ dirty pages$/;"	m	struct:SystemMonitor::Core::Process::Memory
 dirty	core/process/memory.h	/^    uint64_t dirty;$/;"	m	struct:process_memory
-executable	core/process/Process.h	/^                std::string executable;$/;"	m	class:SystemMonitor::Core::Process
+executable	core/process/Process.h	/^        std::string executable;$/;"	m	class:SystemMonitor::Core::Process
 gid	SystemUser.h	/^        static gid_t gid;$/;"	m	class:SystemUser
 gid	core/SystemUser.cpp	/^    gid_t SystemUser::gid = 0;$/;"	m	class:SystemMonitor::SystemUser	file:
 gid	core/SystemUser.h	/^            static gid_t gid;$/;"	m	class:SystemMonitor::SystemUser
-gid	core/sys/SystemUser.cpp	/^    gid_t SystemUser::gid = 0;$/;"	m	class:SystemMonitor::SystemUser	file:
-info	core/sys/SystemInfo.cpp	/^    struct sysinfo SystemInfo::info;$/;"	m	class:SystemMonitor::SystemInfo	typeref:struct:SystemMonitor::SystemInfo::	file:
-info	core/sys/SystemInfo.h	/^            static struct sysinfo info;$/;"	m	class:SystemMonitor::SystemInfo	typeref:struct:SystemMonitor::SystemInfo::sysinfo
+gid	core/sys/SystemUser.cpp	/^gid_t SystemUser::gid = 0;$/;"	m	class:SystemMonitor::SystemUser	file:
+gid	core/sys/SystemUser.h	/^        static gid_t gid;$/;"	m	class:SystemMonitor::SystemUser
+info	core/sys/SystemInfo.cpp	/^struct sysinfo SystemInfo::info;$/;"	m	class:SystemMonitor::SystemInfo	typeref:struct:SystemMonitor::SystemInfo::	file:
+info	core/sys/SystemInfo.h	/^        static struct sysinfo info;$/;"	m	class:SystemMonitor::SystemInfo	typeref:struct:SystemMonitor::SystemInfo::sysinfo
 instances	api/API.cpp	/^std::map<Manager::MANAGER_TYPE, Manager *> Manager::instances;$/;"	m	class:Manager	file:
 instances	api/API.h	/^        static std::map<MANAGER_TYPE, Manager *> instances;$/;"	m	class:Manager
 instances	manager/Manager.cpp	/^    std::map<Manager::MANAGER_TYPE, Manager *> Manager::instances;$/;"	m	class:SystemMonitor::Manager	file:
 instances	manager/Manager.h	/^            static std::map<MANAGER_TYPE, Manager *> instances;$/;"	m	class:SystemMonitor::Manager
-lib	core/process/Process.h	/^                    uint64_t lib;       \/\/ library?$/;"	m	struct:SystemMonitor::Core::Process::Memory
+lib	core/process/Process.h	/^            uint64_t lib;       \/\/ library?$/;"	m	struct:SystemMonitor::Core::Process::Memory
 lib	core/process/memory.h	/^    uint64_t lib;$/;"	m	struct:process_memory
 main	main.cpp	/^int main()$/;"	f
-memory	core/process/Process.h	/^                struct Memory *memory;$/;"	m	class:SystemMonitor::Core::Process	typeref:struct:SystemMonitor::Core::Process::Memory
-operator <<	core/process/Process.cpp	/^        std::ostream &operator<<(std::ostream &stream, const Process &process)$/;"	f	namespace:SystemMonitor::Core
+memory	core/process/Process.h	/^        struct Memory *memory;$/;"	m	class:SystemMonitor::Core::Process	typeref:struct:SystemMonitor::Core::Process::Memory
+operator <<	core/process/Process.cpp	/^std::ostream &operator<<(std::ostream &stream, const Process &process)$/;"	f	namespace:SystemMonitor::Core
 page_size	core/process/memory.h	/^    uint64_t        page_size;$/;"	m	struct:system_memory
-pagesize	core/sys/SystemInfo.cpp	/^    int SystemInfo::pagesize = 0;$/;"	m	class:SystemMonitor::SystemInfo	file:
-pagesize	core/sys/SystemInfo.h	/^            static int pagesize;$/;"	m	class:SystemMonitor::SystemInfo
-path	core/process/Process.h	/^                std::string path;$/;"	m	class:SystemMonitor::Core::Process
-pid	core/process/Process.h	/^                uint32_t pid;$/;"	m	class:SystemMonitor::Core::Process
+pagesize	core/sys/SystemInfo.cpp	/^int SystemInfo::pagesize = 0;$/;"	m	class:SystemMonitor::SystemInfo	file:
+pagesize	core/sys/SystemInfo.h	/^        static int pagesize;$/;"	m	class:SystemMonitor::SystemInfo
+path	core/process/Process.h	/^        std::string path;$/;"	m	class:SystemMonitor::Core::Process
+pid	core/process/Process.h	/^        uint32_t pid;$/;"	m	class:SystemMonitor::Core::Process
 proc_root	api/ProcessAPI.cpp	/^std::string ProcessAPI::proc_root = "\/proc\/";$/;"	m	class:ProcessAPI	file:
 proc_root	api/ProcessAPI.h	/^        static std::string proc_root;$/;"	m	class:ProcessAPI
 proc_root	api/ProcessManager.cpp	/^std::string ProcessAPI::proc_root = "\/proc\/";$/;"	m	class:ProcessAPI	file:
 proc_root	api/ProcessManager.h	/^        static std::string proc_root;$/;"	m	class:ProcessAPI
-proc_root	manager/ProcessManager.cpp	/^        std::string ProcessManager::proc_root = "\/proc\/";$/;"	m	class:SystemMonitor::Manager::ProcessManager	file:
-proc_root	manager/ProcessManager.h	/^                static std::string proc_root;$/;"	m	class:SystemMonitor::Manager::ProcessManager
-process_base_path	core/process/Process.h	/^                std::string process_base_path;$/;"	m	class:SystemMonitor::Core::Process
+proc_root	manager/ProcessManager.cpp	/^std::string ProcessManager::proc_root = "\/proc\/";$/;"	m	class:SystemMonitor::Manager::ProcessManager	file:
+proc_root	manager/ProcessManager.h	/^        static std::string proc_root;$/;"	m	class:SystemMonitor::Manager::ProcessManager
+process_base_path	core/process/Process.h	/^        std::string process_base_path;$/;"	m	class:SystemMonitor::Core::Process
 process_list	api/ProcessAPI.h	/^        std::map<uint32_t, Process *> process_list;$/;"	m	class:ProcessAPI
 process_list	api/ProcessManager.h	/^        std::map<uint32_t, Process *> process_list;$/;"	m	class:ProcessAPI
-process_list	manager/ProcessManager.h	/^                std::map<uint32_t, Core::Process *> process_list;$/;"	m	class:SystemMonitor::Manager::ProcessManager
+process_list	manager/ProcessManager.h	/^        std::map<uint32_t, Core::Process *> process_list;$/;"	m	class:SystemMonitor::Manager::ProcessManager
 process_memory	core/process/memory.h	/^struct process_memory {$/;"	s
-resident	core/process/Process.h	/^                    uint64_t resident;  \/\/ Resident Set Size$/;"	m	struct:SystemMonitor::Core::Process::Memory
+resident	core/process/Process.h	/^            uint64_t resident;  \/\/ Resident Set Size$/;"	m	struct:SystemMonitor::Core::Process::Memory
 resident	core/process/memory.h	/^    uint64_t resident;$/;"	m	struct:process_memory
-share	core/process/Process.h	/^                    uint64_t share;     \/\/ Shared Pages$/;"	m	struct:SystemMonitor::Core::Process::Memory
+share	core/process/Process.h	/^            uint64_t share;     \/\/ Shared Pages$/;"	m	struct:SystemMonitor::Core::Process::Memory
 share	core/process/memory.h	/^    uint64_t share;$/;"	m	struct:process_memory
-size	core/process/Process.h	/^                    uint64_t size;      \/\/ Total Program Size$/;"	m	struct:SystemMonitor::Core::Process::Memory
+size	core/process/Process.h	/^            uint64_t size;      \/\/ Total Program Size$/;"	m	struct:SystemMonitor::Core::Process::Memory
 size	core/process/memory.h	/^    uint64_t size;$/;"	m	struct:process_memory
-split	core/util/str.cpp	/^        std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {$/;"	f	namespace:SystemMonitor::Utils
-split	core/util/str.cpp	/^        std::vector<std::string> split(const std::string &s, char delim) {$/;"	f	namespace:SystemMonitor::Utils
+split	core/util/str.cpp	/^std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {$/;"	f	namespace:SystemMonitor::Utils
+split	core/util/str.cpp	/^std::vector<std::string> split(const std::string &s, char delim) {$/;"	f	namespace:SystemMonitor::Utils
 system_info	core/process/memory.h	/^    struct sysinfo  system_info;$/;"	m	struct:system_memory	typeref:struct:system_memory::sysinfo
 system_memory	core/process/memory.h	/^struct system_memory {$/;"	s
-text	core/process/Process.h	/^                    uint64_t text;      \/\/ code$/;"	m	struct:SystemMonitor::Core::Process::Memory
+text	core/process/Process.h	/^            uint64_t text;      \/\/ code$/;"	m	struct:SystemMonitor::Core::Process::Memory
 text	core/process/memory.h	/^    uint64_t text;$/;"	m	struct:process_memory
 total_ram_bytes	core/process/memory.h	/^    uint64_t        total_ram_bytes;$/;"	m	struct:system_memory
 uid	SystemUser.h	/^        static uid_t uid;$/;"	m	class:SystemUser
 uid	core/SystemUser.cpp	/^    uid_t SystemUser::uid = 0;$/;"	m	class:SystemMonitor::SystemUser	file:
 uid	core/SystemUser.h	/^            static uid_t uid;$/;"	m	class:SystemMonitor::SystemUser
-uid	core/sys/SystemUser.cpp	/^    uid_t SystemUser::uid = 0;$/;"	m	class:SystemMonitor::SystemUser	file:
+uid	core/sys/SystemUser.cpp	/^uid_t SystemUser::uid = 0;$/;"	m	class:SystemMonitor::SystemUser	file:
+uid	core/sys/SystemUser.h	/^        static uid_t uid;$/;"	m	class:SystemMonitor::SystemUser
 ~Manager	api/API.h	/^        virtual ~Manager() {}$/;"	f	class:Manager
 ~Manager	manager/Manager.h	/^            virtual ~Manager() {}$/;"	f	class:SystemMonitor::Manager
-~Process	core/process/Process.cpp	/^        Process::~Process()$/;"	f	class:SystemMonitor::Core::Process
+~Process	core/process/Process.cpp	/^Process::~Process()$/;"	f	class:SystemMonitor::Core::Process
 ~ProcessAPI	api/ProcessAPI.cpp	/^ProcessAPI::~ProcessAPI()$/;"	f	class:ProcessAPI
 ~ProcessAPI	api/ProcessManager.cpp	/^ProcessAPI::~ProcessAPI()$/;"	f	class:ProcessAPI
-~ProcessManager	manager/ProcessManager.cpp	/^        ProcessManager::~ProcessManager()$/;"	f	class:SystemMonitor::Manager::ProcessManager
+~ProcessManager	manager/ProcessManager.cpp	/^ProcessManager::~ProcessManager()$/;"	f	class:SystemMonitor::Manager::ProcessManager

@@ -6,47 +6,49 @@
 
 namespace SystemMonitor
 {
-    namespace Manager
-    {
-        class ProcessManager
-        {
-            public:
-                ProcessManager();
-                ~ProcessManager();
+namespace Manager
+{
 
-                /**
-                 * @brief Load all active processes.
-                 */
-                void Load();
+class ProcessManager
+{
+    public:
+        ProcessManager();
+        ~ProcessManager();
 
-                /**
-                 * @brief Load a particular process.
-                 *
-                 * @param pid
-                 */
-                void Load(uint64_t pid);
-            private:
-                // Base process directory path.
-                static std::string proc_root;
+        /**
+         * @brief Load all active processes.
+         */
+        void Load();
 
-                // Map of processes, keyed by their respective PID
-                std::map<uint32_t, Core::Process *> process_list;
+        /**
+         * @brief Load a particular process.
+         *
+         * @param pid
+         */
+        void Load(uint64_t pid);
+    private:
+        // Base process directory path.
+        static std::string proc_root;
 
-                /**
-                 * @brief Load the process list.
-                 */
-                void LoadProcessList();
+        // Map of processes, keyed by their respective PID
+        std::map<uint32_t, Core::Process *> process_list;
 
-                /**
-                 * @brief Attempt to convert a string into an integer.
-                 *
-                 * @param string
-                 *
-                 * @return
-                 */
-                uint64_t GetStringInteger(char *string);
-        };
-    } // End Manager
+        /**
+         * @brief Load the process list.
+         */
+        void LoadProcessList();
+
+        /**
+         * @brief Attempt to convert a string into an integer.
+         *
+         * @param string
+         *
+         * @return
+         */
+        uint64_t GetStringInteger(char *string);
+};
+
+} // End Manager
 } // End SystemMonitor
 
 #endif //PROCESS_API_H

@@ -7,14 +7,14 @@
 #include "test_header.h"
 #include "../core/process/Process.h"
 
-TEST_CASE("Process")
+TEST_CASE("SystemMonitor::Core::Process")
 {
     SECTION("Throws an exception when a non-existent pid is provided.")
     {
 
         bool error_thrown = false;
         try {
-            SystemMonitor::Process *process = new SystemMonitor::Process(0);
+            SystemMonitor::Core::Process *process = new SystemMonitor::Core::Process(0);
         } catch( std::runtime_error &e ) {
             error_thrown = true;
         }
@@ -26,7 +26,7 @@ TEST_CASE("Process")
     // representing the current process.
 
     pid_t current_pid = getpid();
-    SystemMonitor::Process *process = new SystemMonitor::Process(current_pid);
+    SystemMonitor::Core::Process *process = new SystemMonitor::Core::Process(current_pid);
 
     REQUIRE(process);
 

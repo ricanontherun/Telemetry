@@ -1,2 +1,10 @@
-p
-.idea/
+sysmon
+
+#Cmake
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+
+tests/CMakeFiles
+tests/CMakeCache.txt
+tests/cmake_install.cmake
