@@ -39,8 +39,6 @@ ProcessManager::~ProcessManager()
     // We create an iterator for map<uint32_t, Process *> map.
     std::map<uint32_t, Core::Process *>::iterator it;
 
-    // Iterate over the process_list and free each object.
-    // TODO: Make sure we add some more validation here?
     for (it = this->process_list.begin(); it != this->process_list.end(); it++)
     {
         delete it->second;
@@ -129,8 +127,7 @@ void ProcessManager::Load(uint64_t pid)
         Core::Process *process = new Core::Process(pid);
         this->process_list[pid] = process;
 
-        process->Kill();
-        std::cout << *(process) << std::endl;
+        std::cout << *process << std::endl;
     } catch( std::runtime_error &error ) {
         std::cerr << error.what() << std::endl;
     }

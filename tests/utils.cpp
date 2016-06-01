@@ -4,14 +4,6 @@
 
 TEST_CASE("split()")
 {
-    SECTION("Returns an empty vector if no delimiters are found in the string.")
-    {
-        std::string str = "BreakThisStringUp";
-        std::vector<std::string> parts = SystemMonitor::Utils::split(str, ',');
-
-        REQUIRE(parts.size() == 0);
-    }
-
     SECTION("Returns an non-empty vector if at least one delimiter is present in source string.")
     {
         std::string str = "Break,This,String,Up";

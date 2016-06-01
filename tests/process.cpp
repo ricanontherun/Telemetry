@@ -32,7 +32,8 @@ TEST_CASE("SystemMonitor::Core::Process")
 
     SECTION("Each Process has an executable name.")
     {
-        REQUIRE(process->GetExecutable().length());
+        SystemMonitor::Core::Process::Command command = process->GetCommand();
+        REQUIRE(command.executable.length());
     }
 
     SECTION("Each Process uses memory.")

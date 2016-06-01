@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <stdint.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -38,7 +39,6 @@ Process::Process(uint32_t pid)
 
 Process::~Process()
 {
-    delete this->memory;
 }
 
 /**
@@ -49,7 +49,7 @@ Process::~Process()
 double Process::GetActualMemoryUsage() const
 {
     // What constitutes as a process's memory footprint?
-    return this->memory->resident;
+    return this->memory.resident;
 }
 
 /**
@@ -64,14 +64,6 @@ double Process::GetRelativeMemoryUsage() const
     unsigned long system_memory_bytes = SystemInfo::GetTotalSystemMemory();
 
     return (process_memory_bytes / system_memory_bytes) * 100.00;
-}
-
-/**
- * Return the process's executable name.
- */
-std::string Process::GetExecutable() const
-{
-    return this->executable;
 }
 
 bool Process::Kill()
@@ -94,7 +86,12 @@ bool Process::Kill()
 std::ostream &operator<<(std::ostream &stream, const Process &process)
 {
     double relative_memory_usage = process.GetRelativeMemoryUsage();
-    stream << process.pid << ":" << process.executable << " " << std::endl;
+    stream << ">>PROCESS ";
+    stream << process.pid << std::endl;
+    stream << "Exe: " << process.command.executable << std::endl;
+    stream << "Path: " << process.command.path << std::endl;
+    stream << "Args: " << process.command.arguments << std::endl;
+    stream << relative_memory_usage << " " << std::endl;
 }
 
 /*
@@ -105,18 +102,17 @@ std::ostream &operator<<(std::ostream &stream, const Process &process)
 
 bool Process::LoadProcessData()
 {
-    // Clearly, if the process directory doesn't exist, an error has occured.
-    if ( GetFile(this->process_base_path.c_str(), "r") == NULL) {
+    std::ifstream proc_root_file(this->process_base_path);
+    if (!proc_root_file.good()) {
         throw std::runtime_error(this->process_base_path + std::string(" does not exist."));
     }
 
-    this->LoadProcessName();
+    this->LoadProcessCommand();
 
     this->LoadProcessMemory();
-
 }
 
-bool Process::LoadProcessName()
+bool Process::LoadProcessCommand()
 {
     std::string dir = this->process_base_path + "/" + Process::PD_CMDLINE;
     char buf[BUFSIZ];
@@ -133,18 +129,42 @@ bool Process::LoadProcessName()
         return false;
     }
 
-    this->executable = buf;
+    this->DissectProcessCommand(buf);
 
     fclose(fp);
     return true;
 }
 
+Process::Command Process::GetCommand() const
+{
+    return this->command;
+}
+
+bool Process::DissectProcessCommand(std::string command)
+{
+    std::vector<std::string> process_command_parts = SystemMonitor::Utils::split(command, ' ');
+
+    if ( process_command_parts.size() == 0 )
+    {
+        return false;
+    }
+
+    // We're assuming the first vector element is the path + executable
+    std::string full_path = process_command_parts.front();
+
+    int i = full_path.length() - 1;
+
+    for ( i; i > 0 && full_path[i] != '/'; i--) ;
+
+    this->command.path = full_path.substr(0, i);
+    this->command.executable = full_path.substr(i + 1);
+    this->command.arguments = command.substr(full_path.length());
+
+    return true;
+}
+
 bool Process::LoadProcessMemory()
 {
-    this->memory = new Process::Memory;
-
-    // TODO: Can we somehow encapsulate this logic?
-    // It is used in both LoadProcessMemory AND LoadProcessName...
     std::string dir = this->process_base_path + "/" + Process::PD_STATM;
 
     char buf[BUFSIZ];
@@ -170,13 +190,13 @@ bool Process::LoadProcessMemory()
     std::string memory_string(buf);
     std::vector<std::string> memory_vector = Utils::split(memory_string, ' ');
 
-    this->memory->size      = atoi(memory_vector[0].c_str());
-    this->memory->resident  = atoi(memory_vector[1].c_str());
-    this->memory->share     = atoi(memory_vector[2].c_str());
-    this->memory->text      = atoi(memory_vector[3].c_str());
-    this->memory->lib       = atoi(memory_vector[4].c_str());
-    this->memory->data      = atoi(memory_vector[5].c_str());
-    this->memory->dirty     = atoi(memory_vector[6].c_str());
+    this->memory.size      = atoi(memory_vector[0].c_str());
+    this->memory.resident  = atoi(memory_vector[1].c_str());
+    this->memory.share     = atoi(memory_vector[2].c_str());
+    this->memory.text      = atoi(memory_vector[3].c_str());
+    this->memory.lib       = atoi(memory_vector[4].c_str());
+    this->memory.data      = atoi(memory_vector[5].c_str());
+    this->memory.dirty     = atoi(memory_vector[6].c_str());
 
     return true;
 }

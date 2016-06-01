@@ -22,6 +22,12 @@ class Process
             uint64_t dirty;     // dirty pages
         };
 
+        struct Command {
+            std::string path;
+            std::string executable;
+            std::string arguments;
+        };
+
         /**
         * @brief Load all of the data associated with /proc/pid
         *
@@ -45,7 +51,7 @@ class Process
          */
         double GetRelativeMemoryUsage() const;
 
-        std::string GetExecutable() const;
+        Command GetCommand() const;
 
         bool Kill();
 
@@ -71,7 +77,8 @@ class Process
         std::string path;
 
         // Memory usage of this process.
-        struct Memory *memory;
+        struct Memory memory;
+        struct Command command;
 
         /**
         * @brief Load the process's data.
@@ -85,7 +92,9 @@ class Process
         *
         * @return
         */
-        bool LoadProcessName();
+        bool LoadProcessCommand();
+
+        bool DissectProcessCommand(std::string command);
 
         /**
         * @brief Load the process's memory usage.
