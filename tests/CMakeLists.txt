@@ -9,10 +9,12 @@ set(SOURCES
     process.cpp
     SystemUser.cpp
     SystemInfo.cpp
+    Command.cpp
     ../core/process/Process.cpp
     ../core/util/file.cpp
     ../core/sys/SystemInfo.cpp
     ../core/sys/SystemUser.cpp
+    ../core/util/command.cpp
     ../core/util/str.cpp)
 
 add_executable(tests ${SOURCES})
