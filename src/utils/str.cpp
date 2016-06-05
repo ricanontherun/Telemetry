@@ -1,7 +1,7 @@
 #include <string>
 #include <sstream>
 
-#include "str.h"
+#include <utils/str.h>
 
 namespace SystemMonitor
 {

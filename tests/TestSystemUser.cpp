@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include "test_header.h"
 
-#include "../core/sys/SystemUser.h"
+#include <core/sys/SystemUser.h>
 
 TEST_CASE("SystemMonitor::SystemUser")
 {

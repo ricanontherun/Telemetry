@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 
-#include "str.h"
-#include "command.h"
+#include <utils/str.h>
+#include <utils/command.h>
 
 namespace SystemMonitor
 {

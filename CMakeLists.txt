@@ -1,16 +1,18 @@
 cmake_minimum_required(VERSION 2.8.9)
 project(sysmon)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11 -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11 -Werror -Wall")
+include_directories(include)
 
-# These backwards paths are a code-smell...
 set(SOURCES
-    main.cpp
-    manager/ProcessManager.cpp
-    core/process/Process.cpp
-    core/util/file.cpp
-    core/sys/SystemInfo.cpp
-    core/sys/SystemUser.cpp
-    core/util/str.cpp)
+    src/main.cpp
+    src/manager/ProcessManager.cpp
+    src/core/process/Process.cpp
+    src/utils/file.cpp
+    src/utils/command.cpp
+    src/utils/str.cpp
+    src/core/sys/SystemInfo.cpp
+    src/core/sys/SystemUser.cpp
+    )
 
 add_executable(sysmon ${SOURCES})

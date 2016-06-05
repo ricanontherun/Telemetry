@@ -1,6 +1,6 @@
 #include "test_header.h"
 
-#include "../core/util/str.h"
+#include <utils/str.h>
 
 TEST_CASE("split()")
 {

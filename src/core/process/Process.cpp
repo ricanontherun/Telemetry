@@ -10,10 +10,12 @@
 #include <unistd.h>
 #include <stdexcept>
 
-#include "Process.h"
-#include "../sys/SystemInfo.h"
-#include "../util/str.h"
-#include "../util/file.h"
+#include <core/process/Process.h>
+#include <core/sys/SystemInfo.h>
+
+#include <utils/str.h>
+#include <utils/file.h>
+#include <utils/command.h>
 
 namespace SystemMonitor
 {
@@ -76,6 +78,8 @@ bool Process::Kill()
     std::cout << "setpdid() is " << ret_i << std::endl;
 
     // Send a SIGKILL signal to this->pid.
+    //
+    return true;
 }
 
 /*
@@ -92,6 +96,8 @@ std::ostream &operator<<(std::ostream &stream, const Process &process)
     stream << "Path: " << process.command.path << std::endl;
     stream << "Args: " << process.command.arguments << std::endl;
     stream << relative_memory_usage << " " << std::endl;
+
+    return stream;
 }
 
 /*
@@ -100,10 +106,11 @@ std::ostream &operator<<(std::ostream &stream, const Process &process)
 |--------------------------------------------------
 */
 
-bool Process::LoadProcessData()
+void Process::LoadProcessData()
 {
-    std::ifstream proc_root_file(this->process_base_path);
-    if (!proc_root_file.good()) {
+    using SystemMonitor::Utils::File::FileExists;
+
+    if (!FileExists(this->process_base_path)) {
         throw std::runtime_error(this->process_base_path + std::string(" does not exist."));
     }
 
@@ -114,24 +121,13 @@ bool Process::LoadProcessData()
 
 bool Process::LoadProcessCommand()
 {
-    std::string dir = this->process_base_path + "/" + Process::PD_CMDLINE;
-    char buf[BUFSIZ];
+    using SystemMonitor::Utils::File::FileGetFirstLine;
 
-    const char *mode = "r";
-    FILE *fp = GetFile(dir.c_str(), mode);
+    std::string proc_command = this->process_base_path + "/" + Process::PD_CMDLINE;
+    std::string cmd_string = FileGetFirstLine(proc_command);
 
-    if ( fp == NULL ) {
-        return false;
-    }
+    SystemMonitor::Utils::ExtractCommandElements(cmd_string, this->command);
 
-    if ( fgets(buf, BUFSIZ, fp) == NULL ) {
-        fclose(fp);
-        return false;
-    }
-
-    this->DissectProcessCommand(buf);
-
-    fclose(fp);
     return true;
 }
 
@@ -140,54 +136,13 @@ Process::Command Process::GetCommand() const
     return this->command;
 }
 
-bool Process::DissectProcessCommand(std::string command)
-{
-    std::vector<std::string> process_command_parts = SystemMonitor::Utils::split(command, ' ');
-
-    if ( process_command_parts.size() == 0 )
-    {
-        return false;
-    }
-
-    // We're assuming the first vector element is the path + executable
-    std::string full_path = process_command_parts.front();
-
-    int i = full_path.length() - 1;
-
-    for ( i; i > 0 && full_path[i] != '/'; i--) ;
-
-    this->command.path = full_path.substr(0, i);
-    this->command.executable = full_path.substr(i + 1);
-    this->command.arguments = command.substr(full_path.length());
-
-    return true;
-}
-
 bool Process::LoadProcessMemory()
 {
+    using SystemMonitor::Utils::File::FileGetFirstLine;
     std::string dir = this->process_base_path + "/" + Process::PD_STATM;
 
-    char buf[BUFSIZ];
-    FILE *fp = GetFile(dir.c_str(), "r");
+    std::string memory_string = FileGetFirstLine(dir);
 
-    if ( fp == NULL ) {
-        return false;
-    }
-
-    if ( fgets(buf, BUFSIZ, fp) == NULL ) {
-        fclose(fp);
-        return false;
-    }
-
-    size_t len = strlen(buf);
-    if ( buf[len - 1] == '\n' ) {
-        buf[len - 1] = '\0';
-    }
-
-    fclose(fp);
-
-    // Split the string of memory data.
-    std::string memory_string(buf);
     std::vector<std::string> memory_vector = Utils::split(memory_string, ' ');
 
     this->memory.size      = atoi(memory_vector[0].c_str());

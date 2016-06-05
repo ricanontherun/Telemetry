@@ -1,4 +1,4 @@
-#include "SystemInfo.h"
+#include <core/sys/SystemInfo.h>
 
 namespace SystemMonitor
 {

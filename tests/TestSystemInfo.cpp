@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include "test_header.h"
 
-#include "../core/sys/SystemInfo.h"
+#include <core/sys/SystemInfo.h>
 
 TEST_CASE("SystemMonitor::SystemInfo")
 {

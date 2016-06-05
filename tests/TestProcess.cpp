@@ -5,7 +5,7 @@
 #include <stdexcept>
 
 #include "test_header.h"
-#include "../core/process/Process.h"
+#include <core/process/Process.h>
 
 TEST_CASE("SystemMonitor::Core::Process")
 {

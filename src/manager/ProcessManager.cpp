@@ -8,9 +8,9 @@
 #include <map>
 #include <unistd.h>
 
-#include "ProcessManager.h"
-#include "../core/sys/SystemInfo.h"
-#include "../core/sys/SystemUser.h"
+#include <manager/ProcessManager.h>
+#include <core/sys/SystemUser.h>
+#include <core/sys/SystemInfo.h>
 
 namespace SystemMonitor
 {
@@ -83,7 +83,7 @@ void ProcessManager::LoadProcessList()
 
     uint64_t pid = 0;
 
-    while (de = readdir(d))
+    while ((de = readdir(d)))
     {
         if (de->d_type != DT_DIR || !(pid = this->GetStringInteger(de->d_name)))
         {

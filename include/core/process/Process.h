@@ -70,12 +70,6 @@ class Process
         // Base path to process /proc/this->pid
         std::string process_base_path;
 
-        // Executable name
-        std::string executable;
-
-        // Path to executable
-        std::string path;
-
         // Memory usage of this process.
         struct Memory memory;
         struct Command command;
@@ -85,7 +79,7 @@ class Process
         *
         * @return
         */
-        bool LoadProcessData();
+        void LoadProcessData();
 
         /**
         * @brief Load the process's executable and arguments.
@@ -93,8 +87,6 @@ class Process
         * @return
         */
         bool LoadProcessCommand();
-
-        bool DissectProcessCommand(std::string command);
 
         /**
         * @brief Load the process's memory usage.

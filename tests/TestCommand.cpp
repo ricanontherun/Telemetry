@@ -2,8 +2,8 @@
 #include <unistd.h>
 #include "test_header.h"
 
-#include "../core/process/Process.h"
-#include "../core/util/command.h"
+#include <core/process/Process.h>
+#include <utils/command.h>
 
 using SystemMonitor::Core::Process;
 using SystemMonitor::Utils::ExtractCommandElements;

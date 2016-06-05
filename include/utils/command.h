@@ -2,7 +2,9 @@
 #define CORE_UTILS_COMMAND_H
 
 #include <string>
-#include "../process/Process.h"
+
+// This doesn't make sense. Get this dependency out of here.
+#include "../core/process/Process.h"
 
 namespace SystemMonitor
 {
