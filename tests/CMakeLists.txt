@@ -3,13 +3,12 @@ project (tests)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-# These backwards paths are a code-smell...
 set(SOURCES
-    utils.cpp
-    process.cpp
-    SystemUser.cpp
-    SystemInfo.cpp
-    Command.cpp
+    TestUtils.cpp
+    TestProcess.cpp
+    TestSystemUser.cpp
+    TestSystemInfo.cpp
+    TestCommand.cpp
     ../core/process/Process.cpp
     ../core/util/file.cpp
     ../core/sys/SystemInfo.cpp
