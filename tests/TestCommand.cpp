@@ -17,9 +17,9 @@ TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
 
         ExtractCommandElements(command_string, command);
 
-        REQUIRE(command.path.length() == 0);
-        REQUIRE(command.executable.length() == 0);
-        REQUIRE(command.arguments.length() == 0);
+        REQUIRE(command.path.empty());
+        REQUIRE(command.executable.empty());
+        REQUIRE(command.arguments.empty());
     }
 
     SECTION("It can parse just an executable")
@@ -29,9 +29,9 @@ TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
 
         ExtractCommandElements(command_string, command);
 
-        REQUIRE(command.path.length() == 0);
-        REQUIRE(command.executable.length() == command_string.length());
-        REQUIRE(command.arguments.length() == 0);
+        REQUIRE(command.path.empty());
+        REQUIRE(command.executable == command_string);
+        REQUIRE(command.arguments.empty());
     }
 
     SECTION("It can parse a path and an executable")
@@ -41,9 +41,9 @@ TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
 
         ExtractCommandElements(command_string, command);
 
-        REQUIRE(command.path.compare("/path/to/") == 0);
-        REQUIRE(command.executable.compare("executable") == 0);
-        REQUIRE(command.arguments.length() == 0);
+        REQUIRE(command.path =="/path/to/");
+        REQUIRE(command.executable == "executable");
+        REQUIRE(command.arguments.empty());
     }
 
     SECTION("It can parse a path, an executable and arguments")
@@ -53,9 +53,9 @@ TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
 
         ExtractCommandElements(command_string, command);
 
-        REQUIRE(command.path.compare("/path/to/") == 0);
-        REQUIRE(command.executable.compare("executable") == 0);
-        REQUIRE(command.arguments.compare("-rf --argument1=value1") == 0);
+        REQUIRE(command.path == "/path/to/");
+        REQUIRE(command.executable == "executable");
+        REQUIRE(command.arguments == "-rf --argument1=value1");
     }
 
     SECTION("It can parse an executable and arguments")
@@ -65,8 +65,8 @@ TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
 
         ExtractCommandElements(command_string, command);
 
-        REQUIRE(command.path.length() == 0);
-        REQUIRE(command.executable.compare("executable") == 0);
-        REQUIRE(command.arguments.compare("-rf --argument1=value1") == 0);
+        REQUIRE(command.path.empty());
+        REQUIRE(command.executable == "executable");
+        REQUIRE(command.arguments == "-rf --argument1=value1");
     }
 }

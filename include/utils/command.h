@@ -14,7 +14,13 @@ namespace Utils
 using Core::Process;
 
 /**
- * Parse a Linux process command into it's path, executable and arguments
+ * Parse a Linux process string, found in /proc/PID/cmdline, into
+ * it's respective path, executable and arguments.
+ *
+ * Example:
+ *  /path/to/executable --rf --arg1=yes --arg2=no
+ *  =>
+ *  command.path = /path/to/ command.executable = executable command.arguments = -rf --arg1=yes --arg2=no
  *
  * @param command_str
  * @param command
