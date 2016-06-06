@@ -1,1 +1,0 @@
-/home/croman/projects/system_monitor/CMakeFiles/sysmon.dir
