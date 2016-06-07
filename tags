@@ -1,0 +1,3 @@
+CORE_UTILS_COMMAND_H	include/utils/command.h	2;"	d
+SystemMonitor	include/utils/command.h	/^namespace SystemMonitor$/;"	n
+Utils	include/utils/command.h	/^namespace Utils$/;"	n	namespace:SystemMonitor

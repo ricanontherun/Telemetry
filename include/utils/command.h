@@ -4,7 +4,7 @@
 #include <string>
 
 // This doesn't make sense. Get this dependency out of here.
-#include "../core/process/Process.h"
+#include <core/process/Process.h>
 
 namespace SystemMonitor
 {
