@@ -13,6 +13,7 @@ set(SOURCES
     src/utils/str.cpp
     src/core/sys/SystemInfo.cpp
     src/core/sys/SystemUser.cpp
+    src/cli/CommandLoop.cpp
     )
 
 add_executable(lixproc ${SOURCES})

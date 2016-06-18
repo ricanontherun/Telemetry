@@ -1,9 +1,10 @@
-#include "manager/ProcessManager.h"
+#include <iostream>
+#include <string>
+
+#include <cli/CommandLoop.h>
 
 int main()
 {
-    SystemMonitor::Manager::ProcessManager manager;
-
-    manager.Load();
-    return 0;
+    LixProc::CLI::CommandLoop loop;
+    loop.InitMainLoop();
 }
