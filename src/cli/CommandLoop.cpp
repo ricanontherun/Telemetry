@@ -41,5 +41,10 @@ void CommandLoop::ParseCommand(std::string command_str, SystemMonitor::Utils::Co
     SystemMonitor::Utils::ParseCommandString(command_str, command);
 }
 
+LixProc::CLI::Commands::Command *CommandLoop::Instance(std::string command)
+{
+    return NULL;
+}
+
 } // End CLI
 } // End SystemMonitor
