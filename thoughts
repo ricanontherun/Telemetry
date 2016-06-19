@@ -1,0 +1,4 @@
+I want a general function which can parse a command and it's arguments.
+
+The current version of ExtractCommandElements takes a procsses. Which sucks. It should take a vector out paramter. In
+the procss class, it can use the resulting vector to place things in a ProcssCommand object

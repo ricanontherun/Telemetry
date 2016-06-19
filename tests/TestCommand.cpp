@@ -2,20 +2,19 @@
 #include <unistd.h>
 #include "test_header.h"
 
-#include <core/process/Process.h>
 #include <utils/command.h>
 
-using SystemMonitor::Core::Process;
-using SystemMonitor::Utils::ExtractCommandElements;
+using SystemMonitor::Utils::ParseCommandString;
+using SystemMonitor::Utils::Command;
 
-TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
+TEST_CASE("SystemMonitor::Core::Utils::ParseCommandString()")
 {
     SECTION("It can parse an empty string")
     {
         std::string command_string = "";
-        Process::Command command;
+        Command command;
 
-        ExtractCommandElements(command_string, command);
+        ParseCommandString(command_string, command);
 
         REQUIRE(command.path.empty());
         REQUIRE(command.executable.empty());
@@ -25,9 +24,9 @@ TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
     SECTION("It can parse just an executable")
     {
         std::string command_string = "executable";
-        Process::Command command;
+        Command command;
 
-        ExtractCommandElements(command_string, command);
+        ParseCommandString(command_string, command);
 
         REQUIRE(command.path.empty());
         REQUIRE(command.executable == command_string);
@@ -37,9 +36,9 @@ TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
     SECTION("It can parse a path and an executable")
     {
         std::string command_string = "/path/to/executable";
-        Process::Command command;
+        Command command;
 
-        ExtractCommandElements(command_string, command);
+        ParseCommandString(command_string, command);
 
         REQUIRE(command.path =="/path/to/");
         REQUIRE(command.executable == "executable");
@@ -49,9 +48,9 @@ TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
     SECTION("It can parse a path, an executable and arguments")
     {
         std::string command_string = "/path/to/executable -rf --argument1=value1";
-        Process::Command command;
+        Command command;
 
-        ExtractCommandElements(command_string, command);
+        ParseCommandString(command_string, command);
 
         REQUIRE(command.path == "/path/to/");
         REQUIRE(command.executable == "executable");
@@ -61,9 +60,9 @@ TEST_CASE("SystemMonitor::Core::Utils::ExtractCommandElements()")
     SECTION("It can parse an executable and arguments")
     {
         std::string command_string = "executable -rf --argument1=value1";
-        Process::Command command;
+        Command command;
 
-        ExtractCommandElements(command_string, command);
+        ParseCommandString(command_string, command);
 
         REQUIRE(command.path.empty());
         REQUIRE(command.executable == "executable");

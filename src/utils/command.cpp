@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 #include <vector>
 
@@ -10,7 +9,7 @@ namespace SystemMonitor
 namespace Utils
 {
 
-bool ExtractCommandElements(std::string command_str, Process::Command &command)
+bool ParseCommandString(std::string command_str, Command &command)
 {
     std::vector<std::string> process_command_parts = split(command_str, ' ');
 

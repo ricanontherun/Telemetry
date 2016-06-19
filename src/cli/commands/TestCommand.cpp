@@ -19,7 +19,6 @@ TestCommand::TestCommand(std::vector<std::string> &arguments) : Command(argument
 
 void TestCommand::Run(void)
 {
-
 }
 
 } // End Commands

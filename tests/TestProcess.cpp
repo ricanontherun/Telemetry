@@ -32,7 +32,7 @@ TEST_CASE("SystemMonitor::Core::Process")
 
     SECTION("Each Process has an executable name.")
     {
-        SystemMonitor::Core::Process::Command command = process->GetCommand();
+        SystemMonitor::Utils::Command command = process->GetCommand();
         REQUIRE(command.executable.length());
     }
 

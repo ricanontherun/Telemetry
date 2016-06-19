@@ -126,12 +126,12 @@ bool Process::LoadProcessCommand()
     std::string proc_command = this->process_base_path + "/" + Process::PD_CMDLINE;
     std::string cmd_string = FileGetFirstLine(proc_command);
 
-    SystemMonitor::Utils::ExtractCommandElements(cmd_string, this->command);
+    SystemMonitor::Utils::ParseCommandString(cmd_string, this->command);
 
     return true;
 }
 
-Process::Command Process::GetCommand() const
+SystemMonitor::Utils::Command Process::GetCommand() const
 {
     return this->command;
 }

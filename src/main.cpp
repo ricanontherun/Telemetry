@@ -2,10 +2,11 @@
 #include <string>
 #include <vector>
 
-#include <cli/commands/TestCommand.h>
+#include <cli/CommandLoop.h>
 
 int main()
 {
-    std::vector<std::string> arguments {"arg1", "arg2"};
-    LixProc::CLI::Commands::TestCommand command(arguments);;
+    LixProc::CLI::CommandLoop loop;
+
+    loop.InitMainLoop();
 }

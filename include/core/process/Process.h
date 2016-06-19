@@ -1,6 +1,8 @@
 #ifndef CORE_PROCESS_H
 #define CORE_PROCESS_H
 
+#include <utils/command.h>
+
 namespace SystemMonitor
 {
 namespace Core
@@ -20,12 +22,6 @@ class Process
             uint64_t lib;       // library?
             uint64_t data;      // data/stack
             uint64_t dirty;     // dirty pages
-        };
-
-        struct Command {
-            std::string path;
-            std::string executable;
-            std::string arguments;
         };
 
         /**
@@ -51,7 +47,7 @@ class Process
          */
         double GetRelativeMemoryUsage() const;
 
-        Command GetCommand() const;
+        SystemMonitor::Utils::Command GetCommand() const;
 
         bool Kill();
 
@@ -72,11 +68,9 @@ class Process
 
         // Memory usage of this process.
         struct Memory memory;
-        struct Command command;
+        SystemMonitor::Utils::Command command;
 
-        /**
-        * @brief Load the process's data.
-        *
+        /** * @brief Load the process's data.  *
         * @return
         */
         void LoadProcessData();
