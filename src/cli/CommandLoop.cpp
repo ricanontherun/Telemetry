@@ -3,9 +3,7 @@
 
 #include <cli/CommandLoop.h>
 
-using SystemMonitor::Utils::ParseCommandString;
-
-namespace LixProc
+namespace SystemMonitor
 {
 namespace CLI
 {
@@ -16,14 +14,18 @@ const std::string CommandLoop::line_prefix = "lixproc >> ";
 
 void CommandLoop::InitMainLoop(void)
 {
-    std::string command;
+    std::string command_str;
 
     std::cout << CommandLoop::welcome << std::endl;
     std::cout << CommandLoop::line_prefix;
 
-    while (std::getline(std::cin, command) && command.length() != 0)
+    SystemMonitor::Utils::Command command;
+
+    while (std::getline(std::cin, command_str) && command_str.length() != 0)
     {
         // Parse command
+        this->ParseCommand(command_str, command);
+
         // Validate Command.
 
         // Create the command object.
@@ -34,9 +36,9 @@ void CommandLoop::InitMainLoop(void)
     }
 }
 
-void CommandLoop::ParseCommand(std::string command, SystemMonitor::Utils::Command &command)
+void CommandLoop::ParseCommand(std::string command_str, SystemMonitor::Utils::Command &command)
 {
-
+    SystemMonitor::Utils::ParseCommandString(command_str, command);
 }
 
 } // End CLI

@@ -17,55 +17,55 @@ TEST_CASE("SystemMonitor::Core::Utils::ParseCommandString()")
         ParseCommandString(command_string, command);
 
         REQUIRE(command.path.empty());
-        REQUIRE(command.executable.empty());
+        REQUIRE(command.name.empty());
         REQUIRE(command.arguments.empty());
     }
 
-    SECTION("It can parse just an executable")
+    SECTION("It can parse just an name")
     {
-        std::string command_string = "executable";
+        std::string command_string = "name";
         Command command;
 
         ParseCommandString(command_string, command);
 
         REQUIRE(command.path.empty());
-        REQUIRE(command.executable == command_string);
+        REQUIRE(command.name == command_string);
         REQUIRE(command.arguments.empty());
     }
 
-    SECTION("It can parse a path and an executable")
+    SECTION("It can parse a path and an name")
     {
-        std::string command_string = "/path/to/executable";
+        std::string command_string = "/path/to/name";
         Command command;
 
         ParseCommandString(command_string, command);
 
         REQUIRE(command.path =="/path/to/");
-        REQUIRE(command.executable == "executable");
+        REQUIRE(command.name == "name");
         REQUIRE(command.arguments.empty());
     }
 
-    SECTION("It can parse a path, an executable and arguments")
+    SECTION("It can parse a path, an name and arguments")
     {
-        std::string command_string = "/path/to/executable -rf --argument1=value1";
+        std::string command_string = "/path/to/name -rf --argument1=value1";
         Command command;
 
         ParseCommandString(command_string, command);
 
         REQUIRE(command.path == "/path/to/");
-        REQUIRE(command.executable == "executable");
+        REQUIRE(command.name == "name");
         REQUIRE(command.arguments == "-rf --argument1=value1");
     }
 
-    SECTION("It can parse an executable and arguments")
+    SECTION("It can parse an name and arguments")
     {
-        std::string command_string = "executable -rf --argument1=value1";
+        std::string command_string = "name -rf --argument1=value1";
         Command command;
 
         ParseCommandString(command_string, command);
 
         REQUIRE(command.path.empty());
-        REQUIRE(command.executable == "executable");
+        REQUIRE(command.name == "name");
         REQUIRE(command.arguments == "-rf --argument1=value1");
     }
 }

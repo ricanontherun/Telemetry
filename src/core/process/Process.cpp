@@ -92,7 +92,7 @@ std::ostream &operator<<(std::ostream &stream, const Process &process)
     double relative_memory_usage = process.GetRelativeMemoryUsage();
     stream << ">>PROCESS ";
     stream << process.pid << std::endl;
-    stream << "Exe: " << process.command.executable << std::endl;
+    stream << "Exe: " << process.command.name << std::endl;
     stream << "Path: " << process.command.path << std::endl;
     stream << "Args: " << process.command.arguments << std::endl;
     stream << relative_memory_usage << " " << std::endl;

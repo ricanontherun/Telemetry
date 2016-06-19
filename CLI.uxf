@@ -9,7 +9,7 @@
       <h>690</h>
     </coordinates>
     <panel_attributes>CLI
-Namespace: SystemMonitor::CLI
+Namespace: LixProc::CLI
 --
 - bool ValidateCommand(std::string command, std::vector args);
 - ExecuteCommand(Command &amp;command)
@@ -32,17 +32,21 @@ Responsibilities
       <h>690</h>
     </coordinates>
     <panel_attributes>Command
-Namespace: SystemMonitor::CLI
+Namespace: LixProc::CLI::Commands
 --
 - std::string name
 - std::hash arguments
+- std::map&lt;std::string, Command *&gt; instances
+- enum class Commands : std::string
 --
 + Command(std::hash arguments)
-+ Run(void)
++ virtual void Run(void)
++ Command *Instance(std::string command);
 --
 Responsibilities
 1) Abstract base class for Commands
 2) Provide very limited base functionality.
+3) Acts as a singleton manager for different commands.
 
 Each Command has a name, arguments, can be
 Run and produces some output.</panel_attributes>

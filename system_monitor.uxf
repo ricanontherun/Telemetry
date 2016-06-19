@@ -52,8 +52,8 @@ the kernel for their informatioin.
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
-      <y>540</y>
+      <x>740</x>
+      <y>240</y>
       <w>450</w>
       <h>250</h>
     </coordinates>

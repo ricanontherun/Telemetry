@@ -10,7 +10,7 @@ namespace Utils
 
 struct Command {
     std::string path;
-    std::string executable;
+    std::string name;
     std::string arguments;
 };
 
@@ -21,7 +21,7 @@ struct Command {
  *  ParseCommandString("/path/to/executable --rf --arg1=yes --arg2=no", command);
  *  ...
  *  command.path = /path/to/
- *  command.executable = executable
+ *  command.name= executable
  *  command.arguments = -rf --arg1=yes --arg2=no
  *
  * @param command_str

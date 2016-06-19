@@ -6,7 +6,7 @@
 
 int main()
 {
-    LixProc::CLI::CommandLoop loop;
+    SystemMonitor::CLI::CommandLoop loop;
 
     loop.InitMainLoop();
 }

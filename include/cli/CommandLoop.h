@@ -3,7 +3,7 @@
 
 #include <utils/command.h>
 
-namespace LixProc
+namespace SystemMonitor
 {
 namespace CLI
 {
@@ -17,7 +17,7 @@ class CommandLoop
         static const std::string welcome;
         static const std::string line_prefix;
 
-        void ParseCommand(std::string command, SystemMonitor::Utils::Command &command);
+        void ParseCommand(std::string command_str, SystemMonitor::Utils::Command &command);
 };
 
 } // End CLI

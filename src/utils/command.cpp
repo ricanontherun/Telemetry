@@ -18,7 +18,7 @@ bool ParseCommandString(std::string command_str, Command &command)
         return false;
     }
 
-    // We're assuming the first vector element is the path + executable
+    // We're assuming the first vector element is the path + name
     std::string full_path = process_command_parts.front();
 
     size_t first_space = command_str.find_first_of(' ');
@@ -31,7 +31,7 @@ bool ParseCommandString(std::string command_str, Command &command)
 
     size_t slice_index = slash_index != std::string::npos ? slash_index + 1 : 0;
 
-    command.executable = full_path.substr(slice_index);
+    command.name = full_path.substr(slice_index);
 
     return true;
 }
