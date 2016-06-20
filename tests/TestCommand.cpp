@@ -4,10 +4,10 @@
 
 #include <utils/command.h>
 
-using SystemMonitor::Utils::ParseCommandString;
-using SystemMonitor::Utils::Command;
+using LixProc::Utils::ParseCommandString;
+using LixProc::Utils::Command;
 
-TEST_CASE("SystemMonitor::Core::Utils::ParseCommandString()")
+TEST_CASE("LixProc::Core::Utils::ParseCommandString()")
 {
     SECTION("It can parse an empty string")
     {

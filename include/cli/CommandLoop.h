@@ -4,7 +4,7 @@
 #include <cli/commands/Command.h>
 #include <utils/command.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace CLI
 {
@@ -23,10 +23,10 @@ class CommandLoop
             SHOW = 0
         };
 
-        void ParseCommand(std::string command_str, SystemMonitor::Utils::Command &command);
+        void ParseCommand(std::string command_str, LixProc::Utils::Command &command);
 };
 
 } // End CLI
-} // End SystemMonitor
+} // End LixProc
 
 #endif

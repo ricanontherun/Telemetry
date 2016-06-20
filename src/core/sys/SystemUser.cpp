@@ -2,7 +2,7 @@
 
 #include <core/sys/SystemUser.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 
 uid_t SystemUser::uid = 0;
@@ -30,4 +30,4 @@ gid_t SystemUser::GetGroupID()
     return SystemUser::gid;
 }
 
-} // End SystemMonitor
+} // End LixProc

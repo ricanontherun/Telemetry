@@ -3,19 +3,19 @@
 
 #include <core/sys/SystemInfo.h>
 
-TEST_CASE("SystemMonitor::SystemInfo")
+TEST_CASE("LixProc::SystemInfo")
 {
     SECTION("PageSize() should default to 0")
     {
-        REQUIRE(SystemMonitor::SystemInfo::GetPageSize() == 0);
+        REQUIRE(LixProc::SystemInfo::GetPageSize() == 0);
     }
 
-    SystemMonitor::SystemInfo::Capture();
+    LixProc::SystemInfo::Capture();
 
     SECTION("PageSize() should return the current system's pagesize.")
     {
         int actual_pagesize = getpagesize();
-        REQUIRE(SystemMonitor::SystemInfo::GetPageSize() == actual_pagesize);
+        REQUIRE(LixProc::SystemInfo::GetPageSize() == actual_pagesize);
     }
 }
 

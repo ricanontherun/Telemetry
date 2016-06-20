@@ -4,9 +4,9 @@
 #include <map>
 #include <memory>
 
-#include "../core/process/Process.h"
+#include <core/process/Process.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace Manager
 {
@@ -33,7 +33,7 @@ class ProcessManager
         static std::string proc_root;
 
         // Map of processes, keyed by their respective PID
-        // TODO This should reall be a map<uint32_t, std::unique_ptr<Process>>
+        // TODO This should really use RAII, map<uint32_t, std::unique_ptr<Process>>
         std::map<uint32_t, Core::Process *> process_list;
 
         /**
@@ -48,10 +48,11 @@ class ProcessManager
          *
          * @return
          */
+        // TODO: Pull out into a utilities file. str.h
         uint64_t GetStringInteger(char *string);
 };
 
 } // End Manager
-} // End SystemMonitor
+} // End LixProc
 
 #endif //PROCESS_API_H

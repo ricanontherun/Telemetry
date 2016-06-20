@@ -17,7 +17,7 @@
 #include <utils/file.h>
 #include <utils/command.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace Core
 {
@@ -108,7 +108,7 @@ std::ostream &operator<<(std::ostream &stream, const Process &process)
 
 void Process::LoadProcessData()
 {
-    using SystemMonitor::Utils::File::FileExists;
+    using LixProc::Utils::File::FileExists;
 
     if (!FileExists(this->process_base_path)) {
         throw std::runtime_error(this->process_base_path + std::string(" does not exist."));
@@ -121,24 +121,24 @@ void Process::LoadProcessData()
 
 bool Process::LoadProcessCommand()
 {
-    using SystemMonitor::Utils::File::FileGetFirstLine;
+    using LixProc::Utils::File::FileGetFirstLine;
 
     std::string proc_command = this->process_base_path + "/" + Process::PD_CMDLINE;
     std::string cmd_string = FileGetFirstLine(proc_command);
 
-    SystemMonitor::Utils::ParseCommandString(cmd_string, this->command);
+    LixProc::Utils::ParseCommandString(cmd_string, this->command);
 
     return true;
 }
 
-SystemMonitor::Utils::Command Process::GetCommand() const
+LixProc::Utils::Command Process::GetCommand() const
 {
     return this->command;
 }
 
 bool Process::LoadProcessMemory()
 {
-    using SystemMonitor::Utils::File::FileGetFirstLine;
+    using LixProc::Utils::File::FileGetFirstLine;
     std::string dir = this->process_base_path + "/" + Process::PD_STATM;
 
     std::string memory_string = FileGetFirstLine(dir);
@@ -158,4 +158,4 @@ bool Process::LoadProcessMemory()
 }
 
 } // End Core
-} // End SystemMonitor
+} // End LixProc

@@ -3,10 +3,10 @@
 #include <vector>
 
 #include <cli/CommandLoop.h>
+#include <manager/ProcessManager.h>
 
 int main()
 {
-    SystemMonitor::CLI::CommandLoop loop;
-
-    loop.InitMainLoop();
+    LixProc::Manager::ProcessManager manager;
+    manager.Load();
 }

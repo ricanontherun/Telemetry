@@ -1,7 +1,7 @@
 #ifndef CORE_SYSTEM_USER_H
 #define CORE_SYSTEM_USER_H
 
-namespace SystemMonitor
+namespace LixProc
 {
 
 class SystemUser {
@@ -18,6 +18,6 @@ class SystemUser {
 
 };
 
-} // End SystemMonitor
+} // End LixProc
 
 #endif

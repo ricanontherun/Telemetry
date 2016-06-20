@@ -4,7 +4,7 @@
 #include <utils/str.h>
 #include <utils/command.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace Utils
 {

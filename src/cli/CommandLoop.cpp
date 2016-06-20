@@ -3,7 +3,7 @@
 
 #include <cli/CommandLoop.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace CLI
 {
@@ -19,7 +19,7 @@ void CommandLoop::InitMainLoop(void)
     std::cout << CommandLoop::welcome << std::endl;
     std::cout << CommandLoop::line_prefix;
 
-    SystemMonitor::Utils::Command command;
+    LixProc::Utils::Command command;
 
     while (std::getline(std::cin, command_str) && command_str.length() != 0)
     {
@@ -36,9 +36,9 @@ void CommandLoop::InitMainLoop(void)
     }
 }
 
-void CommandLoop::ParseCommand(std::string command_str, SystemMonitor::Utils::Command &command)
+void CommandLoop::ParseCommand(std::string command_str, LixProc::Utils::Command &command)
 {
-    SystemMonitor::Utils::ParseCommandString(command_str, command);
+    LixProc::Utils::ParseCommandString(command_str, command);
 }
 
 LixProc::CLI::Commands::Command *CommandLoop::Instance(std::string command)
@@ -47,4 +47,4 @@ LixProc::CLI::Commands::Command *CommandLoop::Instance(std::string command)
 }
 
 } // End CLI
-} // End SystemMonitor
+} // End LixProc

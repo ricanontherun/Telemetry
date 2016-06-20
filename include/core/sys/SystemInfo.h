@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <iostream>
 
-namespace SystemMonitor
+namespace LixProc
 {
 
 class SystemInfo

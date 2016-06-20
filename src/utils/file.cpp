@@ -1,6 +1,6 @@
 #include <fstream>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace Utils
 {
@@ -49,4 +49,4 @@ std::string FileGetFirstLine(std::string path)
 
 } // End File
 } // End Utils
-} // End SystemMonitor
+} // End LixProc

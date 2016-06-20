@@ -1,6 +1,6 @@
 #include <core/sys/SystemInfo.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 
 struct sysinfo SystemInfo::info;

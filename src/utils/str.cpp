@@ -3,7 +3,7 @@
 
 #include <utils/str.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace Utils
 {
@@ -44,4 +44,4 @@ std::vector<std::string> split(const std::string &s, char delim) {
 }
 
 } // End Utils
-} // End SystemMonitor
+} // End LixProc

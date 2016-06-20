@@ -1,7 +1,7 @@
 #ifndef CORE_UTIL_FILE_H
 #define CORE_UTIL_FILE_H
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace Utils
 {
@@ -27,6 +27,6 @@ std::string FileGetFirstLine(std::string path);
 
 } // End File
 } // End Utils
-} // End SystemMonitor
+} // End LixProc
 
 #endif

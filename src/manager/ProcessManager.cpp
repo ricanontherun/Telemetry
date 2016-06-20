@@ -12,7 +12,7 @@
 #include <core/sys/SystemUser.h>
 #include <core/sys/SystemInfo.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace Manager
 {
@@ -22,8 +22,8 @@ std::string ProcessManager::proc_root = "/proc/";
 ProcessManager::ProcessManager()
 {
     // Capture some static data needed.
-    SystemMonitor::SystemUser::Capture();
-    SystemMonitor::SystemInfo::Capture();
+    LixProc::SystemUser::Capture();
+    LixProc::SystemInfo::Capture();
 }
 
 /**
@@ -131,4 +131,4 @@ void ProcessManager::Load(uint64_t pid)
 }
 
 } // End Manager
-} // End SystemMonitor
+} // End LixProc

@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace Utils
 {

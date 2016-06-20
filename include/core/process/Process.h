@@ -3,7 +3,7 @@
 
 #include <utils/command.h>
 
-namespace SystemMonitor
+namespace LixProc
 {
 namespace Core
 {
@@ -47,7 +47,7 @@ class Process
          */
         double GetRelativeMemoryUsage() const;
 
-        SystemMonitor::Utils::Command GetCommand() const;
+        LixProc::Utils::Command GetCommand() const;
 
         bool Kill();
 
@@ -68,7 +68,7 @@ class Process
 
         // Memory usage of this process.
         struct Memory memory;
-        SystemMonitor::Utils::Command command;
+        LixProc::Utils::Command command;
 
         /** * @brief Load the process's data.  *
         * @return
@@ -90,6 +90,6 @@ class Process
         bool LoadProcessMemory();
 };
 } // End Core
-} // End SystemMonitor
+} // End LixProc
 
 #endif //SYSTEM_MONITOR_PROCESS_H
