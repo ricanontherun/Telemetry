@@ -157,7 +157,7 @@ CLARA_PLATFORM_WINDOWS	tests/catch.hpp	3938;"	d
 CLI	include/cli/CommandLoop.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/Command.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/TestCommand.h	/^namespace CLI$/;"	n	namespace:LixProc
-CLI	src/cli/CommandLoop.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
+CLI	src/cli/CommandLoop.cpp	/^namespace CLI$/;"	n	namespace:SystemMonitor	file:
 CLI	src/cli/commands/Command.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
 CLI	src/cli/commands/TestCommand.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
 CLICHE_TBC_TEXT_FORMAT_OUTER_NAMESPACE	tests/catch.hpp	4840;"	d
@@ -180,10 +180,8 @@ Catch	tests/catch.hpp	/^namespace Catch {$/;"	n
 Choice	tests/catch.hpp	/^    struct CaseSensitive { enum Choice {$/;"	g	struct:Catch::CaseSensitive
 Command	include/cli/commands/Command.h	/^        Command(void) {};$/;"	f	class:LixProc::CLI::Commands::Command
 Command	include/cli/commands/Command.h	/^class Command$/;"	c	namespace:LixProc::CLI::Commands
-Command	include/core/process/Process.h	/^        struct Command {$/;"	s	class:SystemMonitor::Core::Process
 Command	src/cli/commands/Command.cpp	/^Command::Command(std::vector<std::string> &arguments)$/;"	f	class:LixProc::CLI::Commands::Command
 CommandLoop	include/cli/CommandLoop.h	/^class CommandLoop$/;"	c	namespace:LixProc::CLI
-CommandLoop	src/cli/CommandLoop.cpp	/^CommandLoop::CommandLoop(void)$/;"	f	class:LixProc::CLI::CommandLoop
 Commands	include/cli/commands/Command.h	/^namespace Commands$/;"	n	namespace:LixProc::CLI
 Commands	include/cli/commands/TestCommand.h	/^namespace Commands$/;"	n	namespace:LixProc::CLI
 Commands	src/cli/commands/Command.cpp	/^namespace Commands$/;"	n	namespace:LixProc::CLI	file:
@@ -239,7 +237,7 @@ Flags	tests/catch.hpp	/^    struct ResultDisposition { enum Flags {$/;"	g	struct
 GIVEN	tests/catch.hpp	10476;"	d
 Generic	tests/catch.hpp	/^    namespace Generic {$/;"	n	namespace:Catch::Matchers::Impl
 GetActualMemoryUsage	src/core/process/Process.cpp	/^double Process::GetActualMemoryUsage() const$/;"	f	class:SystemMonitor::Core::Process
-GetCommand	src/core/process/Process.cpp	/^Process::Command Process::GetCommand() const$/;"	f	class:SystemMonitor::Core::Process
+GetCommand	src/core/process/Process.cpp	/^SystemMonitor::Utils::Command Process::GetCommand() const$/;"	f	class:SystemMonitor::Core::Process
 GetGroupID	src/core/sys/SystemUser.cpp	/^gid_t SystemUser::GetGroupID()$/;"	f	class:SystemMonitor::SystemUser
 GetPageSize	src/core/sys/SystemInfo.cpp	/^int SystemInfo::GetPageSize()$/;"	f	class:SystemMonitor::SystemInfo
 GetRelativeMemoryUsage	src/core/process/Process.cpp	/^double Process::GetRelativeMemoryUsage() const$/;"	f	class:SystemMonitor::Core::Process
@@ -286,7 +284,8 @@ ITestCase	tests/catch.hpp	/^    struct ITestCase : IShared {$/;"	s	namespace:Cat
 ITestCaseRegistry	tests/catch.hpp	/^    struct ITestCaseRegistry {$/;"	s	namespace:Catch
 Impl	tests/catch.hpp	/^    namespace Impl {$/;"	n	namespace:Catch::Matchers
 Info	tests/catch.hpp	/^        Info = 1,$/;"	e	enum:Catch::ResultWas::OfType
-InitMainLoop	src/cli/CommandLoop.cpp	/^void CommandLoop::InitMainLoop(void)$/;"	f	class:LixProc::CLI::CommandLoop
+InitMainLoop	src/cli/CommandLoop.cpp	/^void CommandLoop::InitMainLoop(void)$/;"	f	class:SystemMonitor::CLI::CommandLoop
+Instance	src/cli/CommandLoop.cpp	/^LixProc::CLI::Commands::Command *CommandLoop::Instance(std::string command)$/;"	f	class:SystemMonitor::CLI::CommandLoop
 Internal	tests/catch.hpp	/^namespace Internal {$/;"	n	namespace:Catch
 IsEqualTo	tests/catch.hpp	/^        IsEqualTo,$/;"	e	enum:Catch::Internal::Operator
 IsGreaterThan	tests/catch.hpp	/^        IsGreaterThan,$/;"	e	enum:Catch::Internal::Operator
@@ -299,7 +298,6 @@ Kill	src/core/process/Process.cpp	/^bool Process::Kill()$/;"	f	class:SystemMonit
 LixProc	include/cli/CommandLoop.h	/^namespace LixProc$/;"	n
 LixProc	include/cli/commands/Command.h	/^namespace LixProc$/;"	n
 LixProc	include/cli/commands/TestCommand.h	/^namespace LixProc$/;"	n
-LixProc	src/cli/CommandLoop.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/cli/commands/Command.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/cli/commands/TestCommand.cpp	/^namespace LixProc$/;"	n	file:
 Load	src/manager/ProcessManager.cpp	/^void ProcessManager::Load()$/;"	f	class:SystemMonitor::Manager::ProcessManager
@@ -345,6 +343,7 @@ PD_CMDLINE	include/core/process/Process.h	/^        static const std::string PD_
 PD_CMDLINE	src/core/process/Process.cpp	/^const std::string Process::PD_CMDLINE = "cmdline";$/;"	m	class:SystemMonitor::Core::Process	file:
 PD_STATM	include/core/process/Process.h	/^        static const std::string PD_STATM, PD_CMDLINE;$/;"	m	class:SystemMonitor::Core::Process
 PD_STATM	src/core/process/Process.cpp	/^const std::string Process::PD_STATM   = "statm";$/;"	m	class:SystemMonitor::Core::Process	file:
+ParseCommand	src/cli/CommandLoop.cpp	/^void CommandLoop::ParseCommand(std::string command_str, SystemMonitor::Utils::Command &command)$/;"	f	class:SystemMonitor::CLI::CommandLoop
 Process	include/core/process/Process.h	/^class Process$/;"	c	namespace:SystemMonitor::Core
 Process	src/core/process/Process.cpp	/^Process::Process(uint32_t pid)$/;"	f	class:SystemMonitor::Core::Process
 ProcessManager	include/manager/ProcessManager.h	/^class ProcessManager$/;"	c	namespace:SystemMonitor::Manager
@@ -392,6 +391,7 @@ SystemMonitor	include/manager/ProcessManager.h	/^namespace SystemMonitor$/;"	n
 SystemMonitor	include/utils/command.h	/^namespace SystemMonitor$/;"	n
 SystemMonitor	include/utils/file.h	/^namespace SystemMonitor$/;"	n
 SystemMonitor	include/utils/str.h	/^namespace SystemMonitor$/;"	n
+SystemMonitor	src/cli/CommandLoop.cpp	/^namespace SystemMonitor$/;"	n	file:
 SystemMonitor	src/core/process/Process.cpp	/^namespace SystemMonitor$/;"	n	file:
 SystemMonitor	src/core/sys/SystemInfo.cpp	/^namespace SystemMonitor$/;"	n	file:
 SystemMonitor	src/core/sys/SystemUser.cpp	/^namespace SystemMonitor$/;"	n	file:
@@ -523,10 +523,9 @@ applyEvaluator	tests/catch.hpp	/^    bool applyEvaluator( T1 const& lhs, T2 cons
 arcSafeRelease	tests/catch.hpp	/^inline void arcSafeRelease( NSObject* ){}$/;"	f
 arcSafeRelease	tests/catch.hpp	/^inline void arcSafeRelease( NSObject* obj ) {$/;"	f
 arguments	include/cli/commands/Command.h	/^        std::vector<std::string> arguments;$/;"	m	class:LixProc::CLI::Commands::Command
-arguments	include/core/process/Process.h	/^            std::string arguments;$/;"	m	struct:SystemMonitor::Core::Process::Command
 capturedExpression	tests/catch.hpp	/^        std::string capturedExpression;$/;"	m	struct:Catch::AssertionInfo
 clone	tests/catch.hpp	/^        virtual Ptr<Matcher<ExpressionT> > clone() const {$/;"	f	struct:Catch::Matchers::Impl::MatcherImpl
-command	include/core/process/Process.h	/^        struct Command command;$/;"	m	class:SystemMonitor::Core::Process	typeref:struct:SystemMonitor::Core::Process::Command
+command	include/core/process/Process.h	/^        SystemMonitor::Utils::Command command;$/;"	m	class:SystemMonitor::Core::Process
 compare	tests/catch.hpp	/^    bool compare( T1 const& lhs, T2 const& rhs ) {$/;"	f	namespace:Catch::Internal
 compare	tests/catch.hpp	/^    template<Operator Op, typename T> bool compare( T* lhs, int rhs ) {$/;"	f	namespace:Catch::Internal
 compare	tests/catch.hpp	/^    template<Operator Op, typename T> bool compare( T* lhs, long long rhs ) {$/;"	f	namespace:Catch::Internal
@@ -569,7 +568,6 @@ description	tests/catch.hpp	/^    const char* description;$/;"	m	struct:Catch::N
 dirty	include/core/process/Process.h	/^            uint64_t dirty;     \/\/ dirty pages$/;"	m	struct:SystemMonitor::Core::Process::Memory
 evaluate	tests/catch.hpp	/^        static bool evaluate( T1 const& lhs, T2 const& rhs ) {$/;"	f	struct:Catch::Internal::Evaluator
 evaluate	tests/catch.hpp	/^        static bool evaluate( T1 const& lhs, T2 const& rhs) {$/;"	f	struct:Catch::Internal::Evaluator
-executable	include/core/process/Process.h	/^            std::string executable;$/;"	m	struct:SystemMonitor::Core::Process::Command
 file	tests/catch.hpp	/^        std::string file;$/;"	m	struct:Catch::SourceLineInfo
 get	tests/catch.hpp	/^        T* get() const{ return m_p; }$/;"	f	class:Catch::Ptr
 getName	tests/catch.hpp	/^    template<> struct OperatorTraits<IsEqualTo>             { static const char* getName(){ return "=="; } };$/;"	f	struct:Catch::Internal::OperatorTraits
@@ -593,7 +591,7 @@ lib	include/core/process/Process.h	/^            uint64_t lib;       \/\/ librar
 line	tests/catch.hpp	/^        std::size_t line;$/;"	m	struct:Catch::SourceLineInfo
 lineInfo	tests/catch.hpp	/^        SourceLineInfo lineInfo;$/;"	m	struct:Catch::AssertionInfo
 line_prefix	include/cli/CommandLoop.h	/^        static const std::string line_prefix;$/;"	m	class:LixProc::CLI::CommandLoop
-line_prefix	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::line_prefix = "lixproc >> ";$/;"	m	class:LixProc::CLI::CommandLoop	file:
+line_prefix	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::line_prefix = "lixproc >> ";$/;"	m	class:SystemMonitor::CLI::CommandLoop	file:
 m_assertionInfo	tests/catch.hpp	/^        AssertionInfo m_assertionInfo;$/;"	m	class:Catch::ResultBuilder
 m_caseSensitivity	tests/catch.hpp	/^            CaseSensitive::Choice m_caseSensitivity;$/;"	m	struct:Catch::Matchers::Impl::StdString::CasedString
 m_count	tests/catch.hpp	/^        std::size_t m_count;$/;"	m	struct:Catch::pluralise
@@ -655,7 +653,6 @@ operator ||	tests/catch.hpp	/^    Generic::AnyOf<ExpressionT> Matcher<Expression
 oss	tests/catch.hpp	/^        std::ostringstream oss;$/;"	m	struct:Catch::CopyableStream
 pagesize	include/core/sys/SystemInfo.h	/^        static int pagesize;$/;"	m	class:SystemMonitor::SystemInfo
 pagesize	src/core/sys/SystemInfo.cpp	/^int SystemInfo::pagesize = 0;$/;"	m	class:SystemMonitor::SystemInfo	file:
-path	include/core/process/Process.h	/^            std::string path;$/;"	m	struct:SystemMonitor::Core::Process::Command
 performOptionalSelector	tests/catch.hpp	/^inline id performOptionalSelector( id obj, SEL sel ) {$/;"	f
 pid	include/core/process/Process.h	/^        uint32_t pid;$/;"	m	class:SystemMonitor::Core::Process
 pluralise	tests/catch.hpp	/^    struct pluralise {$/;"	s	namespace:Catch
@@ -696,6 +693,7 @@ trueValue	tests/catch.hpp	/^        void trueValue() const {}$/;"	f	class:Catch:
 uid	include/core/sys/SystemUser.h	/^        static uid_t uid;$/;"	m	class:SystemMonitor::SystemUser
 uid	src/core/sys/SystemUser.cpp	/^uid_t SystemUser::uid = 0;$/;"	m	class:SystemMonitor::SystemUser	file:
 value	tests/catch.hpp	/^        enum { value = sizeof( testStreamable(s << t) ) == sizeof( TrueType ) };$/;"	e	enum:Catch::Detail::IsStreamInsertable::__anon1
+welcome	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::welcome = "Welcome. Empty line to exit.";$/;"	m	class:SystemMonitor::CLI::CommandLoop	file:
 ~Matcher	tests/catch.hpp	/^        virtual ~Matcher() {}$/;"	f	struct:Catch::Matchers::Impl::Matcher
 ~MethodTestCase	tests/catch.hpp	/^    virtual ~MethodTestCase() {}$/;"	f	class:Catch::MethodTestCase
 ~Process	src/core/process/Process.cpp	/^Process::~Process()$/;"	f	class:SystemMonitor::Core::Process

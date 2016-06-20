@@ -143,8 +143,9 @@ bool Process::LoadProcessMemory()
 
     std::string memory_string = FileGetFirstLine(dir);
 
+    // Split the statm file on spaces, and place each memory chunk in the vector.
+    // There must be a better way to do this, possible stringstreams?
     std::vector<std::string> memory_vector = Utils::split(memory_string, ' ');
-
     this->memory.size      = atoi(memory_vector[0].c_str());
     this->memory.resident  = atoi(memory_vector[1].c_str());
     this->memory.share     = atoi(memory_vector[2].c_str());

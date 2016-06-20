@@ -2,6 +2,8 @@
 #define MANAGER_PROCESS_H
 
 #include <map>
+#include <memory>
+
 #include "../core/process/Process.h"
 
 namespace SystemMonitor
@@ -31,6 +33,7 @@ class ProcessManager
         static std::string proc_root;
 
         // Map of processes, keyed by their respective PID
+        // TODO This should reall be a map<uint32_t, std::unique_ptr<Process>>
         std::map<uint32_t, Core::Process *> process_list;
 
         /**

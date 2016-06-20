@@ -36,12 +36,9 @@ void ProcessManager::Load()
 
 ProcessManager::~ProcessManager()
 {
-    // We create an iterator for map<uint32_t, Process *> map.
-    std::map<uint32_t, Core::Process *>::iterator it;
-
-    for (it = this->process_list.begin(); it != this->process_list.end(); it++)
+    for ( auto it : this->process_list )
     {
-        delete it->second;
+        delete it.second;
     }
 }
 
