@@ -1,27 +1,9 @@
-!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
-!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
-!_TAG_PROGRAM_NAME	Exuberant Ctags	//
-!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-AND_THEN	tests/catch.hpp	10480;"	d
-AND_WHEN	tests/catch.hpp	10478;"	d
-AllOf	tests/catch.hpp	/^            AllOf( AllOf const& other ) : m_matchers( other.m_matchers ) {}$/;"	f	class:Catch::Matchers::Impl::Generic::AllOf
-AllOf	tests/catch.hpp	/^            AllOf() {}$/;"	f	class:Catch::Matchers::Impl::Generic::AllOf
-CATCH_CONFIG_MAIN	tests/TestProcess.cpp	1;"	d	fil
-CORE_UTILS_COMMAND_H	include/utils/command.h	2;"	d
-CORE_UTIL_FILE_H	include/utils/file.h	2;"	d
-CORE_UTIL_STR_H	include/utils/str.h	2;"	d
-Command	include/utils/command.h	/^struct Command {$/;"	s	namespace:LixProc::Utils
+!_TAG_FILE_FORMAT	2	/extended format;
 Core	src/core/process/Process.cpp	/^namespace Core$/;"	n	namespace:LixProc	file:
-File	include/utils/file.h	/^namespace File$/;"	n	namespace:LixProc::Utils
 GetActualMemoryUsage	src/core/process/Process.cpp	/^double Process::GetActualMemoryUsage() const$/;"	f	class:LixProc::Core::Process
 GetCommand	src/core/process/Process.cpp	/^LixProc::Utils::Command Process::GetCommand() const$/;"	f	class:LixProc::Core::Process
 GetRelativeMemoryUsage	src/core/process/Process.cpp	/^double Process::GetRelativeMemoryUsage() const$/;"	f	class:LixProc::Core::Process
 Kill	src/core/process/Process.cpp	/^bool Process::Kill()$/;"	f	class:LixProc::Core::Process
-LixProc	include/utils/command.h	/^namespace LixProc$/;"	n
-LixProc	include/utils/file.h	/^namespace LixProc$/;"	n
-LixProc	include/utils/str.h	/^namespace LixProc$/;"	n
 LixProc	src/core/process/Process.cpp	/^namespace LixProc$/;"	n	file:
 LoadProcessCommand	src/core/process/Process.cpp	/^bool Process::LoadProcessCommand()$/;"	f	class:LixProc::Core::Process
 LoadProcessData	src/core/process/Process.cpp	/^void Process::LoadProcessData()$/;"	f	class:LixProc::Core::Process
@@ -29,12 +11,6 @@ LoadProcessMemory	src/core/process/Process.cpp	/^bool Process::LoadProcessMemory
 PD_CMDLINE	src/core/process/Process.cpp	/^const std::string Process::PD_CMDLINE = "cmdline";$/;"	m	class:LixProc::Core::Process	file:
 PD_STATM	src/core/process/Process.cpp	/^const std::string Process::PD_STATM   = "statm";$/;"	m	class:LixProc::Core::Process	file:
 Process	src/core/process/Process.cpp	/^Process::Process(uint32_t pid)$/;"	f	class:LixProc::Core::Process
-Utils	include/utils/command.h	/^namespace Utils$/;"	n	namespace:LixProc
-Utils	include/utils/file.h	/^namespace Utils$/;"	n	namespace:LixProc
-Utils	include/utils/str.h	/^namespace Utils$/;"	n	namespace:LixProc
-arguments	include/utils/command.h	/^    std::string arguments;$/;"	m	struct:LixProc::Utils::Command
 main	src/main.cpp	/^int main()$/;"	f
-name	include/utils/command.h	/^    std::string name;$/;"	m	struct:LixProc::Utils::Command
 operator <<	src/core/process/Process.cpp	/^std::ostream &operator<<(std::ostream &stream, const Process &process)$/;"	f	namespace:LixProc::Core
-path	include/utils/command.h	/^    std::string path;$/;"	m	struct:LixProc::Utils::Command
 ~Process	src/core/process/Process.cpp	/^Process::~Process()$/;"	f	class:LixProc::Core::Process

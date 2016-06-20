@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdexcept>
+#include <sstream>
 
 #include <core/process/Process.h>
 #include <core/sys/SystemInfo.h>
@@ -139,20 +140,24 @@ LixProc::Utils::Command Process::GetCommand() const
 bool Process::LoadProcessMemory()
 {
     using LixProc::Utils::File::FileGetFirstLine;
+
+    // /proc/PID/statm
     std::string dir = this->process_base_path + "/" + Process::PD_STATM;
 
-    std::string memory_string = FileGetFirstLine(dir);
+    // Get the first line is sufficient for a /proc/PID/statm read.
+    std::string statm = FileGetFirstLine(dir);
 
-    // Split the statm file on spaces, and place each memory chunk in the vector.
-    // There must be a better way to do this, possible stringstreams?
-    std::vector<std::string> memory_vector = Utils::split(memory_string, ' ');
-    this->memory.size      = atoi(memory_vector[0].c_str());
-    this->memory.resident  = atoi(memory_vector[1].c_str());
-    this->memory.share     = atoi(memory_vector[2].c_str());
-    this->memory.text      = atoi(memory_vector[3].c_str());
-    this->memory.lib       = atoi(memory_vector[4].c_str());
-    this->memory.data      = atoi(memory_vector[5].c_str());
-    this->memory.dirty     = atoi(memory_vector[6].c_str());
+    std::stringstream memory_stream(statm);
+
+    // Yes, this seems much cleaner than split()ing into a vector and atoi()ing the resulting indexes,
+    // but is this the best practice? Is there a best practice for this?
+    memory_stream >> this->memory.size;
+    memory_stream >> this->memory.resident;
+    memory_stream >> this->memory.share;
+    memory_stream >> this->memory.text;
+    memory_stream >> this->memory.lib;
+    memory_stream >> this->memory.data;
+    memory_stream >> this->memory.dirty;
 
     return true;
 }
