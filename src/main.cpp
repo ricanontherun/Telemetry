@@ -4,11 +4,10 @@
 #include <sstream>
 
 #include <cli/CommandLoop.h>
-#include <manager/ProcessManager.h>
 
 int main()
 {
-    LixProc::Manager::ProcessManager manager;
+    LixProc::CLI::CommandLoop loop;
 
-    manager.Load();
+    loop.InitMainLoop();
 }
