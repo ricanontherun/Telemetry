@@ -34,14 +34,6 @@ void ProcessManager::Load()
     this->LoadProcessList();
 }
 
-ProcessManager::~ProcessManager()
-{
-    for ( auto it : this->process_list )
-    {
-        delete it.second;
-    }
-}
-
 /*
 |--------------------------------------------------
 | Private
@@ -121,10 +113,8 @@ void ProcessManager::Load(uint64_t pid)
     }
 
     try {
-        Core::Process *process = new Core::Process(pid);
-        this->process_list[pid] = process;
-
-        std::cout << *process << std::endl;
+        this->process_list[pid] = std::unique_ptr<Core::Process>(new Core::Process(pid));
+        std::cout << *(this->process_list[pid]) << std::endl;
     } catch( std::runtime_error &error ) {
         std::cerr << error.what() << std::endl;
     }

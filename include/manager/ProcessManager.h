@@ -15,7 +15,6 @@ class ProcessManager
 {
     public:
         ProcessManager();
-        ~ProcessManager();
 
         /**
          * @brief Load all active processes.
@@ -34,7 +33,7 @@ class ProcessManager
 
         // Map of processes, keyed by their respective PID
         // TODO This should really use RAII, map<uint32_t, std::unique_ptr<Process>>
-        std::map<uint32_t, Core::Process *> process_list;
+        std::map<uint32_t, std::unique_ptr<Core::Process>> process_list;
 
         /**
          * @brief Load the process list.
