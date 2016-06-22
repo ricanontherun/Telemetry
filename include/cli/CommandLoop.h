@@ -18,12 +18,14 @@ class CommandLoop
     protected:
         static const std::string welcome;
         static const std::string line_prefix;
+        static std::vector<std::string> commands;
 
-        enum class Commands {
-            SHOW = 0
-        };
+        void ParseCommand(
+            std::string command_str,
+            LixProc::Utils::Command &command
+        );
 
-        void ParseCommand(std::string command_str, LixProc::Utils::Command &command);
+        bool ValidateCommand(LixProc::Utils::Command &command);
 };
 
 } // End CLI
