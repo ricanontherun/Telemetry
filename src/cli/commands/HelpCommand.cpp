@@ -10,6 +10,7 @@ namespace Commands
 
 void HelpCommand::Run(void)
 {
+    std::cout << "Hey, this is the Help command!" << std::endl;
 }
 
 } // End Commands

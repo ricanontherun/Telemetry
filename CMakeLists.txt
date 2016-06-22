@@ -16,6 +16,7 @@ set(SOURCES
     src/cli/CommandLoop.cpp
     src/cli/commands/Command.cpp
     src/cli/commands/HelpCommand.cpp
+    src/cli/commands/CommandFactory.cpp
     )
 
 add_executable(lixproc ${SOURCES})

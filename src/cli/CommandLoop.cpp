@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include <cli/CommandLoop.h>
+#include <cli/commands/CommandFactory.h>
 
 namespace LixProc
 {
