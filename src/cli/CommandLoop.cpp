@@ -34,7 +34,9 @@ void CommandLoop::InitMainLoop(void)
         // Validate Command.
         if ( !this->ValidateCommand(command) )
         {
-            std::cout << command.name << " is not a valid command" << std::endl;
+            std::cout << command.name << " is not a valid command. Try help..." << std::endl;
+            std::cout << CommandLoop::line_prefix;
+            continue;
         }
 
         // Create the command object.
