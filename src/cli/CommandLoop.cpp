@@ -1,9 +1,10 @@
+#include <cli/CommandLoop.h>
+
 #include <iostream>
 #include <string>
 #include <algorithm>
 
-#include <cli/CommandLoop.h>
-#include <cli/commands/CommandFactory.h>
+#include <cli/CommandFactory.h>
 
 namespace LixProc
 {
@@ -14,8 +15,9 @@ namespace CLI
 const std::string CommandLoop::welcome = "Welcome. Empty line to exit.";
 const std::string CommandLoop::line_prefix = "lixproc >> ";
 
-std::vector<std::string> CommandLoop::commands = {
-    "help"
+std::map<std::string, CommandFactory::CommandEnum>
+CommandLoop::command_map = {
+    {"help", CommandFactory::CommandEnum::HELP}
 };
 
 void CommandLoop::InitMainLoop(void)
@@ -41,8 +43,11 @@ void CommandLoop::InitMainLoop(void)
         }
 
         // Create the command object.
+        CommandFactory::CommandEnum code = CommandLoop::command_map.find(command.name)->second;
+        std::unique_ptr<Commands::Command> c = CommandFactory::Make(code);
 
         // Run and print output.
+        c->Run();
 
         std::cout << CommandLoop::line_prefix;
     }
@@ -58,18 +63,7 @@ void CommandLoop::ParseCommand(
 
 bool CommandLoop::ValidateCommand(LixProc::Utils::Command &command)
 {
-    bool found = std::find(
-        this->commands.begin(),
-        this->commands.end(),
-        command.name
-    ) != this->commands.end();
-
-    return found;
-}
-
-LixProc::CLI::Commands::Command *CommandLoop::Instance(std::string command)
-{
-    return NULL;
+    return command_map.count(command.name) != 0;
 }
 
 } // End CLI

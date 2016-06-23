@@ -9,18 +9,19 @@ namespace LixProc
 {
 namespace CLI
 {
-namespace Commands
-{
 
 using LixProc::CLI::Commands::Command;
 
 class CommandFactory
 {
     public:
-        static std::unique_ptr<Command> Make(std::string concrete);
+        enum class CommandEnum {
+            HELP
+        };
+
+        static std::unique_ptr<Command> Make(CommandEnum com);
 };
 
-} // End Commands
 } // End CLI
 } // End LixProc
 
