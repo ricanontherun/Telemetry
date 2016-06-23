@@ -4,49 +4,6 @@ CLI	include/cli/commands/Command.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/CommandFactory.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	src/cli/CommandLoop.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
 CLI	src/cli/commands/CommandFactory.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
-CLI	src/cli/commands/HelpCommand.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
+CLI_COMM
 CLI_COMMANDS_COMMAND_FACTORY_H	include/cli/commands/CommandFactory.h	2;"	d
 CLI_COMMANDS_COMMAND_H	include/cli/commands/Command.h	2;"	d
-CLI_COMMAND_H	include/cli/CommandLoop.h	2;"	d
-Command	include/cli/commands/Command.h	/^        Command(void) {};$/;"	f	class:LixProc::CLI::Commands::Command
-Command	include/cli/commands/Command.h	/^class Command$/;"	c	namespace:LixProc::CLI::Commands
-CommandFactory	include/cli/commands/CommandFactory.h	/^class CommandFactory$/;"	c	namespace:LixProc::CLI::Commands
-CommandLoop	include/cli/CommandLoop.h	/^class CommandLoop$/;"	c	namespace:LixProc::CLI
-Commands	include/cli/commands/Command.h	/^namespace Commands$/;"	n	namespace:LixProc::CLI
-Commands	include/cli/commands/CommandFactory.h	/^namespace Commands$/;"	n	namespace:LixProc::CLI
-Commands	src/cli/commands/CommandFactory.cpp	/^namespace Commands$/;"	n	namespace:LixProc::CLI	file:
-Commands	src/cli/commands/HelpCommand.cpp	/^namespace Commands$/;"	n	namespace:LixProc::CLI	file:
-Core	src/core/process/Process.cpp	/^namespace Core$/;"	n	namespace:LixProc	file:
-GetActualMemoryUsage	src/core/process/Process.cpp	/^double Process::GetActualMemoryUsage() const$/;"	f	class:LixProc::Core::Process
-GetCommand	src/core/process/Process.cpp	/^LixProc::Utils::Command Process::GetCommand() const$/;"	f	class:LixProc::Core::Process
-GetRelativeMemoryUsage	src/core/process/Process.cpp	/^double Process::GetRelativeMemoryUsage() const$/;"	f	class:LixProc::Core::Process
-InitMainLoop	src/cli/CommandLoop.cpp	/^void CommandLoop::InitMainLoop(void)$/;"	f	class:LixProc::CLI::CommandLoop
-Instance	src/cli/CommandLoop.cpp	/^LixProc::CLI::Commands::Command *CommandLoop::Instance(std::string command)$/;"	f	class:LixProc::CLI::CommandLoop
-Kill	src/core/process/Process.cpp	/^bool Process::Kill()$/;"	f	class:LixProc::Core::Process
-LixProc	include/cli/CommandLoop.h	/^namespace LixProc$/;"	n
-LixProc	include/cli/commands/Command.h	/^namespace LixProc$/;"	n
-LixProc	include/cli/commands/CommandFactory.h	/^namespace LixProc$/;"	n
-LixProc	src/cli/CommandLoop.cpp	/^namespace LixProc$/;"	n	file:
-LixProc	src/cli/commands/CommandFactory.cpp	/^namespace LixProc$/;"	n	file:
-LixProc	src/cli/commands/HelpCommand.cpp	/^namespace LixProc$/;"	n	file:
-LixProc	src/core/process/Process.cpp	/^namespace LixProc$/;"	n	file:
-LoadProcessCommand	src/core/process/Process.cpp	/^bool Process::LoadProcessCommand()$/;"	f	class:LixProc::Core::Process
-LoadProcessData	src/core/process/Process.cpp	/^void Process::LoadProcessData()$/;"	f	class:LixProc::Core::Process
-LoadProcessMemory	src/core/process/Process.cpp	/^bool Process::LoadProcessMemory()$/;"	f	class:LixProc::Core::Process
-Make	src/cli/commands/CommandFactory.cpp	/^CommandFactory::Make(std::string concrete)$/;"	f	class:LixProc::CLI::Commands::CommandFactory
-PD_CMDLINE	src/core/process/Process.cpp	/^const std::string Process::PD_CMDLINE = "cmdline";$/;"	m	class:LixProc::Core::Process	file:
-PD_STATM	src/core/process/Process.cpp	/^const std::string Process::PD_STATM   = "statm";$/;"	m	class:LixProc::Core::Process	file:
-ParseCommand	src/cli/CommandLoop.cpp	/^void CommandLoop::ParseCommand($/;"	f	class:LixProc::CLI::CommandLoop
-Process	src/core/process/Process.cpp	/^Process::Process(uint32_t pid)$/;"	f	class:LixProc::Core::Process
-Run	src/cli/commands/HelpCommand.cpp	/^void HelpCommand::Run(void)$/;"	f	class:LixProc::CLI::Commands::HelpCommand
-ValidateCommand	src/cli/CommandLoop.cpp	/^bool CommandLoop::ValidateCommand(LixProc::Utils::Command &command)$/;"	f	class:LixProc::CLI::CommandLoop
-arguments	include/cli/commands/Command.h	/^        std::vector<std::string> arguments;$/;"	m	class:LixProc::CLI::Commands::Command
-commands	include/cli/CommandLoop.h	/^        static std::vector<std::string> commands;$/;"	m	class:LixProc::CLI::CommandLoop
-commands	src/cli/CommandLoop.cpp	/^std::vector<std::string> CommandLoop::commands = {$/;"	m	class:LixProc::CLI::CommandLoop	file:
-line_prefix	include/cli/CommandLoop.h	/^        static const std::string line_prefix;$/;"	m	class:LixProc::CLI::CommandLoop
-line_prefix	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::line_prefix = "lixproc >> ";$/;"	m	class:LixProc::CLI::CommandLoop	file:
-main	src/main.cpp	/^int main()$/;"	f
-operator <<	src/core/process/Process.cpp	/^std::ostream &operator<<(std::ostream &stream, const Process &process)$/;"	f	namespace:LixProc::Core
-welcome	include/cli/CommandLoop.h	/^        static const std::string welcome;$/;"	m	class:LixProc::CLI::CommandLoop
-welcome	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::welcome = "Welcome. Empty line to exit.";$/;"	m	class:LixProc::CLI::CommandLoop	file:
-~Process	src/core/process/Process.cpp	/^Process::~Process()$/;"	f	class:LixProc::Core::Process

@@ -12,7 +12,7 @@ namespace CLI
 {
 
 // Initialize some constants.
-const std::string CommandLoop::welcome = "Welcome. Empty line to exit.";
+const std::string CommandLoop::welcome = "Welcome to lixproc. Empty line to exit, help to more information.";
 const std::string CommandLoop::line_prefix = "lixproc >> ";
 
 std::map<std::string, CommandFactory::CommandEnum>
@@ -24,7 +24,7 @@ void CommandLoop::InitMainLoop(void)
 {
     std::string command_str;
 
-    std::cout << CommandLoop::welcome << std::endl;
+    this->ShowWelcome();
     std::cout << CommandLoop::line_prefix;
 
     LixProc::Utils::Command command;
@@ -53,6 +53,13 @@ void CommandLoop::InitMainLoop(void)
     }
 }
 
+
+/**
+ *--------------------------------------------------
+ * Private
+ *--------------------------------------------------
+ */
+
 void CommandLoop::ParseCommand(
     std::string command_str,
     LixProc::Utils::Command &command
@@ -64,6 +71,20 @@ void CommandLoop::ParseCommand(
 bool CommandLoop::ValidateCommand(LixProc::Utils::Command &command)
 {
     return command_map.count(command.name) != 0;
+}
+
+void CommandLoop::ShowWelcome() const
+{
+    std::string ascii_art = "";
+        ascii_art += " _    _     ___\n";
+        ascii_art += "| |  (_)_ _| _ \\_ _ ___  __\n";
+        ascii_art += "| |__| \\ \\ /  _/ '_/ _ \\/ _|\n";
+        ascii_art += "|____|_/_\\_\\_| |_| \\___/\\__|\n";
+
+    std::string start = "Type help for usage, empty line to exit.";
+
+    std::cout << ascii_art << std::endl;
+    std::cout << start << std::endl << std::endl;
 }
 
 } // End CLI

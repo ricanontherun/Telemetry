@@ -28,6 +28,9 @@ class CommandLoop
         );
 
         bool ValidateCommand(LixProc::Utils::Command &command);
+
+    private:
+        void ShowWelcome() const;
 };
 
 } // End CLI

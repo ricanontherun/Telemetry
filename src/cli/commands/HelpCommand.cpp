@@ -1,5 +1,7 @@
-#include <iostream>
 #include <cli/commands/HelpCommand.h>
+
+#include <iostream>
+#include <iomanip>
 
 namespace LixProc
 {
@@ -9,8 +11,9 @@ namespace Commands
 {
 
 void HelpCommand::Run(void)
-{
-    std::cout << "Hey, this is the Help command!" << std::endl;
+    std::cout << "Available Commands" << std::endl;
+
+    std::cout << std::setw(8) <<  "help" << std::setw(30) << "Display Help" << std::endl;
 }
 
 } // End Commands
