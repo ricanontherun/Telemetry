@@ -11,9 +11,10 @@ namespace Commands
 {
 
 void HelpCommand::Run(void)
+{
     std::cout << "Available Commands" << std::endl;
 
-    std::cout << std::setw(8) <<  "help" << std::setw(30) << "Display Help" << std::endl;
+    std::cout << std::setw(8) << "help" << std::setw(30) << "Display Help" << std::endl;
 }
 
 } // End Commands

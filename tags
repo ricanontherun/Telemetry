@@ -2,8 +2,16 @@
 CLI	include/cli/CommandLoop.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/Command.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/CommandFactory.h	/^namespace CLI$/;"	n	namespace:LixProc
+CLI	include/cli/commands/HelpCommand.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	src/cli/CommandLoop.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
-CLI	src/cli/commands/CommandFactory.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
-CLI_COMM
-CLI_COMMANDS_COMMAND_FACTORY_H	include/cli/commands/CommandFactory.h	2;"	d
-CLI_COMMANDS_COMMAND_H	include/cli/commands/Command.h	2;"	d
+CLI	src/cli/commands/Command.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
+CLI	src/cli/commands/CommandFactory.cpp	/^namespace CLI$/;"	n	namespac
+CLI	src/cli/commands/HelpCommand.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
+CLI_COMMAND_HELP_COMAND_H	include/cli/commands/HelpCommand.h	2;"	d
+Commands	include/cli/commands/HelpCommand.h	/^namespace Commands$/;"	n	namespace:LixProc::CLI
+Commands	src/cli/commands/HelpCommand.cpp	/^namespace Commands$/;"	n	namespace:LixProc::CLI	file:
+HelpCommand	include/cli/commands/HelpCommand.h	/^        HelpCommand() {};$/;"	f	class:LixProc::CLI::Commands::HelpCommand
+HelpCommand	include/cli/commands/HelpCommand.h	/^class HelpCommand : public Command$/;"	c	namespace:LixProc::CLI::Commands
+LixProc	include/cli/commands/HelpCommand.h	/^namespace LixProc$/;"	n
+LixProc	src/cli/commands/HelpCommand.cpp	/^namespace LixProc$/;"	n	file:
+Run	src/cli/commands/HelpCommand.cpp	/^void HelpCommand::Run(void)$/;"	f	class:LixProc::CLI::Commands::HelpCommand
