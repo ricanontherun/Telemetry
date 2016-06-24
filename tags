@@ -3,15 +3,44 @@ CLI	include/cli/CommandLoop.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/Command.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/CommandFactory.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/HelpCommand.h	/^namespace CLI$/;"	n	namespace:LixProc
+CLI	include/cli/commands/ShowCommand.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	src/cli/CommandLoop.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
 CLI	src/cli/commands/Command.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
 CLI	src/cli/commands/CommandFactory.cpp	/^namespace CLI$/;"	n	namespac
 CLI	src/cli/commands/HelpCommand.cpp	/^namespace CLI$/;"	n	namespace:LixProc	file:
+CLI_COMMANDS_COMMAND_H	include/cli/commands/Command.h	2;"	d
+CLI_COMMANDS_SHOW_COMMAND_H	include/cli/commands/ShowCommand.h	2;"	d
+CLI_COMMAND_H	include/cli/CommandLoop.h	2;"	d
 CLI_COMMAND_HELP_COMAND_H	include/cli/commands/HelpCommand.h	2;"	d
+Command	include/cli/commands/Command.h	/^        Command(void) {};$/;"	f	class:LixProc::CLI::Commands::Command
+Command	include/cli/commands/Command.h	/^class Command$/;"	c	namespace:LixProc::CLI::Commands
+Command	src/cli/commands/Command.cpp	/^Command::Command(std::vector<std::string> &arguments)$/;"	f	class:LixProc::CLI::Commands::Command
+CommandLoop	include/cli/CommandLoop.h	/^class CommandLoop$/;"	c	namespace:LixProc::CLI
+Commands	include/cli/commands/Command.h	/^namespace Commands$/;"	n	namespace:LixProc::CLI
 Commands	include/cli/commands/HelpCommand.h	/^namespace Commands$/;"	n	namespace:LixProc::CLI
+Commands	include/cli/commands/ShowCommand.h	/^namespace Commands$/;"	n	namespace:LixProc::CLI
+Commands	src/cli/commands/Command.cpp	/^namespace Commands$/;"	n	namespace:LixProc::CLI	file:
 Commands	src/cli/commands/HelpCommand.cpp	/^namespace Commands$/;"	n	namespace:LixProc::CLI	file:
 HelpCommand	include/cli/commands/HelpCommand.h	/^        HelpCommand() {};$/;"	f	class:LixProc::CLI::Commands::HelpCommand
 HelpCommand	include/cli/commands/HelpCommand.h	/^class HelpCommand : public Command$/;"	c	namespace:LixProc::CLI::Commands
+InitMainLoop	src/cli/CommandLoop.cpp	/^void CommandLoop::InitMainLoop(void)$/;"	f	class:LixProc::CLI::CommandLoop
+LixProc	include/cli/CommandLoop.h	/^namespace LixProc$/;"	n
+LixProc	include/cli/commands/Command.h	/^namespace LixProc$/;"	n
 LixProc	include/cli/commands/HelpCommand.h	/^namespace LixProc$/;"	n
+LixProc	include/cli/commands/ShowCommand.h	/^namespace LixProc$/;"	n
+LixProc	src/cli/CommandLoop.cpp	/^namespace LixProc$/;"	n	file:
+LixProc	src/cli/commands/Command.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/cli/commands/HelpCommand.cpp	/^namespace LixProc$/;"	n	file:
+ParseCommand	src/cli/CommandLoop.cpp	/^void CommandLoop::ParseCommand($/;"	f	class:LixProc::CLI::CommandLoop
 Run	src/cli/commands/HelpCommand.cpp	/^void HelpCommand::Run(void)$/;"	f	class:LixProc::CLI::Commands::HelpCommand
+SetArguments	src/cli/commands/Command.cpp	/^void Command::SetArguments(std::vector<std::string> &arguments)$/;"	f	class:LixProc::CLI::Commands::Command
+ShowCommand	include/cli/commands/ShowCommand.h	/^class ShowCommand : public Command$/;"	c	namespace:LixProc::CLI::Commands
+ShowWelcome	src/cli/CommandLoop.cpp	/^void CommandLoop::ShowWelcome() const$/;"	f	class:LixProc::CLI::CommandLoop
+ValidateCommand	src/cli/CommandLoop.cpp	/^bool CommandLoop::ValidateCommand(LixProc::Utils::Command &command)$/;"	f	class:LixProc::CLI::CommandLoop
+arguments	include/cli/commands/Command.h	/^        std::vector<std::string> arguments;$/;"	m	class:LixProc::CLI::Commands::Command
+command_map	include/cli/CommandLoop.h	/^        static std::map<std::string, LixProc::CLI::CommandFactory::CommandEnum> command_map;$/;"	m	class:LixProc::CLI::CommandLoop
+command_map	src/cli/CommandLoop.cpp	/^CommandLoop::command_map = {$/;"	m	class:LixProc::CLI::CommandLoop	file:
+line_prefix	include/cli/CommandLoop.h	/^        static const std::string line_prefix;$/;"	m	class:LixProc::CLI::CommandLoop
+line_prefix	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::line_prefix = "lixproc >> ";$/;"	m	class:LixProc::CLI::CommandLoop	file:
+welcome	include/cli/CommandLoop.h	/^        static const std::string welcome;$/;"	m	class:LixProc::CLI::CommandLoop
+welcome	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::welcome = "Welcome to lixproc. Empty line to exit, help to more information.";$/;"	m	class:LixProc::CLI::CommandLoop	file:

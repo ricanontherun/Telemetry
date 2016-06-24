@@ -12,6 +12,11 @@ namespace Commands
 
 Command::Command(std::vector<std::string> &arguments)
 {
+    this->SetArguments(arguments);
+}
+
+void Command::SetArguments(std::vector<std::string> &arguments)
+{
     this->arguments = arguments;
 }
 

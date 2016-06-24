@@ -46,6 +46,7 @@ void CommandLoop::InitMainLoop(void)
         CommandFactory::CommandEnum code = CommandLoop::command_map.find(command.name)->second;
         std::unique_ptr<Commands::Command> c = CommandFactory::Make(code);
 
+        c->SetArguments(command.arguments);
         // Run and print output.
         c->Run();
 
