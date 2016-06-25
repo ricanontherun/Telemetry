@@ -13,8 +13,21 @@ ShowCommand::argument_regex_map = {
     {ShowCommand::ArgumentRegex::NAME, std::regex("^name:[[:w:]]+$")}
 };
 
-void ShowCommand::Run(void) {
+void ShowCommand::Run(void)
+{
+    this->ParseArguments(this->arguments);
+
     std::cout << "Running the show command" << std::endl;
+}
+
+void ShowCommand::ParseArguments(std::string arguments)
+{
+}
+
+std::regex ShowCommand::GetArgumentRegex(ArgumentRegex name) const
+{
+
+    return this->argument_regex_map[name];
 }
 
 } // End Commands

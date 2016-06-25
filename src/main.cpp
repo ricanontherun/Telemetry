@@ -3,12 +3,13 @@
 #include <regex>
 
 #include <cli/CommandLoop.h>
+#include <utils/RegexMap.h>
 
 int main(int argc, char **argv)
 {
-    std::regex r_all("^all$");
-    std::regex r_name("^name:[[:w:]]+$");
+    RegexMap<std::string> map;
+    std::string expression("asdasd");
 
-    LixProc::CLI::CommandLoop loop;
-    loop.InitMainLoop();
+    map.Set("key", expression);
+    map.Set("key", expression);
 }

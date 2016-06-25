@@ -18,6 +18,7 @@ class ShowCommand : public Command
 {
     public:
         ShowCommand(void) {};
+
         void Run(void);
     private:
         enum class ArgumentRegex {
@@ -26,6 +27,10 @@ class ShowCommand : public Command
         };
 
         static std::map<ArgumentRegex, std::regex> argument_regex_map;
+
+        void ParseArguments(std::string arguments);
+        std::regex GetArgumentRegex(ArgumentRegex name) const;
+        bool TestArgumentRegex(ArgumentRegex name) const;
 };
 
 } // End Commands
