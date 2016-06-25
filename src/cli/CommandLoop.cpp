@@ -5,6 +5,7 @@
 #include <algorithm>
 
 #include <cli/CommandFactory.h>
+#include <utils/str.h>
 
 namespace LixProc
 {
@@ -17,7 +18,8 @@ const std::string CommandLoop::line_prefix = "lixproc >> ";
 
 std::map<std::string, CommandFactory::CommandEnum>
 CommandLoop::command_map = {
-    {"help", CommandFactory::CommandEnum::HELP}
+    {"help", CommandFactory::CommandEnum::HELP},
+    {"show", CommandFactory::CommandEnum::SHOW}
 };
 
 void CommandLoop::InitMainLoop(void)
@@ -44,9 +46,8 @@ void CommandLoop::InitMainLoop(void)
 
         // Create the command object.
         CommandFactory::CommandEnum code = CommandLoop::command_map.find(command.name)->second;
-        std::unique_ptr<Commands::Command> c = CommandFactory::Make(code);
+        std::unique_ptr<Commands::Command> c = CommandFactory::Make(code, command.arguments);
 
-        c->SetArguments(command.arguments);
         // Run and print output.
         c->Run();
 

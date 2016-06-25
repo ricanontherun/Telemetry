@@ -1,14 +1,14 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <sstream>
-#include <memory>
+#include <regex>
 
 #include <cli/CommandLoop.h>
 
-int main()
+int main(int argc, char **argv)
 {
-    LixProc::CLI::CommandLoop loop;
+    std::regex r_all("^all$");
+    std::regex r_name("^name:[[:w:]]+$");
 
+    LixProc::CLI::CommandLoop loop;
     loop.InitMainLoop();
 }

@@ -16,10 +16,14 @@ class CommandFactory
 {
     public:
         enum class CommandEnum {
-            HELP
+            HELP,
+            SHOW
         };
 
-        static std::unique_ptr<Command> Make(CommandEnum com);
+        static std::unique_ptr<Command> Make(
+            CommandEnum command,
+            std::string arguments
+        );
 };
 
 } // End CLI

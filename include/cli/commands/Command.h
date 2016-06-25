@@ -15,12 +15,11 @@ class Command
 {
     public:
         Command(void) {};
-        Command(std::vector<std::string> &arguments);
 
         virtual void Run(void) = 0;
-        void SetArguments(std::vector<std::string> &arguments);
+        void SetArguments(std::string arguments);
     protected:
-        std::vector<std::string> arguments;
+        std::string arguments;
 };
 
 } // End Commands
