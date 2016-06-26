@@ -15,6 +15,7 @@ void Command::SetArguments(std::string arguments)
     this->arguments = arguments;
 }
 
+
 } // End Commands
 } // End CLI
 } // End LixProc

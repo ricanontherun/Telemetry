@@ -19,6 +19,7 @@ class ShowCommand : public Command
 {
     public:
         ShowCommand(void);
+        ~ShowCommand(void);
 
         void Run(void);
         RegexMap<std::string> regex_map;

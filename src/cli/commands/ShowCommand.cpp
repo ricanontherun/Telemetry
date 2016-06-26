@@ -14,6 +14,11 @@ ShowCommand::ShowCommand()
         .Set("name", "^name:[[:w:]]+$");
 }
 
+ShowCommand::~ShowCommand()
+{
+    std::cout << "Deleting the show command" << std::endl;
+}
+
 void ShowCommand::Run(void)
 {
     this->ParseArguments(this->arguments);

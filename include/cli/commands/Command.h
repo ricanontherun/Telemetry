@@ -15,6 +15,7 @@ class Command
 {
     public:
         Command(void) {};
+        virtual ~Command() {};
 
         virtual void Run(void) = 0;
         void SetArguments(std::string arguments);
