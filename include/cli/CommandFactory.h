@@ -24,6 +24,10 @@ class CommandFactory
             CommandEnum command,
             std::string arguments
         );
+
+        static std::unique_ptr<Command> Make(CommandEnum command);
+    private:
+        static std::map<CommandEnum, Command> instances;
 };
 
 } // End CLI
