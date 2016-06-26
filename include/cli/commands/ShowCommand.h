@@ -3,9 +3,10 @@
 
 #include <cli/commands/Command.h>
 
-#include <map>
-#include <regex>
 #include <iostream>
+
+#include <utils/RegexMap.h>
+#include <map>
 
 namespace LixProc
 {
@@ -17,16 +18,18 @@ namespace Commands
 class ShowCommand : public Command
 {
     public:
-        ShowCommand(void) {};
+        ShowCommand(void);
 
         void Run(void);
-    private:
+
         enum class ArgumentRegex {
             ALL,
             NAME
         };
 
-        static std::map<ArgumentRegex, std::regex> argument_regex_map;
+        static std::map<std::string, std::string> test;
+        static RegexMap<ArgumentRegex> regex_map;
+    private:
 
         void ParseArguments(std::string arguments);
         std::regex GetArgumentRegex(ArgumentRegex name) const;

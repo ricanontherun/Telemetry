@@ -3,13 +3,10 @@
 #include <regex>
 
 #include <cli/CommandLoop.h>
-#include <utils/RegexMap.h>
 
 int main(int argc, char **argv)
 {
-    RegexMap<std::string> map;
-    std::string expression("asdasd");
+    LixProc::CLI::CommandLoop loop;
 
-    map.Set("key", expression);
-    map.Set("key", expression);
+    loop.InitMainLoop();
 }

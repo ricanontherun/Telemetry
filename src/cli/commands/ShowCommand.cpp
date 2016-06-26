@@ -7,11 +7,9 @@ namespace CLI
 namespace Commands
 {
 
-std::map<ShowCommand::ArgumentRegex, std::regex>
-ShowCommand::argument_regex_map = {
-    {ShowCommand::ArgumentRegex::ALL, std::regex("^all$")},
-    {ShowCommand::ArgumentRegex::NAME, std::regex("^name:[[:w:]]+$")}
-};
+ShowCommand::ShowCommand()
+{
+}
 
 void ShowCommand::Run(void)
 {
@@ -22,12 +20,6 @@ void ShowCommand::Run(void)
 
 void ShowCommand::ParseArguments(std::string arguments)
 {
-}
-
-std::regex ShowCommand::GetArgumentRegex(ArgumentRegex name) const
-{
-
-    return this->argument_regex_map[name];
 }
 
 } // End Commands
