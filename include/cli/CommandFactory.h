@@ -3,6 +3,7 @@
 
 #include <cli/commands/Command.h>
 
+#include <map>
 #include <memory>
 
 namespace LixProc
@@ -20,14 +21,10 @@ class CommandFactory
             SHOW
         };
 
-        static std::unique_ptr<Command> Make(
-            CommandEnum command,
-            std::string arguments
-        );
-
-        static std::unique_ptr<Command> Make(CommandEnum command);
+        static Command *Make(CommandEnum command,std::string arguments);
+        static Command *Make(CommandEnum command);
     private:
-        static std::map<CommandEnum, Command> instances;
+        static std::map<CommandEnum, std::unique_ptr<Command>> instances;
 };
 
 } // End CLI

@@ -46,7 +46,7 @@ void CommandLoop::InitMainLoop(void)
 
         // Create the command object.
         CommandFactory::CommandEnum code = CommandLoop::command_map.find(command.name)->second;
-        std::unique_ptr<Commands::Command> c = CommandFactory::Make(code, command.arguments);
+        Commands::Command *c = CommandFactory::Make(code, command.arguments);
 
         // Run and print output.
         c->Run();
