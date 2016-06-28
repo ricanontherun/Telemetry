@@ -11,15 +11,7 @@ TEST_CASE("LixProc::Core::Process")
 {
     SECTION("Throws an exception when a non-existent pid is provided.")
     {
-
-        bool error_thrown = false;
-        try {
-            LixProc::Core::Process *process = new LixProc::Core::Process(0);
-        } catch( std::runtime_error &e ) {
-            error_thrown = true;
-        }
-
-        REQUIRE(error_thrown == true);
+        REQUIRE_THROWS(new LixProc::Core::Process(0));
     }
 
     // From this point on, all tests will operate on a process object

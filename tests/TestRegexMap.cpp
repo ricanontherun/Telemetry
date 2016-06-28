@@ -1,7 +1,6 @@
 #include "test_header.h"
 
 #include <utils/RegexMap.h>
-
 #include <string>
 
 TEST_CASE("RegexMap")
@@ -34,6 +33,7 @@ TEST_CASE("RegexMap")
         RegexMap<Expression> map;
 
         map.Set(Expression::PROCESS_NAME, "^name:[[:w:]]+$");
+
         REQUIRE(map.Test(Expression::PROCESS_NAME, "name:Firefox"));
         REQUIRE_FALSE(map.Test(Expression::PROCESS_NAME, "Firefox:name"));
     }

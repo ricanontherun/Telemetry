@@ -1,4 +1,5 @@
 !_TAG_FILE_FORMAT	2	/extended format;
+CATCH_CONFIG_MAIN	tests/TestProcess.cpp	1;"	d	file:
 CLI	include/cli/CommandLoop.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/Command.h	/^namespace CLI$/;"	n	namespace:LixProc
 CLI	include/cli/commands/CommandFactory.h	/^namespace CLI$/;"	n	namespace:LixProc
@@ -24,6 +25,7 @@ Commands	src/cli/commands/HelpCommand.cpp	/^namespace Commands$/;"	n	namespace:L
 HelpCommand	include/cli/commands/HelpCommand.h	/^        HelpCommand() {};$/;"	f	class:LixProc::CLI::Commands::HelpCommand
 HelpCommand	include/cli/commands/HelpCommand.h	/^class HelpCommand : public Command$/;"	c	namespace:LixProc::CLI::Commands
 InitMainLoop	src/cli/CommandLoop.cpp	/^void CommandLoop::InitMainLoop(void)$/;"	f	class:LixProc::CLI::CommandLoop
+KeyExists	include/utils/RegexMap.h	/^bool RegexMap<T>::KeyExists(T key) const$/;"	f	class:RegexMap
 LixProc	include/cli/CommandLoop.h	/^namespace LixProc$/;"	n
 LixProc	include/cli/commands/Command.h	/^namespace LixProc$/;"	n
 LixProc	include/cli/commands/HelpCommand.h	/^namespace LixProc$/;"	n
@@ -32,15 +34,20 @@ LixProc	src/cli/CommandLoop.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/cli/commands/Command.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/cli/commands/HelpCommand.cpp	/^namespace LixProc$/;"	n	file:
 ParseCommand	src/cli/CommandLoop.cpp	/^void CommandLoop::ParseCommand($/;"	f	class:LixProc::CLI::CommandLoop
+REGEX_MAP_H	include/utils/RegexMap.h	16;"	d
+RegexMap	include/utils/RegexMap.h	/^class RegexMap$/;"	c
 Run	src/cli/commands/HelpCommand.cpp	/^void HelpCommand::Run(void)$/;"	f	class:LixProc::CLI::Commands::HelpCommand
+Set	include/utils/RegexMap.h	/^RegexMap<T> &RegexMap<T>::Set(T key, std::string regex)$/;"	f	class:RegexMap
 SetArguments	src/cli/commands/Command.cpp	/^void Command::SetArguments(std::vector<std::string> &arguments)$/;"	f	class:LixProc::CLI::Commands::Command
 ShowCommand	include/cli/commands/ShowCommand.h	/^class ShowCommand : public Command$/;"	c	namespace:LixProc::CLI::Commands
 ShowWelcome	src/cli/CommandLoop.cpp	/^void CommandLoop::ShowWelcome() const$/;"	f	class:LixProc::CLI::CommandLoop
+Test	include/utils/RegexMap.h	/^bool RegexMap<T>::Test(T key, std::string context) const$/;"	f	class:RegexMap
 ValidateCommand	src/cli/CommandLoop.cpp	/^bool CommandLoop::ValidateCommand(LixProc::Utils::Command &command)$/;"	f	class:LixProc::CLI::CommandLoop
 arguments	include/cli/commands/Command.h	/^        std::vector<std::string> arguments;$/;"	m	class:LixProc::CLI::Commands::Command
 command_map	include/cli/CommandLoop.h	/^        static std::map<std::string, LixProc::CLI::CommandFactory::CommandEnum> command_map;$/;"	m	class:LixProc::CLI::CommandLoop
 command_map	src/cli/CommandLoop.cpp	/^CommandLoop::command_map = {$/;"	m	class:LixProc::CLI::CommandLoop	file:
 line_prefix	include/cli/CommandLoop.h	/^        static const std::string line_prefix;$/;"	m	class:LixProc::CLI::CommandLoop
 line_prefix	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::line_prefix = "lixproc >> ";$/;"	m	class:LixProc::CLI::CommandLoop	file:
+map	include/utils/RegexMap.h	/^        std::map<T, std::regex> map;$/;"	m	class:RegexMap
 welcome	include/cli/CommandLoop.h	/^        static const std::string welcome;$/;"	m	class:LixProc::CLI::CommandLoop
 welcome	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::welcome = "Welcome to lixproc. Empty line to exit, help to more information.";$/;"	m	class:LixProc::CLI::CommandLoop	file:

@@ -15,6 +15,7 @@
 #ifndef REGEX_MAP_H
 #define REGEX_MAP_H
 
+#include <map>
 #include <regex>
 #include <stdexcept>
 
