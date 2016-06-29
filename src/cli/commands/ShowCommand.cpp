@@ -16,25 +16,23 @@ ShowCommand::ShowCommand()
 
 ShowCommand::~ShowCommand()
 {
-    std::cout << "Deleting the show command" << std::endl;
 }
 
 void ShowCommand::Run(void)
 {
-    this->ParseArguments(this->arguments);
+    if ( this->regex_map.Test("all", this->arguments) ) {
+        std::cout << "You gave the all option" << std::endl;
+    } else if ( this->regex_map.Test("name", this->arguments) ) {
+        std::cout << "You gave the name: option" << std::endl;
+    } else {
+        std::cout << "Unknown option...try help" << std::endl;
+    }
 
     std::cout << "Running the show command" << std::endl;
 }
 
 void ShowCommand::ParseArguments(std::string arguments)
 {
-    if ( this->regex_map.Test("all", arguments) ) {
-        std::cout << "You gave the all option" << std::endl;
-    } else if ( this->regex_map.Test("name", arguments) ) {
-        std::cout << "You gave the name: option" << std::endl;
-    } else {
-        std::cout << "Unknown option...try help" << std::endl;
-    }
 }
 
 } // End Commands

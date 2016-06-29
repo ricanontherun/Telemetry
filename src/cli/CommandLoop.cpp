@@ -1,11 +1,11 @@
 #include <cli/CommandLoop.h>
 
-#include <iostream>
 #include <string>
+#include <iostream>
 #include <algorithm>
 
-#include <cli/CommandFactory.h>
 #include <utils/str.h>
+#include <cli/CommandFactory.h>
 
 namespace LixProc
 {

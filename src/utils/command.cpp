@@ -1,8 +1,9 @@
+#include <utils/command.h>
+
 #include <string>
 #include <vector>
 
 #include <utils/str.h>
-#include <utils/command.h>
 
 namespace LixProc
 {

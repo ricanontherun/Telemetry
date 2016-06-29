@@ -1,6 +1,6 @@
-#include <unistd.h>
-
 #include <core/sys/SystemUser.h>
+
+#include <unistd.h>
 
 namespace LixProc
 {

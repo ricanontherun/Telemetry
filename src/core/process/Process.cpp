@@ -1,22 +1,23 @@
-#include <iostream>
-#include <fstream>
-#include <stdint.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/sysinfo.h>
-#include <string.h>
+#include <core/process/Process.h>
+
 #include <string>
 #include <stdio.h>
-#include <unistd.h>
-#include <stdexcept>
 #include <sstream>
-
-#include <core/process/Process.h>
-#include <core/sys/SystemInfo.h>
+#include <sstream>
+#include <fstream>
+#include <iostream>
+#include <stdint.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdexcept>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/sysinfo.h>
 
 #include <utils/str.h>
 #include <utils/file.h>
 #include <utils/command.h>
+#include <core/sys/SystemInfo.h>
 
 namespace LixProc
 {

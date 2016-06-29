@@ -1,14 +1,15 @@
-#include <stdexcept>
-#include <iostream>
+#include <manager/ProcessManager.h>
+
+#include <map>
 #include <limits>
-#include <string.h>
 #include <errno.h>
+#include <iostream>
+#include <string.h>
 #include <dirent.h>
 #include <stdint.h>
-#include <map>
 #include <unistd.h>
+#include <stdexcept>
 
-#include <manager/ProcessManager.h>
 #include <core/sys/SystemUser.h>
 #include <core/sys/SystemInfo.h>
 

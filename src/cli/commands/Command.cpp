@@ -1,7 +1,7 @@
-#include <iostream>
-#include <vector>
-
 #include <cli/commands/Command.h>
+
+#include <vector>
+#include <iostream>
 
 namespace LixProc
 {

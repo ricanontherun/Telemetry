@@ -3,10 +3,12 @@
 
 #include <cli/commands/Command.h>
 
+#include <map>
+#include <memory>
 #include <iostream>
 
 #include <utils/RegexMap.h>
-#include <map>
+#include <core/manager/ProcessManager.h>
 
 namespace LixProc
 {
@@ -24,6 +26,7 @@ class ShowCommand : public Command
         void Run(void);
         RegexMap<std::string> regex_map;
     private:
+        std::unique_ptr<LixProc::Core::Manager::ProcessManager> process_manager;
         void ParseArguments(std::string arguments);
 };
 

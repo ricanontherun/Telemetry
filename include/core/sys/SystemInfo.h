@@ -1,13 +1,13 @@
 #ifndef CORE_SYS_SYSTEMINFO_H
 #define CORE_SYS_SYSTEMINFO_H
 
-#include <stdint.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/sysinfo.h>
 #include <unistd.h>
 #include <iostream>
+#include <stdint.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/sysinfo.h>
 
 namespace LixProc
 {

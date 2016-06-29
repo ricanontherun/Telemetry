@@ -1,7 +1,7 @@
 #include <cli/commands/HelpCommand.h>
 
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 
 namespace LixProc
 {

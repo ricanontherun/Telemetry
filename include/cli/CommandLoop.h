@@ -3,9 +3,9 @@
 
 #include <map>
 
-#include <cli/commands/Command.h>
-#include <cli/CommandFactory.h>
 #include <utils/command.h>
+#include <cli/CommandFactory.h>
+#include <cli/commands/Command.h>
 
 namespace LixProc
 {
