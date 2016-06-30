@@ -1,6 +1,8 @@
 #ifndef CORE_SYSTEM_USER_H
 #define CORE_SYSTEM_USER_H
 
+#include <sys/types.h>
+
 namespace LixProc
 {
 

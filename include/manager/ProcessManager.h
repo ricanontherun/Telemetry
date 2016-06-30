@@ -32,7 +32,6 @@ class ProcessManager
         static std::string proc_root;
 
         // Map of processes, keyed by their respective PID
-        // TODO This should really use RAII, map<uint32_t, std::unique_ptr<Process>>
         std::map<uint32_t, std::unique_ptr<Core::Process>> process_list;
 
         /**

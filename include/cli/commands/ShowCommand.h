@@ -8,7 +8,7 @@
 #include <iostream>
 
 #include <utils/RegexMap.h>
-#include <core/manager/ProcessManager.h>
+#include <manager/ProcessManager.h>
 
 namespace LixProc
 {
@@ -16,6 +16,8 @@ namespace CLI
 {
 namespace Commands
 {
+
+using LixProc::Manager::ProcessManager;
 
 class ShowCommand : public Command
 {
@@ -26,8 +28,9 @@ class ShowCommand : public Command
         void Run(void);
         RegexMap<std::string> regex_map;
     private:
-        std::unique_ptr<LixProc::Core::Manager::ProcessManager> process_manager;
-        void ParseArguments(std::string arguments);
+        std::unique_ptr<ProcessManager> process_manager;
+
+        void ShowAll();
 };
 
 } // End Commands

@@ -12,6 +12,8 @@ ShowCommand::ShowCommand()
     this->regex_map
         .Set("all", "^all$")
         .Set("name", "^name:[[:w:]]+$");
+
+    this->process_manager = std::unique_ptr<ProcessManager>(new ProcessManager);
 }
 
 ShowCommand::~ShowCommand()
@@ -31,8 +33,9 @@ void ShowCommand::Run(void)
     std::cout << "Running the show command" << std::endl;
 }
 
-void ShowCommand::ParseArguments(std::string arguments)
+void ShowCommand::ShowAll()
 {
+
 }
 
 } // End Commands
