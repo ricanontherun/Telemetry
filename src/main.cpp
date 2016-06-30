@@ -1,11 +1,12 @@
-#include <iostream>
-#include <string>
 #include <regex>
+#include <string>
+#include <iostream>
 
-#include <cli/CommandLoop.h>
+#include <manager/ProcessManager.h>
 
 int main(int argc, char **argv)
 {
-    LixProc::CLI::CommandLoop loop;
-    loop.InitMainLoop();
+    LixProc::Manager::ProcessManager manager;
+
+    LixProc::Manager::ProcessIterator iterator = manager.Load();
 }

@@ -30,9 +30,11 @@ ProcessManager::ProcessManager()
 /**
  * @brief Load the process list.
  */
-void ProcessManager::Load()
+ProcessIterator ProcessManager::Load()
 {
     this->LoadProcessList();
+
+    return this->GetProcessIterator();
 }
 
 /*
@@ -114,11 +116,17 @@ void ProcessManager::Load(uint64_t pid)
     }
 
     try {
-        this->process_list[pid] = std::unique_ptr<Core::Process>(new Core::Process(pid));
-        std::cout << *(this->process_list[pid]) << std::endl;
+        this->processes[pid] = std::unique_ptr<Core::Process>(new Core::Process(pid));
     } catch( std::runtime_error &error ) {
         std::cerr << error.what() << std::endl;
     }
+}
+
+ProcessIterator ProcessManager::GetProcessIterator() const
+{
+    ProcessIterator iterator = this->processes.begin();
+
+    return iterator;
 }
 
 } // End Manager
