@@ -10,7 +10,9 @@ int main(int argc, char **argv)
     LixProc::SystemInfo::Capture();
 
     using LixProc::Manager::ProcessIterators;
-    ProcessIterators iterators = LixProc::Manager::ProcessManager::Load();
+    using LixProc::Manager::ProcessManager;
+
+    ProcessIterators iterators = ProcessManager::Load();
 
     for ( auto it = iterators.first; it != iterators.second; it++ ) {
         std::cout << *(it)->second << std::endl;
