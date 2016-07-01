@@ -8,10 +8,6 @@ namespace LixProc
 
 class SystemUser {
     public:
-        /**
-         * "Capture" the current running user's uid and gid.
-         */
-        static void Capture();
         static uid_t GetUserID();
         static gid_t GetGroupID();
     private:

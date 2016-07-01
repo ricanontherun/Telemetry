@@ -12,6 +12,7 @@
 
 #include <core/sys/SystemUser.h>
 #include <core/sys/SystemInfo.h>
+#include <utils/str.h>
 
 namespace LixProc
 {
@@ -26,9 +27,6 @@ std::map<uint32_t, std::unique_ptr<Core::Process>> ProcessManager::processes;
  */
 ProcessIterators ProcessManager::Load()
 {
-    LixProc::SystemUser::Capture();
-    LixProc::SystemInfo::Capture();
-
     ProcessManager::LoadProcessList();
 
     return ProcessManager::MakeIterators();
@@ -39,19 +37,6 @@ ProcessIterators ProcessManager::Load()
 | Private
 |--------------------------------------------------
 */
-
-/**
- * @brief Attempt to convert a string into an integer.
- *
- * @param string
- *
- * @return
- */
-uint64_t ProcessManager::GetStringInteger(char *string)
-{
-    char *end;
-    return strtol(string, &end, 10);
-}
 
 /**
  * @brief Load the process list.
@@ -74,13 +59,11 @@ void ProcessManager::LoadProcessList()
 
     while ((de = readdir(d)))
     {
-        if (de->d_type != DT_DIR || !(pid = ProcessManager::GetStringInteger(de->d_name)))
+        if (de->d_type != DT_DIR || !(pid = LixProc::Utils::ConvertToInteger(de->d_name)))
         {
             continue;
         }
 
-        std::cout << pid << std::endl;
-        continue;
         try {
             ProcessManager::Load(pid);
         } catch( std::runtime_error &e ) {

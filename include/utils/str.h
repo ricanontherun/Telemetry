@@ -8,7 +8,6 @@ namespace LixProc
 namespace Utils
 {
 
-
 /**
  * Split a string on a delim, placing the parts into elems.
  *
@@ -29,6 +28,8 @@ std::vector<std::string> &split(const std::string &s, char delim, std::vector<st
  * @return
  */
 std::vector<std::string> split(const std::string &s, char delim);
+
+uint64_t ConvertToInteger(char *string);
 
 } // End Utils
 } // End LixProc

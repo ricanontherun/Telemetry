@@ -14,6 +14,10 @@ CLI_COMMANDS_COMMAND_H	include/cli/commands/Command.h	2;"	d
 CLI_COMMANDS_SHOW_COMMAND_H	include/cli/commands/ShowCommand.h	2;"	d
 CLI_COMMAND_H	include/cli/CommandLoop.h	2;"	d
 CLI_COMMAND_HELP_COMAND_H	include/cli/commands/HelpCommand.h	2;"	d
+CORE_PROCESS_H	include/core/process/Process.h	2;"	d
+CORE_SYSTEM_USER_H	include/core/sys/SystemUser.h	2;"	d
+CORE_SYS_SYSTEMINFO_H	include/core/sys/SystemInfo.h	2;"	d
+CORE_UTIL_STR_H	include/utils/str.h	2;"	d
 Capture	src/core/sys/SystemInfo.cpp	/^void SystemInfo::Capture()$/;"	f	class:LixProc::SystemInfo
 Command	include/cli/commands/Command.h	/^        Command(void) {};$/;"	f	class:LixProc::CLI::Commands::Command
 Command	include/cli/commands/Command.h	/^class Command$/;"	c	namespace:LixProc::CLI::Commands
@@ -24,14 +28,17 @@ Commands	include/cli/commands/HelpCommand.h	/^namespace Commands$/;"	n	namespace
 Commands	include/cli/commands/ShowCommand.h	/^namespace Commands$/;"	n	namespace:LixProc::CLI
 Commands	src/cli/commands/Command.cpp	/^namespace Commands$/;"	n	namespace:LixProc::CLI	file:
 Commands	src/cli/commands/HelpCommand.cpp	/^namespace Commands$/;"	n	namespace:LixProc::CLI	file:
+ConvertToInteger	src/utils/str.cpp	/^uint64_t ConvertToInteger(char *string)$/;"	f	namespace:LixProc::Utils
+Core	include/core/process/Process.h	/^namespace Core$/;"	n	namespace:LixProc
 Core	src/core/process/Process.cpp	/^namespace Core$/;"	n	namespace:LixProc	file:
 End	src/manager/ProcessManager.cpp	/^ProcessIterator ProcessManager::End() const$/;"	f	class:LixProc::Manager::ProcessManager
 GetActualMemoryUsage	src/core/process/Process.cpp	/^double Process::GetActualMemoryUsage() const$/;"	f	class:LixProc::Core::Process
 GetCommand	src/core/process/Process.cpp	/^LixProc::Utils::Command Process::GetCommand() const$/;"	f	class:LixProc::Core::Process
+GetGroupID	src/core/sys/SystemUser.cpp	/^gid_t SystemUser::GetGroupID()$/;"	f	class:LixProc::SystemUser
 GetPageSize	src/core/sys/SystemInfo.cpp	/^int SystemInfo::GetPageSize()$/;"	f	class:LixProc::SystemInfo
 GetRelativeMemoryUsage	src/core/process/Process.cpp	/^double Process::GetRelativeMemoryUsage() const$/;"	f	class:LixProc::Core::Process
-GetStringInteger	src/manager/ProcessManager.cpp	/^uint64_t ProcessManager::GetStringInteger(char *string)$/;"	f	class:LixProc::Manager::ProcessManager
 GetTotalSystemMemory	src/core/sys/SystemInfo.cpp	/^uint64_t SystemInfo::GetTotalSystemMemory()$/;"	f	class:LixProc::SystemInfo
+GetUserID	src/core/sys/SystemUser.cpp	/^uid_t SystemUser::GetUserID()$/;"	f	class:LixProc::SystemUser
 HelpCommand	include/cli/commands/HelpCommand.h	/^        HelpCommand() {};$/;"	f	class:LixProc::CLI::Commands::HelpCommand
 HelpCommand	include/cli/commands/HelpCommand.h	/^class HelpCommand : public Command$/;"	c	namespace:LixProc::CLI::Commands
 InitMainLoop	src/cli/CommandLoop.cpp	/^void CommandLoop::InitMainLoop(void)$/;"	f	class:LixProc::CLI::CommandLoop
@@ -41,13 +48,19 @@ LixProc	include/cli/CommandLoop.h	/^namespace LixProc$/;"	n
 LixProc	include/cli/commands/Command.h	/^namespace LixProc$/;"	n
 LixProc	include/cli/commands/HelpCommand.h	/^namespace LixProc$/;"	n
 LixProc	include/cli/commands/ShowCommand.h	/^namespace LixProc$/;"	n
+LixProc	include/core/process/Process.h	/^namespace LixProc$/;"	n
+LixProc	include/core/sys/SystemInfo.h	/^namespace LixProc$/;"	n
+LixProc	include/core/sys/SystemUser.h	/^namespace LixProc$/;"	n
 LixProc	include/manager/ProcessManager.h	/^namespace LixProc$/;"	n
+LixProc	include/utils/str.h	/^namespace LixProc$/;"	n
 LixProc	src/cli/CommandLoop.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/cli/commands/Command.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/cli/commands/HelpCommand.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/core/process/Process.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/core/sys/SystemInfo.cpp	/^namespace LixProc$/;"	n	file:
+LixProc	src/core/sys/SystemUser.cpp	/^namespace LixProc$/;"	n	file:
 LixProc	src/manager/ProcessManager.cpp	/^namespace LixProc$/;"	n	file:
+LixProc	src/utils/str.cpp	/^namespace LixProc$/;"	n	file:
 Load	src/manager/ProcessManager.cpp	/^ProcessIterators ProcessManager::Load()$/;"	f	class:LixProc::Manager::ProcessManager
 Load	src/manager/ProcessManager.cpp	/^void ProcessManager::Load(uint64_t pid)$/;"	f	class:LixProc::Manager::ProcessManager
 LoadProcessCommand	src/core/process/Process.cpp	/^bool Process::LoadProcessCommand()$/;"	f	class:LixProc::Core::Process
@@ -58,9 +71,13 @@ MANAGER_PROCESS_H	include/manager/ProcessManager.h	2;"	d
 MakeIterators	src/manager/ProcessManager.cpp	/^ProcessIterators ProcessManager::MakeIterators()$/;"	f	class:LixProc::Manager::ProcessManager
 Manager	include/manager/ProcessManager.h	/^namespace Manager$/;"	n	namespace:LixProc
 Manager	src/manager/ProcessManager.cpp	/^namespace Manager$/;"	n	namespace:LixProc	file:
+Memory	include/core/process/Process.h	/^        struct Memory {$/;"	s	class:LixProc::Core::Process
+PD_CMDLINE	include/core/process/Process.h	/^        static const std::string PD_STATM, PD_CMDLINE;$/;"	m	class:LixProc::Core::Process
 PD_CMDLINE	src/core/process/Process.cpp	/^const std::string Process::PD_CMDLINE = "cmdline";$/;"	m	class:LixProc::Core::Process	file:
+PD_STATM	include/core/process/Process.h	/^        static const std::string PD_STATM, PD_CMDLINE;$/;"	m	class:LixProc::Core::Process
 PD_STATM	src/core/process/Process.cpp	/^const std::string Process::PD_STATM   = "statm";$/;"	m	class:LixProc::Core::Process	file:
 ParseCommand	src/cli/CommandLoop.cpp	/^void CommandLoop::ParseCommand($/;"	f	class:LixProc::CLI::CommandLoop
+Process	include/core/process/Process.h	/^class Process$/;"	c	namespace:LixProc::Core
 Process	src/core/process/Process.cpp	/^Process::Process(uint32_t pid)$/;"	f	class:LixProc::Core::Process
 ProcessIterator	include/manager/ProcessManager.h	/^typedef std::map<uint32_t, std::unique_ptr<Core::Process>>::const_iterator ProcessIterator;$/;"	t	namespace:LixProc::Manager
 ProcessIterators	include/manager/ProcessManager.h	/^typedef std::pair<ProcessIterator, ProcessIterator> ProcessIterators;$/;"	t	namespace:LixProc::Manager
@@ -72,22 +89,45 @@ Set	include/utils/RegexMap.h	/^RegexMap<T> &RegexMap<T>::Set(T key, std::string 
 SetArguments	src/cli/commands/Command.cpp	/^void Command::SetArguments(std::vector<std::string> &arguments)$/;"	f	class:LixProc::CLI::Commands::Command
 ShowCommand	include/cli/commands/ShowCommand.h	/^class ShowCommand : public Command$/;"	c	namespace:LixProc::CLI::Commands
 ShowWelcome	src/cli/CommandLoop.cpp	/^void CommandLoop::ShowWelcome() const$/;"	f	class:LixProc::CLI::CommandLoop
+SystemInfo	include/core/sys/SystemInfo.h	/^class SystemInfo$/;"	c	namespace:LixProc
+SystemUser	include/core/sys/SystemUser.h	/^class SystemUser {$/;"	c	namespace:LixProc
 Test	include/utils/RegexMap.h	/^bool RegexMap<T>::Test(T key, std::string context) const$/;"	f	class:RegexMap
+Utils	include/utils/str.h	/^namespace Utils$/;"	n	namespace:LixProc
+Utils	src/utils/str.cpp	/^namespace Utils$/;"	n	namespace:LixProc	file:
 ValidateCommand	src/cli/CommandLoop.cpp	/^bool CommandLoop::ValidateCommand(LixProc::Utils::Command &command)$/;"	f	class:LixProc::CLI::CommandLoop
 arguments	include/cli/commands/Command.h	/^        std::vector<std::string> arguments;$/;"	m	class:LixProc::CLI::Commands::Command
+command	include/core/process/Process.h	/^        LixProc::Utils::Command command;$/;"	m	class:LixProc::Core::Process
 command_map	include/cli/CommandLoop.h	/^        static std::map<std::string, LixProc::CLI::CommandFactory::CommandEnum> command_map;$/;"	m	class:LixProc::CLI::CommandLoop
 command_map	src/cli/CommandLoop.cpp	/^CommandLoop::command_map = {$/;"	m	class:LixProc::CLI::CommandLoop	file:
+data	include/core/process/Process.h	/^            uint64_t data;      \/\/ data\/stack$/;"	m	struct:LixProc::Core::Process::Memory
+dirty	include/core/process/Process.h	/^            uint64_t dirty;     \/\/ dirty pages$/;"	m	struct:LixProc::Core::Process::Memory
+gid	include/core/sys/SystemUser.h	/^        static gid_t gid;$/;"	m	class:LixProc::SystemUser
+gid	src/core/sys/SystemUser.cpp	/^gid_t SystemUser::gid = 0;$/;"	m	class:LixProc::SystemUser	file:
+info	include/core/sys/SystemInfo.h	/^        static struct sysinfo info;$/;"	m	class:LixProc::SystemInfo	typeref:struct:LixProc::SystemInfo::sysinfo
 info	src/core/sys/SystemInfo.cpp	/^struct sysinfo SystemInfo::info;$/;"	m	class:LixProc::SystemInfo	typeref:struct:LixProc::SystemInfo::	file:
+lib	include/core/process/Process.h	/^            uint64_t lib;       \/\/ library?$/;"	m	struct:LixProc::Core::Process::Memory
 line_prefix	include/cli/CommandLoop.h	/^        static const std::string line_prefix;$/;"	m	class:LixProc::CLI::CommandLoop
 line_prefix	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::line_prefix = "lixproc >> ";$/;"	m	class:LixProc::CLI::CommandLoop	file:
 main	src/main.cpp	/^int main(int argc, char **argv)$/;"	f
 map	include/utils/RegexMap.h	/^        std::map<T, std::regex> map;$/;"	m	class:RegexMap
+memory	include/core/process/Process.h	/^        struct Memory memory;$/;"	m	class:LixProc::Core::Process	typeref:struct:LixProc::Core::Process::Memory
 operator <<	src/core/process/Process.cpp	/^std::ostream &operator<<(std::ostream &stream, const Process &process)$/;"	f	namespace:LixProc::Core
+pagesize	include/core/sys/SystemInfo.h	/^        static int pagesize;$/;"	m	class:LixProc::SystemInfo
 pagesize	src/core/sys/SystemInfo.cpp	/^int SystemInfo::pagesize = 0;$/;"	m	class:LixProc::SystemInfo	file:
+pid	include/core/process/Process.h	/^        uint32_t pid;$/;"	m	class:LixProc::Core::Process
 proc_root	include/manager/ProcessManager.h	/^        static std::string proc_root;$/;"	m	class:LixProc::Manager::ProcessManager
 proc_root	src/manager/ProcessManager.cpp	/^std::string ProcessManager::proc_root = "\/proc\/";$/;"	m	class:LixProc::Manager::ProcessManager	file:
+process_base_path	include/core/process/Process.h	/^        std::string process_base_path;$/;"	m	class:LixProc::Core::Process
 processes	include/manager/ProcessManager.h	/^        static std::map<uint32_t, std::unique_ptr<Core::Process>> processes;$/;"	m	class:LixProc::Manager::ProcessManager
 processes	src/manager/ProcessManager.cpp	/^std::map<uint32_t, std::unique_ptr<Core::Process>> ProcessManager::processes;$/;"	m	class:LixProc::Manager::ProcessManager	file:
+resident	include/core/process/Process.h	/^            uint64_t resident;  \/\/ Resident Set Size$/;"	m	struct:LixProc::Core::Process::Memory
+share	include/core/process/Process.h	/^            uint64_t share;     \/\/ Shared Pages$/;"	m	struct:LixProc::Core::Process::Memory
+size	include/core/process/Process.h	/^            uint64_t size;      \/\/ Total Program Size$/;"	m	struct:LixProc::Core::Process::Memory
+split	src/utils/str.cpp	/^std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {$/;"	f	namespace:LixProc::Utils
+split	src/utils/str.cpp	/^std::vector<std::string> split(const std::string &s, char delim) {$/;"	f	namespace:LixProc::Utils
+text	include/core/process/Process.h	/^            uint64_t text;      \/\/ code$/;"	m	struct:LixProc::Core::Process::Memory
+uid	include/core/sys/SystemUser.h	/^        static uid_t uid;$/;"	m	class:LixProc::SystemUser
+uid	src/core/sys/SystemUser.cpp	/^uid_t SystemUser::uid = 0;$/;"	m	class:LixProc::SystemUser	file:
 welcome	include/cli/CommandLoop.h	/^        static const std::string welcome;$/;"	m	class:LixProc::CLI::CommandLoop
 welcome	src/cli/CommandLoop.cpp	/^const std::string CommandLoop::welcome = "Welcome to lixproc. Empty line to exit, help to more information.";$/;"	m	class:LixProc::CLI::CommandLoop	file:
 ~Process	src/core/process/Process.cpp	/^Process::~Process()$/;"	f	class:LixProc::Core::Process

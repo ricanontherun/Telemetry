@@ -3,6 +3,8 @@
 
 #include <utils/str.h>
 
+#include <string.h>
+
 namespace LixProc
 {
 namespace Utils
@@ -41,6 +43,12 @@ std::vector<std::string> split(const std::string &s, char delim) {
     split(s, delim, elems);
 
     return elems;
+}
+
+uint64_t ConvertToInteger(char *string)
+{
+    char *end;
+    return strtol(string, &end, 10);
 }
 
 } // End Utils

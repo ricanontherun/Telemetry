@@ -50,20 +50,10 @@ class ProcessManager
          */
         static void LoadProcessList();
 
-        /**
-         * @brief Attempt to convert a string into an integer.
-         *
-         * @param string
-         *
-         * @return
-         */
-        // TODO: Pull out into a utilities file. str.h
-        static uint64_t GetStringInteger(char *string);
-
         static ProcessIterators MakeIterators();
 };
 
 } // End Manager
 } // End LixProc
 
-#endif //PROCESS_API_H
+#endif
