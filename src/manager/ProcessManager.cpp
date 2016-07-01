@@ -19,22 +19,19 @@ namespace Manager
 {
 
 std::string ProcessManager::proc_root = "/proc/";
-
-ProcessManager::ProcessManager()
-{
-    // Capture some static data needed.
-    LixProc::SystemUser::Capture();
-    LixProc::SystemInfo::Capture();
-}
+std::map<uint32_t, std::unique_ptr<Core::Process>> ProcessManager::processes;
 
 /**
  * @brief Load the process list.
  */
-ProcessIterator ProcessManager::Load()
+ProcessIterators ProcessManager::Load()
 {
-    this->LoadProcessList();
+    LixProc::SystemUser::Capture();
+    LixProc::SystemInfo::Capture();
 
-    return this->GetProcessIterator();
+    ProcessManager::LoadProcessList();
+
+    return ProcessManager::MakeIterators();
 }
 
 /*
@@ -77,13 +74,15 @@ void ProcessManager::LoadProcessList()
 
     while ((de = readdir(d)))
     {
-        if (de->d_type != DT_DIR || !(pid = this->GetStringInteger(de->d_name)))
+        if (de->d_type != DT_DIR || !(pid = ProcessManager::GetStringInteger(de->d_name)))
         {
             continue;
         }
 
+        std::cout << pid << std::endl;
+        continue;
         try {
-            this->Load(pid);
+            ProcessManager::Load(pid);
         } catch( std::runtime_error &e ) {
 
         }
@@ -116,17 +115,25 @@ void ProcessManager::Load(uint64_t pid)
     }
 
     try {
-        this->processes[pid] = std::unique_ptr<Core::Process>(new Core::Process(pid));
+        ProcessManager::processes[pid] = std::unique_ptr<Core::Process>(new Core::Process(pid));
     } catch( std::runtime_error &error ) {
         std::cerr << error.what() << std::endl;
     }
 }
 
-ProcessIterator ProcessManager::GetProcessIterator() const
+ProcessIterator ProcessManager::Begin() const
 {
-    ProcessIterator iterator = this->processes.begin();
+    return ProcessManager::processes.begin();
+}
 
-    return iterator;
+ProcessIterator ProcessManager::End() const
+{
+    return ProcessManager::processes.end();
+}
+
+ProcessIterators ProcessManager::MakeIterators()
+{
+    return std::make_pair(ProcessManager::processes.begin(), ProcessManager::processes.end());
 }
 
 } // End Manager

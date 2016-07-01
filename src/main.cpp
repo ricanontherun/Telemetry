@@ -6,7 +6,10 @@
 
 int main(int argc, char **argv)
 {
-    LixProc::Manager::ProcessManager manager;
+    using LixProc::Manager::ProcessIterators;
+    ProcessIterators iterators = LixProc::Manager::ProcessManager::Load();
 
-    LixProc::Manager::ProcessIterator iterator = manager.Load();
+    for ( auto it = iterators.first; it != iterators.second; it++ ) {
+        std::cout << *(it)->second << std::endl;
+    }
 }

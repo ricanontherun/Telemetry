@@ -12,23 +12,22 @@ namespace Manager
 {
 
 typedef std::map<uint32_t, std::unique_ptr<Core::Process>>::const_iterator ProcessIterator;
+typedef std::pair<ProcessIterator, ProcessIterator> ProcessIterators;
 
 class ProcessManager
 {
     public:
-        ProcessManager();
-
         /**
          * @brief Load all active processes.
          */
-        ProcessIterator Load();
+        static ProcessIterators Load();
 
         /**
          * @brief Load a particular process.
          *
          * @param pid
          */
-        void Load(uint64_t pid);
+        static void Load(uint64_t pid);
 
         /**
          * Load all processes whose executables match a particular name.
@@ -36,17 +35,20 @@ class ProcessManager
          * @param name
          */
         void Load(std::string name);
+
+        ProcessIterator Begin() const;
+        ProcessIterator End() const;
     private:
         // Base process directory path.
         static std::string proc_root;
 
         // Map of processes, keyed by their respective PID
-        std::map<uint32_t, std::unique_ptr<Core::Process>> processes;
+        static std::map<uint32_t, std::unique_ptr<Core::Process>> processes;
 
         /**
          * @brief Load the process list.
          */
-        void LoadProcessList();
+        static void LoadProcessList();
 
         /**
          * @brief Attempt to convert a string into an integer.
@@ -56,9 +58,9 @@ class ProcessManager
          * @return
          */
         // TODO: Pull out into a utilities file. str.h
-        uint64_t GetStringInteger(char *string);
+        static uint64_t GetStringInteger(char *string);
 
-        ProcessIterator GetProcessIterator() const;
+        static ProcessIterators MakeIterators();
 };
 
 } // End Manager
