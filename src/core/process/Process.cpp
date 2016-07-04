@@ -69,15 +69,6 @@ double Process::GetRelativeMemoryUsage() const
 
 bool Process::Kill()
 {
-    // Acquire permissions to change the process's group.
-
-    // Change the process's group.
-    int ret_i = setpgid(this->pid, 0);
-
-    std::cout << "setpdid() is " << ret_i << std::endl;
-
-    // Send a SIGKILL signal to this->pid.
-    //
     return true;
 }
 
@@ -123,6 +114,7 @@ bool Process::LoadProcessCommand()
     using LixProc::Utils::File::FileGetFirstLine;
 
     std::string proc_command = this->base_path + "/" + Process::PD_CMDLINE;
+
     std::string cmd_string = FileGetFirstLine(proc_command);
 
     LixProc::Utils::ParseCommandString(cmd_string, this->command);

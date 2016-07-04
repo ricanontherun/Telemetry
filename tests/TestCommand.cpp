@@ -68,4 +68,16 @@ TEST_CASE("LixProc::Core::Utils::ParseCommandString()")
         REQUIRE(command.name == "name");
         REQUIRE(command.arguments == "-rf --argument1=value1");
     }
+
+    SECTION("It can parse a local script in the form ./exe")
+    {
+        std::string command_string = "./lixproc";
+        Command command;
+
+        ParseCommandString(command_string, command);
+
+        REQUIRE(command.path == "./");
+        REQUIRE(command.name == "lixproc");
+        REQUIRE(command.arguments.empty());
+    }
 }

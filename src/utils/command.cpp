@@ -2,6 +2,9 @@
 
 #include <string>
 #include <vector>
+#include <sstream>
+#include <iostream>
+#include <boost/algorithm/string.hpp>
 
 #include <utils/str.h>
 
@@ -12,15 +15,16 @@ namespace Utils
 
 bool ParseCommandString(std::string command_str, Command &command)
 {
-    std::vector<std::string> process_command_parts = split(command_str, ' ');
+    std::vector<std::string> chunks;
+    boost::split(chunks, command_str, boost::is_any_of(" "));
 
-    if ( process_command_parts.size() == 0 )
+    if ( chunks.size() == 0 )
     {
         return false;
     }
 
     // We're assuming the first vector element is the path + name
-    std::string full_path = process_command_parts.front();
+    std::string full_path = chunks.front();
 
     size_t first_space = command_str.find_first_of(' ');
 

@@ -3,29 +3,53 @@
 namespace LixProc
 {
 
-struct sysinfo SystemInfo::info;
+struct sysinfo SystemInfo::sys_info;
 int SystemInfo::pagesize = 0;
+bool SystemInfo::captured = false;
 
 void SystemInfo::Capture()
 {
-    int reti = sysinfo(&SystemInfo::info);
-
-    if ( reti == -1 ) {
-        std::cerr << "sysinfo call failed. Exiting.." << std::endl;
-        exit(EXIT_FAILURE);
+    if ( SystemInfo::captured == true )
+    {
+        return;
     }
 
-    SystemInfo::pagesize = getpagesize();
+    SystemInfo::CaptureSystemStatistics();
+
+    SystemInfo::CapturePageSize();
+
+    SystemInfo::captured = true;
 }
 
 uint64_t SystemInfo::GetTotalSystemMemory()
 {
-    return SystemInfo::info.totalram * SystemInfo::info.mem_unit;
+    return SystemInfo::sys_info.totalram * SystemInfo::sys_info.mem_unit;
 }
 
 int SystemInfo::GetPageSize()
 {
     return SystemInfo::pagesize;
+}
+
+/**
+ *--------------------------------------------------
+ * Private
+ *--------------------------------------------------
+ */
+
+void SystemInfo::CaptureSystemStatistics()
+{
+    int reti = sysinfo(&SystemInfo::sys_info);
+
+    if ( reti == -1 ) {
+        std::cerr << "sysinfo call failed. Exiting.." << std::endl;
+        exit(EXIT_FAILURE);
+    }
+}
+
+void SystemInfo::CapturePageSize()
+{
+    SystemInfo::pagesize = getpagesize();
 }
 
 } // End

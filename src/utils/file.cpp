@@ -1,4 +1,6 @@
 #include <fstream>
+#include <iostream>
+#include <memory>
 
 namespace LixProc
 {
@@ -37,12 +39,16 @@ std::string FileGetFirstLine(std::string path)
         return "";
     }
 
+    int length = BUFSIZ;
     std::ifstream file(path);
-    std::string line;
 
-    std::getline(file, line);
+    std::unique_ptr<char []> buffer = std::make_unique<char []>(length);
+
+    file.read(buffer.get(), length);
 
     file.close();
+
+    std::string line(buffer.get());
 
     return line;
 }

@@ -30,9 +30,12 @@ class SystemInfo
          */
         static int GetPageSize();
     private:
-        static struct sysinfo info;
+        static struct sysinfo sys_info;
         static int pagesize;
+        static bool captured;
 
+        static void CaptureSystemStatistics();
+        static void CapturePageSize();
 };
 
 }

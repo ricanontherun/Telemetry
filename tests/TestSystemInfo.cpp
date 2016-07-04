@@ -5,17 +5,16 @@
 
 TEST_CASE("LixProc::SystemInfo")
 {
-    SECTION("PageSize() should default to 0")
-    {
-        REQUIRE(LixProc::SystemInfo::GetPageSize() == 0);
-    }
-
     LixProc::SystemInfo::Capture();
 
-    SECTION("PageSize() should return the current system's pagesize.")
+    SECTION("GetPageSize() should return the current system's pagesize.")
     {
-        int actual_pagesize = getpagesize();
-        REQUIRE(LixProc::SystemInfo::GetPageSize() == actual_pagesize);
+        REQUIRE(LixProc::SystemInfo::GetPageSize() == getpagesize());
+    }
+
+    SECTION("GetTotalSystemMemory should a number greater than zero.")
+    {
+        REQUIRE(LixProc::SystemInfo::GetTotalSystemMemory() > 0.0);
     }
 }
 
