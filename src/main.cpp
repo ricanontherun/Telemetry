@@ -12,7 +12,7 @@ int main(int argc, char **argv)
     using LixProc::Manager::ProcessIterators;
     using LixProc::Manager::ProcessManager;
 
-    ProcessIterators iterators = ProcessManager::Load();
+    ProcessIterators iterators = ProcessManager::Load("chrome");
 
     for ( auto it = iterators.first; it != iterators.second; it++ ) {
         std::cout << *(it)->second << std::endl;

@@ -24,6 +24,13 @@ class Process
             uint64_t dirty;     // dirty pages
         };
 
+        /*
+         |--------------------------------------------------
+         | Static mappings to linux /proc/PID directories.
+         |--------------------------------------------------
+        */
+        static const std::string PD_STATM, PD_CMDLINE, PD_BASE;
+
         /**
         * @brief Load all of the data associated with /proc/pid
         *
@@ -53,21 +60,14 @@ class Process
 
         friend std::ostream &operator<<(std::ostream &stream, const Process &process);
     private:
-        /*
-         |--------------------------------------------------
-         | Static mappings to linux /proc/PID directories.
-         |--------------------------------------------------
-        */
-        static const std::string PD_STATM, PD_CMDLINE;
-
-        // Linux process ID
         uint32_t pid;
 
         // Base path to process /proc/this->pid
-        std::string process_base_path;
+        std::string base_path;
 
         // Memory usage of this process.
         struct Memory memory;
+
         LixProc::Utils::Command command;
 
         /** * @brief Load the process's data.  *

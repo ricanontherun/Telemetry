@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <stdexcept>
+#include <algorithm>
 
 #include <utils/str.h>
 #include <core/sys/SystemUser.h>
@@ -19,7 +20,6 @@ namespace LixProc
 namespace Manager
 {
 
-std::string ProcessManager::proc_root = "/proc/";
 std::map<uint32_t, std::unique_ptr<Core::Process>> ProcessManager::processes;
 
 /**
@@ -38,7 +38,7 @@ void ProcessManager::Load(uint64_t pid)
     int stat_i;
 
     std::string dir_name = std::to_string(pid);
-    std::string full_process_path = ProcessManager::proc_root + dir_name;
+    std::string full_process_path = Core::Process::PD_BASE + dir_name;
 
     stat_i = stat(full_process_path.c_str(), &info);
 
@@ -62,6 +62,27 @@ void ProcessManager::Load(uint64_t pid)
     }
 }
 
+ProcessIterators ProcessManager::Load(std::string name)
+{
+    // First, load all processes.
+    ProcessManager::Load();
+
+    Utils::Command command;
+
+    // Iterate and erase any processes whose executable names don't match the name filter.
+    for ( auto it = ProcessManager::processes.begin(); it != ProcessManager::processes.end(); ) {
+        command = it->second->GetCommand();
+
+        if ( command.name != name ) {
+            it = ProcessManager::processes.erase(it);
+        } else {
+            it++;
+        }
+    }
+
+    return ProcessManager::MakeIterators();
+}
+
 
 /*
 |--------------------------------------------------
@@ -78,7 +99,7 @@ void ProcessManager::LoadProcessList()
     DIR *d;
     struct dirent *de;
 
-    d = opendir(ProcessManager::proc_root.c_str());
+    d = opendir(Core::Process::PD_BASE.c_str());
 
     // If we can't read from /proc something is very wrong.
     if (d == NULL)

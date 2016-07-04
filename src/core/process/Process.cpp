@@ -26,18 +26,15 @@ namespace Core
 
 const std::string Process::PD_STATM   = "statm";
 const std::string Process::PD_CMDLINE = "cmdline";
+const std::string Process::PD_BASE = "/proc/";
 
 /**
 * @brief Load all of the data associated with /proc/pid
 *
 * @param pid
 */
-Process::Process(uint32_t pid)
+Process::Process(uint32_t pid) : pid(pid), base_path(Process::PD_BASE + std::to_string(pid))
 {
-
-    this->pid = pid;
-    this->process_base_path = "/proc/" + std::to_string(this->pid);
-
     this->LoadProcessData();
 }
 
@@ -112,8 +109,8 @@ void Process::LoadProcessData()
 {
     using LixProc::Utils::File::FileExists;
 
-    if (!FileExists(this->process_base_path)) {
-        throw std::runtime_error(this->process_base_path + std::string(" does not exist."));
+    if (!FileExists(this->base_path)) {
+        throw std::runtime_error(this->base_path + std::string(" does not exist."));
     }
 
     this->LoadProcessCommand();
@@ -125,7 +122,7 @@ bool Process::LoadProcessCommand()
 {
     using LixProc::Utils::File::FileGetFirstLine;
 
-    std::string proc_command = this->process_base_path + "/" + Process::PD_CMDLINE;
+    std::string proc_command = this->base_path + "/" + Process::PD_CMDLINE;
     std::string cmd_string = FileGetFirstLine(proc_command);
 
     LixProc::Utils::ParseCommandString(cmd_string, this->command);
@@ -143,7 +140,7 @@ bool Process::LoadProcessMemory()
     using LixProc::Utils::File::FileGetFirstLine;
 
     // /proc/PID/statm
-    std::string dir = this->process_base_path + "/" + Process::PD_STATM;
+    std::string dir = this->base_path + "/" + Process::PD_STATM;
 
     // Get the first line is sufficient for a /proc/PID/statm read.
     std::string statm = FileGetFirstLine(dir);
