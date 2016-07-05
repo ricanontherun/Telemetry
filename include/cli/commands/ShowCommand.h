@@ -18,6 +18,7 @@ namespace Commands
 {
 
 using LixProc::Manager::ProcessManager;
+using LixProc::Manager::ProcessIterators;
 
 class ShowCommand : public Command
 {
@@ -28,8 +29,6 @@ class ShowCommand : public Command
         void Run(void);
         RegexMap<std::string> regex_map;
     private:
-        std::unique_ptr<ProcessManager> process_manager;
-
         void ShowAll();
 };
 

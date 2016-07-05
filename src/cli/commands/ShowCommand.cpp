@@ -12,8 +12,6 @@ ShowCommand::ShowCommand()
     this->regex_map
         .Set("all", "^all$")
         .Set("name", "^name:[[:w:]]+$");
-
-    this->process_manager = std::unique_ptr<ProcessManager>(new ProcessManager);
 }
 
 ShowCommand::~ShowCommand()
@@ -23,7 +21,7 @@ ShowCommand::~ShowCommand()
 void ShowCommand::Run(void)
 {
     if ( this->regex_map.Test("all", this->arguments) ) {
-        std::cout << "You gave the all option" << std::endl;
+        this->ShowAll();
     } else if ( this->regex_map.Test("name", this->arguments) ) {
         std::cout << "You gave the name: option" << std::endl;
     } else {
@@ -35,7 +33,11 @@ void ShowCommand::Run(void)
 
 void ShowCommand::ShowAll()
 {
+    ProcessIterators iterators = ProcessManager::Load();
 
+    for ( auto it = iterators.first; it != iterators.second; it++ ) {
+        std::cout << *(it)->second << std::endl;
+    }
 }
 
 } // End Commands
