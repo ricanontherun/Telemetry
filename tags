@@ -751,7 +751,7 @@ FalseType	tests/catch.hpp	/^    struct FalseType { char sizer[2]; };$/;"	s	names
 FatalErrorCondition	tests/catch.hpp	/^        FatalErrorCondition = 0x200 | FailureBit$/;"	e	enum:Catch::ResultWas::OfType
 File	include/utils/file.h	/^namespace File$/;"	n	namespace:LixProc::Utils
 File	src/utils/file.cpp	/^namespace File$/;"	n	namespace:LixProc::Utils	file:
-FileExists	src/utils/file.cpp	/^bool FileExists(const std::string path)$/;"	f	namespace:LixProc::Utils::File
+FileExists	src/utils/file.cpp	/^bool FileExists(const std::string &path)$/;"	f	namespace:LixProc::Utils::File
 FileGetFirstLine	src/utils/file.cpp	/^std::string FileGetFirstLine(std::string path)$/;"	f	namespace:LixProc::Utils::File
 Flags	tests/catch.hpp	/^    struct ResultDisposition { enum Flags {$/;"	g	struct:Catch::ResultDisposition
 GIVEN	tests/catch.hpp	10476;"	d
@@ -1462,7 +1462,6 @@ shouldSuppressFailure	tests/catch.hpp	/^    inline bool shouldSuppressFailure( i
 size	include/core/process/Process.h	/^            uint64_t size;      \/\/ Total Program Size$/;"	m	struct:LixProc::Core::Process::Memory
 sizer	tests/catch.hpp	/^    struct FalseType { char sizer[2]; };$/;"	m	struct:Catch::Detail::FalseType
 sizer	tests/catch.hpp	/^    struct TrueType { char sizer[1]; };$/;"	m	struct:Catch::Detail::TrueType
-split	src/utils/str.cpp	/^std::vector<std::string> split(const std::string &s, char delim) {$/;"	f	namespace:LixProc::Utils
 swap	tests/catch.hpp	/^        void swap( Ptr& other ) { std::swap( m_p, other.m_p ); }$/;"	f	class:Catch::Ptr
 sys_info	include/core/sys/SystemInfo.h	/^        static struct sysinfo sys_info;$/;"	m	class:LixProc::SystemInfo	typeref:struct:LixProc::SystemInfo::sysinfo
 sys_info	src/core/sys/SystemInfo.cpp	/^struct sysinfo SystemInfo::sys_info;$/;"	m	class:LixProc::SystemInfo	typeref:struct:LixProc::SystemInfo::	file:

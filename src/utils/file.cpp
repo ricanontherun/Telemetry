@@ -16,7 +16,7 @@ namespace File
  *
  * @return
  */
-bool FileExists(const std::string path)
+bool FileExists(const std::string &path)
 {
     std::ifstream file(path);
     bool exists = file.good();

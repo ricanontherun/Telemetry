@@ -56,7 +56,7 @@ void ProcessManager::Load(uint64_t pid)
     }
 
     try {
-        ProcessManager::processes[pid] = std::unique_ptr<Core::Process>(new Core::Process(pid));
+        ProcessManager::processes[pid] = std::make_unique<Core::Process>(pid);
     } catch( std::runtime_error &error ) {
         std::cerr << error.what() << std::endl;
     }
@@ -107,17 +107,17 @@ void ProcessManager::LoadProcessList()
         closedir(d);
     }
 
-    uint64_t pid = 0;
 
     while ((de = readdir(d)))
     {
-        if (de->d_type != DT_DIR || !(pid = LixProc::Utils::ConvertToInteger(de->d_name)))
+        uint64_t dir_val = 0;
+        if (de->d_type != DT_DIR || !(dir_val = LixProc::Utils::ConvertToInteger(de->d_name)))
         {
             continue;
         }
 
         try {
-            ProcessManager::Load(pid);
+            ProcessManager::Load(dir_val);
         } catch( std::runtime_error &e ) {
 
         }

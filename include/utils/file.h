@@ -15,7 +15,7 @@ namespace File
  *
  * @return
  */
-bool FileExists(const std::string path);
+bool FileExists(const std::string &path);
 
 /**
  * Get the first line of a file.
