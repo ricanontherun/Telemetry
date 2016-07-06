@@ -19,4 +19,4 @@ $ mv lixproc /usr/bin/lixproc
 ```
 
 ## Usage
-The ```lixproc``` command will start the main command loop. From there, issue commands at the ```lixproc >> ``` terminal prompt.
+The ```lixproc``` command will start the main command loop. From there, issue commands at the ```lixproc >>``` terminal prompt.
