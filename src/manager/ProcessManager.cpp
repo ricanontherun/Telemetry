@@ -62,7 +62,7 @@ void ProcessManager::Load(uint64_t pid)
     }
 }
 
-ProcessIterators ProcessManager::Load(std::string name)
+ProcessIterators ProcessManager::Load(const std::string &name)
 {
     // First, load all processes.
     ProcessManager::Load();

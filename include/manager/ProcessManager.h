@@ -34,7 +34,7 @@ class ProcessManager
          *
          * @param name
          */
-        static ProcessIterators Load(std::string name);
+        static ProcessIterators Load(const std::string &name);
     private:
         // Base process directory path.
         static std::string proc_root;

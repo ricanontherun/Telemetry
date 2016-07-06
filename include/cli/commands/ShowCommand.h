@@ -29,7 +29,8 @@ class ShowCommand : public Command
         void Run(void);
         RegexMap<std::string> regex_map;
     private:
-        void ShowAll();
+        void Show() const;
+        void Show(const std::string &name) const;
 };
 
 } // End Commands

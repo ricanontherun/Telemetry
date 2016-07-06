@@ -6,6 +6,7 @@
 
 #include <utils/str.h>
 #include <cli/CommandFactory.h>
+#include <core/sys/SystemInfo.h>
 
 namespace LixProc
 {
@@ -24,6 +25,8 @@ CommandLoop::command_map = {
 
 void CommandLoop::InitMainLoop(void)
 {
+
+    LixProc::SystemInfo::Capture();
     std::string command_str;
 
     this->ShowWelcome();
