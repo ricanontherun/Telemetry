@@ -6,6 +6,7 @@ LixProc is a command line tool for managing system processes. It's in heavy deve
 * c++14
 * cmake >= 2.8.12
 * boost
+
 ## Installation
 ```sh
 $ git clone https://github.com/ricanontherun/lixproc
