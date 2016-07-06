@@ -1,12 +1,21 @@
-# Linux Process Monitor
+# LixProc
 
-Desktop Application and CLI for monitoring and managing Linux processes.
+LixProc is a command line tool for managing system processes. It's in heavy development, better features and output are to come.
 
-# TODO
-1) Finish CLI
-    * Search
-    * Kill a process
-    * Nicer output
-    * CPU usage
-2) Cache previous run's mem/cpu usage for relative increase/decrease.
-3) GUI
+## Dependencies
+* c++14
+* cmake >= 2.8.12
+* boost
+## Installation
+```sh
+$ git clone https://github.com/ricanontherun/lixproc
+$ cd lixproc
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+$ mv lixproc /usr/bin/lixproc
+```
+
+## Usage
+The ```lixproc``` command will start the main command loop. From there, issue commands at the ```lixproc >> ``` terminal prompt.
