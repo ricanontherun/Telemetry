@@ -1,6 +1,6 @@
 # LixProc
 
-LixProc is a command line tool for managing system processes. It's in heavy development, better features and output are to come.
+LixProc is a command line tool (eventual desktop application) for managing system processes. I'm starting with the CLI so I can iron out a core API which will be used in the desktop app. It's in heavy development, better features and output are to come.
 
 ## Dependencies
 * c++14
