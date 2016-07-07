@@ -17,12 +17,6 @@ namespace CLI
 const std::string CommandLoop::welcome = "Welcome to lixproc. Empty line to exit, help to more information.";
 const std::string CommandLoop::line_prefix = "lixproc >> ";
 
-std::map<std::string, CommandFactory::CommandEnum>
-CommandLoop::command_map = {
-    {"help", CommandFactory::CommandEnum::HELP},
-    {"show", CommandFactory::CommandEnum::SHOW}
-};
-
 void CommandLoop::InitMainLoop(void)
 {
 
@@ -48,7 +42,7 @@ void CommandLoop::InitMainLoop(void)
         }
 
         // Create the command object.
-        CommandFactory::CommandEnum code = CommandLoop::command_map.find(command.name)->second;
+        CommandFactory::CommandEnum code = CommandFactory::command_map.find(command.name)->second;
         Commands::Command *c = CommandFactory::Make(code, command.arguments);
 
         // Run and print output.
@@ -75,7 +69,7 @@ void CommandLoop::ParseCommand(
 
 bool CommandLoop::ValidateCommand(LixProc::Utils::Command &command)
 {
-    return command_map.count(command.name) != 0;
+    return CommandFactory::IsValidCommand(command.name);
 }
 
 void CommandLoop::ShowWelcome() const

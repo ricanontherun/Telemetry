@@ -13,8 +13,11 @@ namespace Commands
 class HelpCommand : public Command
 {
     public:
-        HelpCommand() {};
+        HelpCommand();
         void Run(void);
+
+    private:
+        void ShowGeneralHelp() const;
 };
 
 } // End Commands

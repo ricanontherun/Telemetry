@@ -12,6 +12,12 @@ using LixProc::CLI::Commands::Command;
 using LixProc::CLI::Commands::HelpCommand;
 using LixProc::CLI::Commands::ShowCommand;
 
+std::map<std::string, CommandFactory::CommandEnum>
+CommandFactory::command_map = {
+    {"help", CommandFactory::CommandEnum::HELP},
+    {"show", CommandFactory::CommandEnum::SHOW}
+};
+
 std::map<
     CommandFactory::CommandEnum,
     std::unique_ptr<Command>>
@@ -52,6 +58,11 @@ Command *CommandFactory::Make(CommandEnum command)
     CommandFactory::instances[command] = std::move(command_object);
 
     return CommandFactory::instances[command].get();
+}
+
+bool CommandFactory::IsValidCommand(const std::string &command)
+{
+    return CommandFactory::command_map.find(command) != CommandFactory::command_map.end();
 }
 
 } // End CLI

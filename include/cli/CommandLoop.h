@@ -20,7 +20,6 @@ class CommandLoop
     protected:
         static const std::string welcome;
         static const std::string line_prefix;
-        static std::map<std::string, LixProc::CLI::CommandFactory::CommandEnum> command_map;
 
         void ParseCommand(
             std::string command_str,

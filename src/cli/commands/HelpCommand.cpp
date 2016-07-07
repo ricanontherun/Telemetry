@@ -3,6 +3,8 @@
 #include <iomanip>
 #include <iostream>
 
+#include <cli/CommandFactory.h>
+
 namespace LixProc
 {
 namespace CLI
@@ -10,7 +12,24 @@ namespace CLI
 namespace Commands
 {
 
+HelpCommand::HelpCommand(){
+
+}
+
 void HelpCommand::Run(void)
+{
+    if ( this->arguments.length() == 0 || !CommandFactory::IsValidCommand(this->arguments) ) {
+        this->ShowGeneralHelp();
+    } else {
+    }
+}
+
+/**
+ *--------------------------------------------------
+ * Private
+ *--------------------------------------------------
+ */
+void HelpCommand::ShowGeneralHelp() const
 {
     std::cout << "Available Commands" << std::endl;
 
