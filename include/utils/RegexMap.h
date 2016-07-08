@@ -1,17 +1,17 @@
-/**
- *--------------------------------------------------
- * A keyed regular expression abstraction
- *--------------------------------------------------
- *
- * RegexMap<Type> map;
- *
- * map.Set(KEY_OF_TYPE, REGULAR_EXPRESSION);
- *
- * bool result = map.Test(KEY_OF_TYPE, ONE_CONTEXT);
- *
- * result = map.Test(KEY_OF_TYPE, ANOTHER_CONTEXT);
- */
-
+// Copyright (C) 2016 Christian Roman
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef REGEX_MAP_H
 #define REGEX_MAP_H
 

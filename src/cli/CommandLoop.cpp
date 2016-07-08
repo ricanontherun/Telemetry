@@ -1,3 +1,17 @@
+// Copyright (C) 2016 Christian Roman
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cli/CommandLoop.h>
 
 #include <string>
@@ -17,13 +31,13 @@ namespace CLI
 const std::string CommandLoop::welcome = "Welcome to lixproc. Empty line to exit, help to more information.";
 const std::string CommandLoop::line_prefix = "lixproc >> ";
 
-void CommandLoop::InitMainLoop(void)
+void CommandLoop::Init(void)
 {
 
     LixProc::SystemInfo::Capture();
     std::string command_str;
 
-    this->ShowWelcome();
+    CommandLoop::ShowWelcome();
     std::cout << CommandLoop::line_prefix;
 
     LixProc::Utils::Command command;
@@ -31,16 +45,17 @@ void CommandLoop::InitMainLoop(void)
     while (std::getline(std::cin, command_str) && command_str.length() != 0)
     {
         // Parse command
-        this->ParseCommand(command_str, command);
+        CommandLoop::ParseCommand(command_str, command);
 
         // Validate Command.
-        if ( !this->ValidateCommand(command) )
+        if ( !CommandLoop::ValidateCommand(command) )
         {
             std::cout << command.name << " is not a valid command. Try help..." << std::endl;
             std::cout << CommandLoop::line_prefix;
             continue;
         }
 
+        // CommandFactory::GetCode(command.name);
         // Create the command object.
         CommandFactory::CommandEnum code = CommandFactory::command_map.find(command.name)->second;
         Commands::Command *c = CommandFactory::Make(code, command.arguments);
@@ -72,7 +87,7 @@ bool CommandLoop::ValidateCommand(LixProc::Utils::Command &command)
     return CommandFactory::IsValidCommand(command.name);
 }
 
-void CommandLoop::ShowWelcome() const
+void CommandLoop::ShowWelcome()
 {
     std::string ascii_art = "";
         ascii_art += " _    _     ___\n";
@@ -82,8 +97,8 @@ void CommandLoop::ShowWelcome() const
 
     std::string start = "Type help for usage, empty line to exit.";
 
-    std::cout << ascii_art << std::endl;
-    std::cout << start << std::endl << std::endl;
+    std::cout << ascii_art << "\n";
+    std::cout << start << "\n" << "\n";
 }
 
 } // End CLI
