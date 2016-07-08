@@ -79,5 +79,10 @@ bool CommandFactory::IsValidCommand(const std::string &command)
     return CommandFactory::command_map.find(command) != CommandFactory::command_map.end();
 }
 
+CommandFactory::CommandEnum CommandFactory::GetCode(const std::string &command)
+{
+    return CommandFactory::command_map.find(command)->second;
+}
+
 } // End CLI
 } // End LixProc

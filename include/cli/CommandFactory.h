@@ -37,10 +37,11 @@ class CommandFactory
 
         static std::map<std::string, CommandEnum> command_map;
 
-        static Command *Make(CommandEnum command,std::string arguments);
+        static Command *Make(CommandEnum command, std::string arguments);
         static Command *Make(CommandEnum command);
 
         static bool IsValidCommand(const std::string &command);
+        static CommandEnum GetCode(const std::string &command);
     private:
         static std::map<CommandEnum, std::unique_ptr<Command>> instances;
 };

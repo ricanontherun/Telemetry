@@ -55,10 +55,10 @@ void CommandLoop::Init(void)
             continue;
         }
 
-        // CommandFactory::GetCode(command.name);
-        // Create the command object.
-        CommandFactory::CommandEnum code = CommandFactory::command_map.find(command.name)->second;
-        Commands::Command *c = CommandFactory::Make(code, command.arguments);
+        Commands::Command *c = CommandFactory::Make(
+            CommandFactory::GetCode(command.name),
+            command.arguments
+        );
 
         // Run and print output.
         c->Run();
