@@ -26,6 +26,11 @@ struct Command {
     std::string path;
     std::string name;
     std::string arguments;
+
+    std::string operator()() const
+    {
+        return this->path + this->name + " " + this->arguments;
+    }
 };
 
 /**

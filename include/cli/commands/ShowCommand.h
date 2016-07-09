@@ -19,7 +19,6 @@
 
 #include <map>
 #include <memory>
-#include <iostream>
 
 #include <utils/RegexMap.h>
 #include <manager/ProcessManager.h>
@@ -45,6 +44,9 @@ class ShowCommand : public Command
     private:
         void Show() const;
         void Show(const std::string &name) const;
+
+        // TODO: Find a way to get this out of here. OutputTable object?
+        void PrintProcessTableHeader() const;
 };
 
 } // End Commands

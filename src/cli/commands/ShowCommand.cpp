@@ -14,6 +14,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cli/commands/ShowCommand.h>
 
+#include <iostream>
+#include <iomanip>
+
 namespace LixProc
 {
 namespace CLI
@@ -44,12 +47,13 @@ void ShowCommand::Run(void)
     } else {
         std::cout << "Unknown option...try help" << std::endl;
     }
-
-    std::cout << "Running the show command" << std::endl;
 }
 
 void ShowCommand::Show() const
 {
+    this->PrintProcessTableHeader();
+
+    // TODO: this->PrintProcessList(iterators);
     ProcessIterators iterators = ProcessManager::Load();
 
     for ( auto it = iterators.first; it != iterators.second; it++ ) {
@@ -59,11 +63,21 @@ void ShowCommand::Show() const
 
 void ShowCommand::Show(const std::string &name) const
 {
+    this->PrintProcessTableHeader();
+
     ProcessIterators iterators = ProcessManager::Load(name);
 
     for ( auto it = iterators.first; it != iterators.second; it++ ) {
         std::cout << *(it)->second << std::endl;
     }
+}
+
+void ShowCommand::PrintProcessTableHeader() const
+{
+    std::cout << std::left << std::setw(10) << "PID";
+    std::cout << std::setw(10) << "Size";
+    std::cout << std::setw(10) << "MEM%";
+    std::cout << "Command" << std::endl;
 }
 
 } // End Commands

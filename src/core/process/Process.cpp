@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/process/Process.h>
 
+#include <math.h>
 #include <string>
 #include <stdio.h>
 #include <sstream>
@@ -64,7 +65,11 @@ Process::~Process()
 double Process::GetActualMemoryUsage() const
 {
     // What constitutes as a process's memory footprint?
-    return this->memory.resident;
+    uint64_t resident = this->memory.resident;
+
+    double actual = static_cast<double>(resident * SystemInfo::GetPageSize());
+
+    return actual;
 }
 
 /**
@@ -74,7 +79,7 @@ double Process::GetActualMemoryUsage() const
  */
 double Process::GetRelativeMemoryUsage() const
 {
-    double process_memory_bytes = static_cast<double>(this->GetActualMemoryUsage() * SystemInfo::GetPageSize());
+    double process_memory_bytes = this->GetActualMemoryUsage();
 
     unsigned long system_memory_bytes = SystemInfo::GetTotalSystemMemory();
 
@@ -86,6 +91,11 @@ bool Process::Kill()
     return true;
 }
 
+uint32_t Process::GetPID() const
+{
+    return this->pid;
+}
+
 /*
 |--------------------------------------------------
 | Operator Overloads
@@ -94,12 +104,10 @@ bool Process::Kill()
 std::ostream &operator<<(std::ostream &stream, const Process &process)
 {
     double relative_memory_usage = process.GetRelativeMemoryUsage();
-    stream << ">>PROCESS ";
-    stream << process.pid << std::endl;
-    stream << "Exe: " << process.command.name << std::endl;
-    stream << "Path: " << process.command.path << std::endl;
-    stream << "Args: " << process.command.arguments << std::endl;
-    stream << relative_memory_usage << " " << std::endl;
+    stream << std::setw(10) << process.GetPID();
+    stream << std::setw(10) << std::fixed << std::setprecision(2) << process.GetActualMemoryUsage();
+    stream << std::setw(10) << std::fixed << std::setprecision(1) <<  relative_memory_usage;
+    stream << process.command() << " ";
 
     return stream;
 }

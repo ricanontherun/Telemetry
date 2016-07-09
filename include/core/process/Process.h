@@ -17,6 +17,8 @@
 
 #include <utils/command.h>
 
+#include <iomanip>
+
 namespace LixProc
 {
 namespace Core
@@ -53,6 +55,8 @@ class Process
         Process(uint32_t pid);
 
         ~Process();
+
+        uint32_t GetPID() const;
 
         /**
          * @brief Get the "actual" memory usage of a process.
