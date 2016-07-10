@@ -35,7 +35,7 @@ ShowCommand::~ShowCommand()
 {
 }
 
-void ShowCommand::Run(void)
+void ShowCommand::Run()
 {
     if ( this->regex_map.Test("all", this->arguments) ) {
         this->Show();
@@ -47,6 +47,11 @@ void ShowCommand::Run(void)
     } else {
         std::cout << "Unknown option...try help" << std::endl;
     }
+}
+
+void ShowCommand::PrintHelp() const
+{
+    std::cout << "Printing additional help for the show command" << std::endl;
 }
 
 void ShowCommand::Show() const

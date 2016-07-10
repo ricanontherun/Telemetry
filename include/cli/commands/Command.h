@@ -28,10 +28,11 @@ namespace Commands
 class Command
 {
     public:
-        Command(void) {};
+        Command() {};
         virtual ~Command() {};
 
-        virtual void Run(void) = 0;
+        virtual void Run() = 0;
+        virtual void PrintHelp() const = 0;
         void SetArguments(std::string arguments);
     protected:
         std::string arguments;

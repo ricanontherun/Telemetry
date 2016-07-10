@@ -30,25 +30,26 @@ HelpCommand::HelpCommand(){
 
 }
 
-void HelpCommand::Run(void)
+void HelpCommand::Run()
 {
-    if ( this->arguments.length() == 0 || !CommandFactory::IsValidCommand(this->arguments) ) {
-        this->ShowGeneralHelp();
+    if ( this->arguments.length() == 0 ) {
+        this->PrintHelp();
     } else {
+        if ( CommandFactory::IsValidCommand(this->arguments) == false ) {
+            std::cout << "That command doesn't exist" << std::endl;
+        } else {
+            Command *command = CommandFactory::Make(CommandFactory::GetCode(this->arguments));
+            command->PrintHelp();
+        }
     }
 }
 
-/**
- *--------------------------------------------------
- * Private
- *--------------------------------------------------
- */
-void HelpCommand::ShowGeneralHelp() const
+void HelpCommand::PrintHelp() const
 {
-    std::cout << "Available Commands" << std::endl;
-
-    std::cout << std::setw(8) << "help" << std::setw(30) << "Display Help" << std::endl;
-    std::cout << std::setw(8) << "show" << std::setw(30) << "Display processes" << std::endl;
+    int command_width = 10;
+    std::cout << std::setw(command_width) << std::left << "Command" << "Description" << std::endl << std::endl;
+    std::cout << std::setw(command_width) << "help" << "Display Help" << std::endl;
+    std::cout << std::setw(command_width) << "show" << "List Processes" << std::endl;
 }
 
 } // End Commands

@@ -95,7 +95,7 @@ void CommandLoop::ShowWelcome()
         ascii_art += "| |__| \\ \\ /  _/ '_/ _ \\/ _|\n";
         ascii_art += "|____|_/_\\_\\_| |_| \\___/\\__|\n";
 
-    std::string start = "Type help for usage, empty line to exit.";
+    std::string start = "Type help [COMMAND] for usage, empty line to exit.";
 
     std::cout << ascii_art << "\n";
     std::cout << start << "\n" << "\n";

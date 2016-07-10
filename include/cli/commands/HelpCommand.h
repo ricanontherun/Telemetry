@@ -28,10 +28,9 @@ class HelpCommand : public Command
 {
     public:
         HelpCommand();
-        void Run(void);
 
-    private:
-        void ShowGeneralHelp() const;
+        void Run();
+        void PrintHelp() const;
 };
 
 } // End Commands

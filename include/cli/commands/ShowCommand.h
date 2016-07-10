@@ -36,12 +36,14 @@ using LixProc::Manager::ProcessIterators;
 class ShowCommand : public Command
 {
     public:
-        ShowCommand(void);
-        ~ShowCommand(void);
+        ShowCommand();
+        ~ShowCommand();
 
-        void Run(void);
-        RegexMap<std::string> regex_map;
+        void Run();
+        void PrintHelp() const;
     private:
+        RegexMap<std::string> regex_map;
+
         void Show() const;
         void Show(const std::string &name) const;
 
