@@ -13,9 +13,25 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <cli/CommandLoop.h>
+#include <iostream>
+
+#include <Collectors/ProcessCollector.h>
+#include <options.h>
 
 int main(int argc, char **argv)
 {
-    LixProc::CLI::CommandLoop::Init();
+
+  LixProc::Collectors::ProcessCollector collector;
+  collector.Load();
+  collector.toJSON();
+
+  LixProc::options options;
+
+  LixProc::parse_options(argc, argv, &options);
+
+  if ( options.resources & static_cast<int>(LixProc::Resource::PROCESSES) ) {
+    std::cout << "Collecting processes\n";
+  }
+
+  return EXIT_SUCCESS;
 }

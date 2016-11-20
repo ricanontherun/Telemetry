@@ -53,7 +53,7 @@ std::string FileGetFirstLine(std::string path)
         return "";
     }
 
-    int length = BUFSIZ;
+    std::size_t length = BUFSIZ;
     std::ifstream file(path);
 
     std::unique_ptr<char []> buffer = std::make_unique<char []>(length);

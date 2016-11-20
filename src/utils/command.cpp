@@ -14,13 +14,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <utils/command.h>
 
-#include <string>
 #include <vector>
 #include <sstream>
 #include <iostream>
 #include <boost/algorithm/string.hpp>
-
-#include <utils/str.h>
 
 namespace LixProc
 {

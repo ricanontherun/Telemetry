@@ -16,28 +16,26 @@
 
 #include <unistd.h>
 
-namespace LixProc
-{
+namespace LixProc {
 
 uid_t SystemUser::uid = 0;
+
 gid_t SystemUser::gid = 0;
 
-uid_t SystemUser::GetUserID()
-{
-    if ( SystemUser::uid == 0 ) {
-        SystemUser::uid = getuid();
-    }
+uid_t SystemUser::GetUserID() {
+  if (SystemUser::uid == 0) {
+    SystemUser::uid = getuid();
+  }
 
-    return SystemUser::uid;
+  return SystemUser::uid;
 }
 
-gid_t SystemUser::GetGroupID()
-{
-    if ( SystemUser::gid == 0 ) {
-        SystemUser::gid = getgid();
-    }
+gid_t SystemUser::GetGroupID() {
+  if (SystemUser::gid == 0) {
+    SystemUser::gid = getgid();
+  }
 
-    return SystemUser::gid;
+  return SystemUser::gid;
 }
 
 } // End LixProc
