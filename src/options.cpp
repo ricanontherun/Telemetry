@@ -30,12 +30,15 @@ void parse_options(int argc, char **argv, struct options *options)
 static void parse_resource_flags(const char *flag, struct options *options)
 {
   std::unordered_map<char, Resource> resource_map = {
+      {'s', Resource::SYSTEM},
       {'p', Resource::PROCESSES}
   };
 
   for ( int i = 1; flag[i] != '\0'; i++ ) {
-    if ( auto resource = resource_map.find(flag[i]) != resource_map.end() ) {
-      options->resources |= resource;
+    auto resource = resource_map.find(flag[i]);
+
+    if (resource != resource_map.end()) {
+      options->resources |= static_cast<int>(resource->second);
     }
   }
 }

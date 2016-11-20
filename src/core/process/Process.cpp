@@ -14,24 +14,11 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/process/Process.h>
 
-#include <math.h>
-#include <string>
-#include <stdio.h>
-#include <sstream>
-#include <sstream>
 #include <fstream>
 #include <iostream>
-#include <stdint.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdexcept>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <sys/sysinfo.h>
 
 #include <utils/str.h>
 #include <utils/file.h>
-#include <utils/command.h>
 #include <core/sys/SystemInfo.h>
 
 namespace LixProc
@@ -64,7 +51,6 @@ Process::~Process()
  */
 double Process::GetActualMemoryUsage() const
 {
-    // What constitutes as a process's memory footprint?
     uint64_t resident = this->memory.resident;
 
     double actual = static_cast<double>(resident * SystemInfo::GetPageSize());
@@ -86,14 +72,14 @@ double Process::GetRelativeMemoryUsage() const
     return (process_memory_bytes / system_memory_bytes) * 100.00;
 }
 
-bool Process::Kill()
-{
-    return true;
-}
-
 uint32_t Process::GetPID() const
 {
-    return this->pid;
+  return this->pid;
+}
+
+bool Process::Kill()
+{
+  return true;
 }
 
 /*

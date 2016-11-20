@@ -51,7 +51,7 @@ class ProcessCollector : public Jsonable
    */
   ProcessIterators Load(const std::string &name);
 
-  void toJSON();
+  void toJSON(nlohmann::json &p);
  private:
   // Base process directory path.
   std::string proc_root;

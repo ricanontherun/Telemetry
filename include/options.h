@@ -8,8 +8,9 @@ namespace LixProc
 
 enum class Resource : int
 {
-  ALL = 0,  // All supported resources will be collected.
-  PROCESSES // System processes will be collected.
+  ALL = 0,    // All supported resources will be collected.
+  SYSTEM,     // Brief system related info, CPU, Memory, Hard disk space?
+  PROCESSES,  // System processes will be collected.
 };
 
 struct options

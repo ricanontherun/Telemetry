@@ -29,7 +29,11 @@ struct Command {
 
     std::string operator()() const
     {
-        return this->path + this->name + " " + this->arguments;
+        return this->GetPath() + " " + this->arguments;
+    }
+
+  std::string GetPath() const {
+      return this->path + this->name;
     }
 };
 

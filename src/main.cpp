@@ -21,16 +21,28 @@
 int main(int argc, char **argv)
 {
 
-  LixProc::Collectors::ProcessCollector collector;
-  collector.Load();
-  collector.toJSON();
-
   LixProc::options options;
 
   LixProc::parse_options(argc, argv, &options);
 
+  nlohmann::json j;
+
   if ( options.resources & static_cast<int>(LixProc::Resource::PROCESSES) ) {
-    std::cout << "Collecting processes\n";
+    std::cout << "Collecting process info\n";
+
+    LixProc::Collectors::ProcessCollector collector;
+    collector.Load();
+    collector.toJSON(j);
+  }
+
+  if (options.resources & static_cast<int>(LixProc::Resource::SYSTEM)) {
+    std::cout << "Collecting system info\n";
+  }
+
+  if (!options.output_path.empty()) {
+    // Collect and put to json
+  } else {
+    // Collect each resource and print.
   }
 
   return EXIT_SUCCESS;

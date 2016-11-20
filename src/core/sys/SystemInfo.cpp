@@ -14,35 +14,34 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/sys/SystemInfo.h>
 
-namespace LixProc
-{
+namespace LixProc {
 
 struct sysinfo SystemInfo::sys_info;
 int SystemInfo::pagesize = 0;
 bool SystemInfo::captured = false;
 
-void SystemInfo::Capture()
-{
-    if ( SystemInfo::captured == true )
-    {
-        return;
-    }
+void SystemInfo::Capture() {
+  if (SystemInfo::captured) {
+    return;
+  }
 
-    SystemInfo::CaptureSystemStatistics();
+  SystemInfo::CaptureSystemStatistics();
 
-    SystemInfo::CapturePageSize();
+  SystemInfo::CapturePageSize();
 
-    SystemInfo::captured = true;
+  SystemInfo::captured = true;
 }
 
-uint64_t SystemInfo::GetTotalSystemMemory()
-{
-    return SystemInfo::sys_info.totalram * SystemInfo::sys_info.mem_unit;
+uint64_t SystemInfo::GetTotalSystemMemory() {
+  SystemInfo::Capture();
+
+  return SystemInfo::sys_info.totalram * SystemInfo::sys_info.mem_unit;
 }
 
-int SystemInfo::GetPageSize()
-{
-    return SystemInfo::pagesize;
+int SystemInfo::GetPageSize() {
+  SystemInfo::Capture();
+
+  return SystemInfo::pagesize;
 }
 
 /**
@@ -51,19 +50,17 @@ int SystemInfo::GetPageSize()
  *--------------------------------------------------
  */
 
-void SystemInfo::CaptureSystemStatistics()
-{
-    int reti = sysinfo(&SystemInfo::sys_info);
+void SystemInfo::CaptureSystemStatistics() {
+  int reti = sysinfo(&SystemInfo::sys_info);
 
-    if ( reti == -1 ) {
-        std::cerr << "sysinfo call failed. Exiting.." << std::endl;
-        exit(EXIT_FAILURE);
-    }
+  if (reti == -1) {
+    std::cerr << "sysinfo call failed. Exiting.." << std::endl;
+    exit(EXIT_FAILURE);
+  }
 }
 
-void SystemInfo::CapturePageSize()
-{
-    SystemInfo::pagesize = getpagesize();
+void SystemInfo::CapturePageSize() {
+  SystemInfo::pagesize = getpagesize();
 }
 
 } // End

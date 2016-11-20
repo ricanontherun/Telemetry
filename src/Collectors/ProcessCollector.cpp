@@ -14,9 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Collectors/ProcessCollector.h>
 
-#include <string.h>
 #include <sys/stat.h>
-#include <iostream>
 #include <core/sys/SystemUser.h>
 #include <dirent.h>
 #include <utils/str.h>
@@ -98,9 +96,8 @@ void ProcessCollector::LoadProcessList() {
 
   d = opendir(Core::Process::PD_BASE.c_str());
 
-  // If we can't read from /proc something is very wrong.
-  if (d == NULL) {
-    closedir(d);
+  if (!d) { // If we can't open /proc something is wrong?
+    return;
   }
 
   while ((de = readdir(d))) {
@@ -126,10 +123,27 @@ ProcessIterators ProcessCollector::MakeIterators() {
   );
 }
 
-void ProcessCollector::toJSON() {
-  std::cout << "Storing the data in a json element\n";
+void ProcessCollector::toJSON(nlohmann::json &json) {
+  ProcessIterators iterators = this->MakeIterators();
+
+  using json_t = nlohmann::json;
+
+  json["processes"] = {};
+
+  for (auto process = iterators.first; process != iterators.second; process++) {
+    json_t object = json_t::object();
+
+    object["command"] = process->second->GetCommand().GetPath();
+
+    object["memory"] = {
+        {"actual", process->second->GetActualMemoryUsage()},
+        {"relative", process->second->GetRelativeMemoryUsage()}
+    };
+
+    json["processes"].push_back(object);
+  }
 }
 
-}
+} // Namespace Collectors
 
-}
+} // Namespace LixProc
