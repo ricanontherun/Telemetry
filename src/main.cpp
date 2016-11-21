@@ -17,32 +17,45 @@
 
 #include <Collectors/ProcessCollector.h>
 #include <options.h>
+#include <core/sys/SystemInfo.h>
+#include <fstream>
 
 int main(int argc, char **argv)
 {
 
+  // Parse the CLI arguments.
   LixProc::options options;
-
   LixProc::parse_options(argc, argv, &options);
 
   nlohmann::json j;
 
+  // Depending on the resources requested, query the system and append the
+  // results to the json object.
   if ( options.resources & static_cast<int>(LixProc::Resource::PROCESSES) ) {
-    std::cout << "Collecting process info\n";
-
     LixProc::Collectors::ProcessCollector collector;
     collector.Load();
     collector.toJSON(j);
   }
 
   if (options.resources & static_cast<int>(LixProc::Resource::SYSTEM)) {
-    std::cout << "Collecting system info\n";
+    j["system"] = {
+        {"memory", LixProc::SystemInfo::GetTotalSystemMemory()},
+    };
   }
 
   if (!options.output_path.empty()) {
-    // Collect and put to json
+    std::ofstream output_file(options.output_path);
+
+    if (!output_file.good()) {
+      std::cerr << "Failed opening file '" << options.output_path << "', " << strerror(errno) << "\n";
+      return EXIT_FAILURE;
+    }
+
+    output_file << j;
+
+    output_file.close();
   } else {
-    // Collect each resource and print.
+    std::cout << j << "\n";
   }
 
   return EXIT_SUCCESS;
