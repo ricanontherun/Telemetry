@@ -27,7 +27,7 @@ lixproc [-FLAGS] [--output_file]
 lixproc -p
 ```
 
-### Collect general system info, output to /home/ubuntu/dump.jsopn
+### Collect general system info, output to /home/ubuntu/dump.json
 ```sh
 lixproc -l /home/ubuntu/dump.json
 ```
