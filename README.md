@@ -19,4 +19,15 @@ $ mv lixproc /usr/bin/lixproc
 ```
 
 ## Usage
-The ```lixproc``` command will start the main command loop. From there, issue commands at the ```lixproc >>``` terminal prompt.
+```sh
+lixproc [-FLAGS] [--output_file]
+```
+### Collect all processes, print to stdout.
+```sh
+lixproc -p
+```
+
+### Collect general system info, output to /home/ubuntu/dump.jsopn
+```sh
+lixproc -l /home/ubuntu/dump.json
+```
