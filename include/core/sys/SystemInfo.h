@@ -23,33 +23,45 @@
 #include <sys/types.h>
 #include <sys/sysinfo.h>
 
-namespace LixProc
-{
+namespace LixProc {
 
-class SystemInfo
-{
-    public:
-        /**
-         * Capture information about the host machine.
-         */
-        static void Capture();
+class SystemInfo {
+ public:
 
-        /**
-         * Get the host machine's amount of RAM in bytes.
-         */
-        static uint64_t GetTotalSystemMemory();
+  struct CPU {
+    CPU()
+        : num_cpus(0), ghz(0) {}
 
-        /**
-         * Get the host system's page size.
-         */
-        static int GetPageSize();
-    private:
-        static struct sysinfo sys_info;
-        static int pagesize;
-        static bool captured;
+    std::string architecture;
+    std::string model_name;
 
-        static void CaptureSystemStatistics();
-        static void CapturePageSize();
+    std::uint8_t num_cpus;
+    std::uint32_t ghz;
+  };
+
+  /**
+   * Capture information about the host machine.
+   */
+  static void Capture();
+
+  /**
+   * Get the host machine's amount of RAM in bytes.
+   */
+  static uint64_t GetTotalSystemMemory();
+
+  /**
+   * Get the host system's page size.
+   */
+  static int GetPageSize();
+ private:
+  static struct sysinfo sys_info;
+  static int pagesize;
+  static bool captured;
+  static CPU cpu;
+
+  static void CaptureSystemStatistics();
+  static void CapturePageSize();
+  static void CaptureCPU();
 };
 
 }

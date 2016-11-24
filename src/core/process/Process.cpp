@@ -14,12 +14,12 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/process/Process.h>
 
-#include <fstream>
-#include <iostream>
-
 #include <utils/str.h>
 #include <utils/file.h>
 #include <core/sys/SystemInfo.h>
+
+#include <fstream>
+#include <cmath>
 
 namespace LixProc
 {
@@ -69,7 +69,7 @@ double Process::GetRelativeMemoryUsage() const
 
     unsigned long system_memory_bytes = SystemInfo::GetTotalSystemMemory();
 
-    return (process_memory_bytes / system_memory_bytes) * 100.00;
+  return round((process_memory_bytes / system_memory_bytes) * 100.00);
 }
 
 uint32_t Process::GetPID() const

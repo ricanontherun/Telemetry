@@ -14,14 +14,19 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Collectors/ProcessCollector.h>
 
-#include <sys/stat.h>
-#include <core/sys/SystemUser.h>
-#include <dirent.h>
 #include <utils/str.h>
+#include <core/sys/SystemUser.h>
+
+#include <sys/stat.h>
+#include <dirent.h>
 
 namespace LixProc {
 
 namespace Collectors {
+
+void ProcessCollector::load() {
+  this->LoadProcessList();
+}
 
 /**
  * @brief Load the process list.
@@ -70,6 +75,7 @@ ProcessIterators ProcessCollector::Load(const std::string &name) {
     command = it->second->GetCommand();
 
     if (command.name != name) {
+      // erase invalidates the it iterator and returns a new valid one.
       it = this->processes.erase(it);
     } else {
       it++;
@@ -116,14 +122,14 @@ void ProcessCollector::LoadProcessList() {
   closedir(d);
 }
 
-ProcessIterators ProcessCollector::MakeIterators() {
+ProcessIterators ProcessCollector::MakeIterators() const {
   return std::make_pair(
       this->processes.begin(),
       this->processes.end()
   );
 }
 
-void ProcessCollector::toJSON(nlohmann::json &json) {
+void ProcessCollector::toJSON(nlohmann::json &json) const {
   ProcessIterators iterators = this->MakeIterators();
 
   using json_t = nlohmann::json;

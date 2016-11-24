@@ -15,22 +15,19 @@
 #ifndef LIXPROC_PROCESSCOLLECTOR_H
 #define LIXPROC_PROCESSCOLLECTOR_H
 
-#include <Abstracts/Jsonable.h>
+#include <Collectors/Collector.h>
 #include <core/process/Process.h>
 #include <unordered_map>
 
-namespace LixProc
-{
+namespace LixProc {
 
-namespace Collectors
-{
+namespace Collectors {
 
 typedef std::unordered_map<uint32_t, std::unique_ptr<Core::Process>>::const_iterator ProcessIterator;
 
 typedef std::pair<ProcessIterator, ProcessIterator> ProcessIterators;
 
-class ProcessCollector : public Jsonable
-{
+class ProcessCollector : public Collector {
  public:
   /**
    * @brief Load all active processes.
@@ -51,7 +48,9 @@ class ProcessCollector : public Jsonable
    */
   ProcessIterators Load(const std::string &name);
 
-  void toJSON(nlohmann::json &p);
+  void toJSON(nlohmann::json &p) const;
+
+  void load();
  private:
   // Base process directory path.
   std::string proc_root;
@@ -64,7 +63,7 @@ class ProcessCollector : public Jsonable
    */
   void LoadProcessList();
 
-  ProcessIterators MakeIterators();
+  ProcessIterators MakeIterators() const;
 };
 
 }

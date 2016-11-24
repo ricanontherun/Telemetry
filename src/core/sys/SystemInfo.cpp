@@ -14,11 +14,18 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/sys/SystemInfo.h>
 
+#include <shell.h>
+#include <vector>
+#include <algorithm>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string.hpp>
+
 namespace LixProc {
 
 struct sysinfo SystemInfo::sys_info;
 int SystemInfo::pagesize = 0;
 bool SystemInfo::captured = false;
+SystemInfo::CPU SystemInfo::cpu = SystemInfo::CPU();
 
 void SystemInfo::Capture() {
   if (SystemInfo::captured) {
@@ -28,6 +35,8 @@ void SystemInfo::Capture() {
   SystemInfo::CaptureSystemStatistics();
 
   SystemInfo::CapturePageSize();
+
+  SystemInfo::CaptureCPU();
 
   SystemInfo::captured = true;
 }
@@ -42,6 +51,24 @@ int SystemInfo::GetPageSize() {
   SystemInfo::Capture();
 
   return SystemInfo::pagesize;
+}
+
+void SystemInfo::CaptureCPU() {
+  std::string out;
+
+  if (!RunInShell("lscpu", out)) {
+    return;
+  }
+
+  std::vector<std::string> lines;
+  lines.reserve((std::size_t) std::count(out.begin(), out.end(), '\n'));
+
+  boost::split(lines, out, boost::is_any_of("\n"), boost::token_compress_on);
+
+  for (auto const &line : lines) {
+    // Split on the colon, determine property from left string,
+    // Put into cpu property.
+  }
 }
 
 /**

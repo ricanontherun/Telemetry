@@ -12,35 +12,31 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-#include <iostream>
-
-#include <Collectors/ProcessCollector.h>
 #include <options.h>
 #include <core/sys/SystemInfo.h>
+#include <Collectors/ProcessCollector.h>
+
 #include <fstream>
+#include <Collectors/SystemCollector.h>
 
 int main(int argc, char **argv)
 {
-
   // Parse the CLI arguments.
   LixProc::options options;
   LixProc::parse_options(argc, argv, &options);
 
-  nlohmann::json j;
+  nlohmann::json j = nlohmann::json::object();
 
-  // Depending on the resources requested, query the system and append the
-  // results to the json object.
   if ( options.resources & static_cast<int>(LixProc::Resource::PROCESSES) ) {
     LixProc::Collectors::ProcessCollector collector;
-    collector.Load();
+    collector.load();
     collector.toJSON(j);
   }
 
   if (options.resources & static_cast<int>(LixProc::Resource::SYSTEM)) {
-    j["system"] = {
-        {"memory", LixProc::SystemInfo::GetTotalSystemMemory()},
-    };
+    LixProc::Collectors::SystemCollector system_collector;
+    system_collector.load();
+    system_collector.toJSON(j);
   }
 
   if (!options.output_path.empty()) {
@@ -52,10 +48,9 @@ int main(int argc, char **argv)
     }
 
     output_file << j;
-
     output_file.close();
   } else {
-    std::cout << j << "\n";
+    std::cout << j.dump(2) << "\n";
   }
 
   return EXIT_SUCCESS;
