@@ -23,9 +23,29 @@
 namespace LixProc {
 
 struct sysinfo SystemInfo::sys_info;
+
 int SystemInfo::pagesize = 0;
+
 bool SystemInfo::captured = false;
+
 SystemInfo::CPU SystemInfo::cpu = SystemInfo::CPU();
+
+std::unordered_map<
+    std::string, std::set<std::string>
+> SystemInfo::key_map = {
+    {
+        "Architecture",
+        {
+            "architecture"
+        }
+    },
+    {
+        "Model",
+        {
+            "model name"
+        }
+    }
+};
 
 void SystemInfo::Capture() {
   if (SystemInfo::captured) {
@@ -66,9 +86,39 @@ void SystemInfo::CaptureCPU() {
   boost::split(lines, out, boost::is_any_of("\n"), boost::token_compress_on);
 
   for (auto const &line : lines) {
-    // Split on the colon, determine property from left string,
-    // Put into cpu property.
+    // First we need to isolate the key:value pairs from
+    // lscpu output.
+    std::size_t first_colon = line.find(':');
+
+    if (first_colon == std::string::npos) { // TODO: Why does this happen?
+      continue;
+    }
+
+    if (first_colon > line.length() - 1) {
+      continue;
+    }
+
+    std::string key = line.substr(0, first_colon);
+    std::string value = line.substr(first_colon + 1); // This could technically cause an out of bounds.
+
+    // Trim
+    boost::algorithm::trim(value);
+
+    // Lowercase the key
+    std::transform(key.begin(), key.end(), key.begin(), ::tolower);
+
+    if (SystemInfo::key_map["Architecture"].count(key) != 0) {
+      SystemInfo::cpu.architecture = value;
+    }
+
+    if (SystemInfo::key_map["Model"].count(key) != 0) {
+      SystemInfo::cpu.model_name = value;
+    }
   }
+}
+
+const SystemInfo::CPU &SystemInfo::GetCPU() {
+  return SystemInfo::cpu;
 }
 
 /**

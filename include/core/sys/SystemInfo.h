@@ -22,6 +22,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/sysinfo.h>
+#include <unordered_map>
+#include <set>
 
 namespace LixProc {
 
@@ -29,8 +31,7 @@ class SystemInfo {
  public:
 
   struct CPU {
-    CPU()
-        : num_cpus(0), ghz(0) {}
+    CPU() : num_cpus(0), ghz(0) {}
 
     std::string architecture;
     std::string model_name;
@@ -53,11 +54,19 @@ class SystemInfo {
    * Get the host system's page size.
    */
   static int GetPageSize();
+
+  static const CPU &GetCPU();
  private:
   static struct sysinfo sys_info;
   static int pagesize;
   static bool captured;
   static CPU cpu;
+
+  // This structure maps a keyword to a set of possible
+  // output keys. Using an ordered set gives us O(logn) lookups.
+  static std::unordered_map<
+      std::string, std::set<std::string>
+  > key_map;
 
   static void CaptureSystemStatistics();
   static void CapturePageSize();
