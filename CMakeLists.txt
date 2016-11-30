@@ -20,6 +20,7 @@ set(PROJECT_SOURCE
         src/Collectors/ProcessCollector.cpp
         src/Collectors/SystemCollector.cpp
         src/shell.cpp
+        src/core/sys/cpu.cpp
         )
 
 add_executable(lixproc ${PROJECT_SOURCE})

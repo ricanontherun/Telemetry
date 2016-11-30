@@ -12,32 +12,40 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef LIXPROC_OPTIONS_H
-#define LIXPROC_OPTIONS_H
+#ifndef LIXPROC_CPU_H
+#define LIXPROC_CPU_H
 
-#include <string>
+#include <unordered_map>
+#include <set>
 
-namespace LixProc
-{
+namespace LixProc {
 
-enum class Resource : int
-{
-  ALL = 0,    // All supported resources will be collected.
-  SYSTEM,     // Brief system related info, CPU, Memory, Hard disk space?
-  PROCESSES,  // System processes will be collected.
+namespace Core {
+
+class CPU {
+ private:
+  std::string architecture;
+  std::string model_name;
+
+  std::string cpus;
+  std::string ghz;
+
+  // This structure maps a keyword to a set of possible
+  // output keys. Using an ordered set gives us O(logn) lookups.
+  static std::unordered_map<
+      std::string, std::set<std::string>
+  > key_map;
+
+ public:
+  CPU();
+  void Read();
+
+  const std::string &GetArchitecture() const;
+  const std::string &GetModel() const;
+  const std::string &GetCPUCount() const;
 };
-
-struct options
-{
-  options() : output_path(""), resources(static_cast<int>(Resource::ALL)) {};
-
-  std::string output_path;
-  int resources;
-};
-
-void parse_options(int argc, char **argv, struct options *options);
-static void parse_resource_flags(const char *flag, struct options *options);
 
 }
+}
 
-#endif //LIXPROC_OPTIONS_H
+#endif //LIXPROC_CPU_H

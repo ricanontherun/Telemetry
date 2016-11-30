@@ -14,12 +14,6 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/sys/SystemInfo.h>
 
-#include <shell.h>
-#include <vector>
-#include <algorithm>
-#include <boost/algorithm/string/split.hpp>
-#include <boost/algorithm/string.hpp>
-
 namespace LixProc {
 
 struct sysinfo SystemInfo::sys_info;
@@ -28,24 +22,7 @@ int SystemInfo::pagesize = 0;
 
 bool SystemInfo::captured = false;
 
-SystemInfo::CPU SystemInfo::cpu = SystemInfo::CPU();
-
-std::unordered_map<
-    std::string, std::set<std::string>
-> SystemInfo::key_map = {
-    {
-        "Architecture",
-        {
-            "architecture"
-        }
-    },
-    {
-        "Model",
-        {
-            "model name"
-        }
-    }
-};
+Core::CPU SystemInfo::cpu = Core::CPU();
 
 void SystemInfo::Capture() {
   if (SystemInfo::captured) {
@@ -74,50 +51,10 @@ int SystemInfo::GetPageSize() {
 }
 
 void SystemInfo::CaptureCPU() {
-  std::string out;
-
-  if (!RunInShell("lscpu", out)) {
-    return;
-  }
-
-  std::vector<std::string> lines;
-  lines.reserve((std::size_t) std::count(out.begin(), out.end(), '\n'));
-
-  boost::split(lines, out, boost::is_any_of("\n"), boost::token_compress_on);
-
-  for (auto const &line : lines) {
-    // First we need to isolate the key:value pairs from
-    // lscpu output.
-    std::size_t first_colon = line.find(':');
-
-    if (first_colon == std::string::npos) { // TODO: Why does this happen?
-      continue;
-    }
-
-    if (first_colon > line.length() - 1) {
-      continue;
-    }
-
-    std::string key = line.substr(0, first_colon);
-    std::string value = line.substr(first_colon + 1); // This could technically cause an out of bounds.
-
-    // Trim
-    boost::algorithm::trim(value);
-
-    // Lowercase the key
-    std::transform(key.begin(), key.end(), key.begin(), ::tolower);
-
-    if (SystemInfo::key_map["Architecture"].count(key) != 0) {
-      SystemInfo::cpu.architecture = value;
-    }
-
-    if (SystemInfo::key_map["Model"].count(key) != 0) {
-      SystemInfo::cpu.model_name = value;
-    }
-  }
+  SystemInfo::cpu.Read();
 }
 
-const SystemInfo::CPU &SystemInfo::GetCPU() {
+const Core::CPU &SystemInfo::GetCPU() {
   return SystemInfo::cpu;
 }
 
