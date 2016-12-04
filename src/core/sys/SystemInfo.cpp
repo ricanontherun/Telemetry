@@ -22,7 +22,8 @@ int SystemInfo::pagesize = 0;
 
 bool SystemInfo::captured = false;
 
-Core::CPU SystemInfo::cpu = Core::CPU();
+Core::Sys::CPU SystemInfo::cpu = Core::Sys::CPU();
+Core::Sys::Disk SystemInfo::disk = Core::Sys::Disk();
 
 void SystemInfo::Capture() {
   if (SystemInfo::captured) {
@@ -34,6 +35,8 @@ void SystemInfo::Capture() {
   SystemInfo::CapturePageSize();
 
   SystemInfo::CaptureCPU();
+
+  SystemInfo::CaptureDisk();
 
   SystemInfo::captured = true;
 }
@@ -54,15 +57,17 @@ void SystemInfo::CaptureCPU() {
   SystemInfo::cpu.Read();
 }
 
-const Core::CPU &SystemInfo::GetCPU() {
+void SystemInfo::CaptureDisk() {
+  SystemInfo::disk.Read();
+}
+
+const Core::Sys::CPU &SystemInfo::GetCPU() {
   return SystemInfo::cpu;
 }
 
-/**
- *--------------------------------------------------
- * Private
- *--------------------------------------------------
- */
+const Core::Sys::Disk &SystemInfo::GetDisk() {
+  return SystemInfo::disk;
+}
 
 void SystemInfo::CaptureSystemStatistics() {
   int reti = sysinfo(&SystemInfo::sys_info);

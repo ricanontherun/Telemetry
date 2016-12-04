@@ -15,7 +15,7 @@
 #ifndef LIXPROC_PROCESSCOLLECTOR_H
 #define LIXPROC_PROCESSCOLLECTOR_H
 
-#include <Collectors/Collector.h>
+#include <interfaces/Collector.h>
 #include <core/process/Process.h>
 #include <unordered_map>
 
@@ -27,7 +27,7 @@ typedef std::unordered_map<uint32_t, std::unique_ptr<Core::Process>>::const_iter
 
 typedef std::pair<ProcessIterator, ProcessIterator> ProcessIterators;
 
-class ProcessCollector : public Collector {
+class ProcessCollector : public Interfaces::Collector {
  public:
   /**
    * @brief Load all active processes.

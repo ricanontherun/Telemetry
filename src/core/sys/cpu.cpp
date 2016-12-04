@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/sys/cpu.h>
 
-#include <shell.h>
+#include <utils/shell.h>
 
 #include <vector>
 #include <algorithm>
@@ -23,10 +23,11 @@
 
 namespace LixProc {
 namespace Core {
+namespace Sys {
 
-std::unordered_map<
+std::map<
     std::string, std::set<std::string>
-> CPU::key_map = {
+> Sys::CPU::key_map = {
     {
         "Architecture",
         {
@@ -55,7 +56,7 @@ CPU::CPU() : cpus(""), ghz("") {
 void CPU::Read() {
   std::string out;
 
-  if (!RunInShell("lscpu", out)) {
+  if (!RunInShell(this->command_string, out)) {
     return;
   }
 
@@ -110,5 +111,6 @@ const std::string &CPU::GetCPUCount() const {
   return this->cpus;
 }
 
+} // Namespace Sys
 } // Namespace Core
 } // Namespace LixProc

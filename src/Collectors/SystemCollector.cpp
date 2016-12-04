@@ -24,11 +24,23 @@ void SystemCollector::toJSON(nlohmann::json &json) const {
   };
 
   // cpu
-  const Core::CPU &cpu = SystemInfo::GetCPU();
+  const Core::Sys::CPU &cpu = SystemInfo::GetCPU();
   json["system"]["cpu"] = nlohmann::json::object();
   json["system"]["cpu"]["model"] = cpu.GetModel();
   json["system"]["cpu"]["architecture"] = cpu.GetArchitecture();
   json["system"]["cpu"]["cpus"] = cpu.GetCPUCount();
+
+  // Disk
+  std::uint64_t size = 0;
+  std::uint64_t used = 0;
+
+  Core::Sys::FileSystemIterators iterators = SystemInfo::GetDisk().GetFileSystemIterators();
+
+  for (auto it = iterators.first; it != iterators.second; it++) {
+    size += it->GetSize();
+    used += it->GetUsed();
+
+  }
 }
 
 void SystemCollector::load() {

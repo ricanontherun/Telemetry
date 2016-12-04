@@ -1,12 +1,12 @@
 #ifndef LIXPROC_SYSTEMCOLLECTOR_H
 #define LIXPROC_SYSTEMCOLLECTOR_H
 
-#include <Collectors/Collector.h>
+#include <interfaces/Collector.h>
 
 namespace LixProc {
 namespace Collectors {
 
-class SystemCollector : public Collector {
+class SystemCollector : public Interfaces::Collector {
  public:
   void toJSON(nlohmann::json &json) const;
   void load();

@@ -15,15 +15,19 @@
 #ifndef LIXPROC_CPU_H
 #define LIXPROC_CPU_H
 
-#include <unordered_map>
+#include <map>
 #include <set>
 
 namespace LixProc {
 
 namespace Core {
 
+namespace Sys {
+
 class CPU {
  private:
+  const char *command_string = "lscpu";
+
   std::string architecture;
   std::string model_name;
 
@@ -32,7 +36,7 @@ class CPU {
 
   // This structure maps a keyword to a set of possible
   // output keys. Using an ordered set gives us O(logn) lookups.
-  static std::unordered_map<
+  static std::map<
       std::string, std::set<std::string>
   > key_map;
 
@@ -45,7 +49,8 @@ class CPU {
   const std::string &GetCPUCount() const;
 };
 
-}
-}
+} // Sys
+} // Core
+} // Lixproc
 
 #endif //LIXPROC_CPU_H

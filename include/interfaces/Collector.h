@@ -5,6 +5,7 @@
 
 namespace LixProc
 {
+namespace Interfaces {
 
 class Collector
 {
@@ -18,6 +19,7 @@ class Collector
   virtual void load() = 0;
 };
 
+}
 }
 
 #endif //LIXPROC_COLLECTOR_H

@@ -16,6 +16,7 @@
 #define CORE_SYS_SYSTEMINFO_H
 
 #include <core/sys/cpu.h>
+#include <core/sys/disk.h>
 
 #include <unistd.h>
 #include <iostream>
@@ -45,16 +46,19 @@ class SystemInfo {
    */
   static int GetPageSize();
 
-  static const Core::CPU &GetCPU();
+  static const Core::Sys::CPU &GetCPU();
+  static const Core::Sys::Disk &GetDisk();
  private:
   static struct sysinfo sys_info;
   static int pagesize;
   static bool captured;
-  static Core::CPU cpu;
+  static Core::Sys::CPU cpu;
+  static Core::Sys::Disk disk;
 
   static void CaptureSystemStatistics();
   static void CapturePageSize();
   static void CaptureCPU();
+  static void CaptureDisk();
 };
 
 }
