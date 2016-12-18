@@ -21,7 +21,7 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string.hpp>
 
-namespace LixProc {
+namespace Telemetry {
 namespace Core {
 namespace Sys {
 
@@ -113,4 +113,4 @@ const std::string &CPU::GetCPUCount() const {
 
 } // Namespace Sys
 } // Namespace Core
-} // Namespace LixProc
+} // Namespace Telemetry

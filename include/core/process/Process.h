@@ -12,14 +12,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef CORE_PROCESS_H
-#define CORE_PROCESS_H
+#ifndef TELEMETRY_CORE_PROCESS_H
+#define TELEMETRY_CORE_PROCESS_H
 
 #include <utils/command.h>
 
 #include <iomanip>
 
-namespace LixProc
+namespace Telemetry
 {
 namespace Core
 {
@@ -72,7 +72,7 @@ class Process
          */
         double GetRelativeMemoryUsage() const;
 
-        LixProc::Utils::Command GetCommand() const;
+        Telemetry::Utils::Command GetCommand() const;
 
         bool Kill();
 
@@ -86,7 +86,7 @@ class Process
         // Memory usage of this process.
         struct Memory memory;
 
-        LixProc::Utils::Command command;
+        Telemetry::Utils::Command command;
 
         /** * @brief Load the process's data.  *
         * @return
@@ -108,6 +108,6 @@ class Process
         bool LoadProcessMemory();
 };
 } // End Core
-} // End LixProc
+} // End Telemetry
 
 #endif //SYSTEM_MONITOR_PROCESS_H

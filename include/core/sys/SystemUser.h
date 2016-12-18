@@ -12,12 +12,12 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef CORE_SYSTEM_USER_H
-#define CORE_SYSTEM_USER_H
+#ifndef TELEMETRY_CORE_SYS_USER_H
+#define TELEMETRY_CORE_SYS_USER_H
 
 #include <sys/types.h>
 
-namespace LixProc
+namespace Telemetry
 {
 
 class SystemUser {
@@ -30,6 +30,6 @@ class SystemUser {
 
 };
 
-} // End LixProc
+} // End Telemetry
 
 #endif

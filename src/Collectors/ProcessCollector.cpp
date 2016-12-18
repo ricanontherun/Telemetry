@@ -20,7 +20,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 
-namespace LixProc {
+namespace Telemetry {
 
 namespace Collectors {
 
@@ -108,7 +108,7 @@ void ProcessCollector::LoadProcessList() {
 
   while ((de = readdir(d))) {
     uint64_t dir_val = 0;
-    if (de->d_type != DT_DIR || !(dir_val = LixProc::Utils::ConvertToInteger(de->d_name))) {
+    if (de->d_type != DT_DIR || !(dir_val = Telemetry::Utils::ConvertToInteger(de->d_name))) {
       continue;
     }
 
@@ -152,4 +152,4 @@ void ProcessCollector::toJSON(nlohmann::json &json) const {
 
 } // Namespace Collectors
 
-} // Namespace LixProc
+} // Namespace Telemetry

@@ -15,7 +15,7 @@
 #include <Collectors/SystemCollector.h>
 #include <core/sys/SystemInfo.h>
 
-namespace LixProc {
+namespace Telemetry {
 namespace Collectors {
 
 void SystemCollector::toJSON(nlohmann::json &json) const {
@@ -44,7 +44,7 @@ void SystemCollector::toJSON(nlohmann::json &json) const {
 }
 
 void SystemCollector::load() {
-  LixProc::SystemInfo::Capture();
+  Telemetry::SystemInfo::Capture();
 }
 
 }

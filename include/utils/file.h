@@ -12,10 +12,10 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef CORE_UTIL_FILE_H
-#define CORE_UTIL_FILE_H
+#ifndef TELEMETRY_UTILS_FILE_H
+#define TELEMETRY_UTILS_FILE_H
 
-namespace LixProc
+namespace Telemetry
 {
 namespace Utils
 {
@@ -41,6 +41,6 @@ std::string FileGetFirstLine(std::string path);
 
 } // End File
 } // End Utils
-} // End LixProc
+} // End TELEMETRY
 
 #endif

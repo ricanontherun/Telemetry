@@ -16,7 +16,7 @@
 #include <unordered_map>
 #include <iostream>
 
-namespace LixProc
+namespace Telemetry
 {
 
 void parse_options(int argc, char **argv, struct options *options)

@@ -21,6 +21,8 @@ set(PROJECT_SOURCE
         src/Collectors/SystemCollector.cpp
         src/utils/shell.cpp
         src/core/sys/cpu.cpp
-        src/core/sys/disk.cpp)
+        src/core/sys/disk.cpp
+        src/telemetry.cpp
+        )
 
 add_executable(lixproc ${PROJECT_SOURCE})

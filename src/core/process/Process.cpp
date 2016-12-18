@@ -21,7 +21,7 @@
 #include <fstream>
 #include <cmath>
 
-namespace LixProc
+namespace Telemetry
 {
 namespace Core
 {
@@ -106,7 +106,7 @@ std::ostream &operator<<(std::ostream &stream, const Process &process)
 
 void Process::LoadProcessData()
 {
-    using LixProc::Utils::File::FileExists;
+    using Telemetry::Utils::File::FileExists;
 
     if (!FileExists(this->base_path)) {
         throw std::runtime_error(this->base_path + std::string(" does not exist."));
@@ -119,25 +119,25 @@ void Process::LoadProcessData()
 
 bool Process::LoadProcessCommand()
 {
-    using LixProc::Utils::File::FileGetFirstLine;
+    using Telemetry::Utils::File::FileGetFirstLine;
 
     std::string proc_command = this->base_path + "/" + Process::PD_CMDLINE;
 
     std::string cmd_string = FileGetFirstLine(proc_command);
 
-    LixProc::Utils::ParseCommandString(cmd_string, this->command);
+    Telemetry::Utils::ParseCommandString(cmd_string, this->command);
 
     return true;
 }
 
-LixProc::Utils::Command Process::GetCommand() const
+Telemetry::Utils::Command Process::GetCommand() const
 {
     return this->command;
 }
 
 bool Process::LoadProcessMemory()
 {
-    using LixProc::Utils::File::FileGetFirstLine;
+    using Telemetry::Utils::File::FileGetFirstLine;
 
     // /proc/PID/statm
     std::string dir = this->base_path + "/" + Process::PD_STATM;
@@ -161,4 +161,4 @@ bool Process::LoadProcessMemory()
 }
 
 } // End Core
-} // End LixProc
+} // End Telemetry

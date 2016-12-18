@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/sys/SystemInfo.h>
 
-namespace LixProc {
+namespace Telemetry {
 
 struct sysinfo SystemInfo::sys_info;
 

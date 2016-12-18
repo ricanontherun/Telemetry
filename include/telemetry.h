@@ -12,15 +12,35 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#include <telemetry.h>
+#ifndef TELEMETRY_ALL_H
+#define TELEMETRY_ALL_H
 
-int main(int argc, char **argv)
+#include <json.hpp>
+
+namespace Telemetry
 {
-  Telemetry::Unit unit(Telemetry::Resource::SYSTEM);
 
-  std::string json;
-  unit.Read(json);
+enum Resource
+{
+  EMPTY     = 0,
+  ALL       = 2 | 4,  // All supported resources will be collected.
+  SYSTEM    = 2,      // Brief system related info, CPU, Memory, Hard disk space?
+  PROCESSES = 4,      // System processes will be collected.
+};
 
-  std::cout << json;
-  return EXIT_SUCCESS;
+class Unit
+{
+ private:
+  int flags = Resource::EMPTY;
+
+  void QuerySystem(nlohmann::json & json);
+ public:
+  Unit(int flags = Resource::ALL);
+  void Read();
+  void Read(std::string & output);
+
+};
+
 }
+
+#endif //TELEMETRY_ALL_H

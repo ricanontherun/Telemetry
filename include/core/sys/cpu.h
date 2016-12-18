@@ -12,13 +12,13 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef LIXPROC_CPU_H
-#define LIXPROC_CPU_H
+#ifndef TELEMETRY_CORE_SYS_CPU_H
+#define TELEMETRY_CORE_SYS_CPU_H
 
 #include <map>
 #include <set>
 
-namespace LixProc {
+namespace Telemetry {
 
 namespace Core {
 
@@ -51,6 +51,6 @@ class CPU {
 
 } // Sys
 } // Core
-} // Lixproc
+} // Telemetry
 
-#endif //LIXPROC_CPU_H
+#endif //TELEMETRY_CORE_SYS_CPU_H

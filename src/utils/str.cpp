@@ -16,7 +16,7 @@
 
 #include <utils/str.h>
 
-namespace LixProc
+namespace Telemetry
 {
 namespace Utils
 {
@@ -28,4 +28,4 @@ uint64_t ConvertToInteger(char *string)
 }
 
 } // End Utils
-} // End LixProc
+} // End Telemetry

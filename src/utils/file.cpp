@@ -16,7 +16,7 @@
 #include <iostream>
 #include <memory>
 
-namespace LixProc
+namespace Telemetry
 {
 namespace Utils
 {
@@ -69,4 +69,4 @@ std::string FileGetFirstLine(std::string path)
 
 } // End File
 } // End Utils
-} // End LixProc
+} // End Telemetry

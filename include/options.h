@@ -12,20 +12,15 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef LIXPROC_OPTIONS_H
-#define LIXPROC_OPTIONS_H
+#ifndef TELEMETRY_OPTIONS_H
+#define TELEMETRY_OPTIONS_H
+
+#include <telemetry.h>
 
 #include <string>
 
-namespace LixProc
+namespace Telemetry
 {
-
-enum class Resource : int
-{
-  ALL = 0,    // All supported resources will be collected.
-  SYSTEM,     // Brief system related info, CPU, Memory, Hard disk space?
-  PROCESSES,  // System processes will be collected.
-};
 
 struct options
 {
@@ -40,4 +35,4 @@ static void parse_resource_flags(const char *flag, struct options *options);
 
 }
 
-#endif //LIXPROC_OPTIONS_H
+#endif //TELEMETRY_OPTIONS_H

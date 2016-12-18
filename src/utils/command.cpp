@@ -19,7 +19,7 @@
 #include <iostream>
 #include <boost/algorithm/string.hpp>
 
-namespace LixProc
+namespace Telemetry
 {
 namespace Utils
 {

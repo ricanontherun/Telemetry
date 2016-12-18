@@ -12,8 +12,8 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef CORE_SYS_SYSTEMINFO_H
-#define CORE_SYS_SYSTEMINFO_H
+#ifndef TELEMETRY_CORE_SYS_INFO_H
+#define TELEMETRY_CORE_SYS_INFO_H
 
 #include <core/sys/cpu.h>
 #include <core/sys/disk.h>
@@ -26,7 +26,7 @@
 #include <sys/types.h>
 #include <sys/sysinfo.h>
 
-namespace LixProc {
+namespace Telemetry {
 
 class SystemInfo {
  public:

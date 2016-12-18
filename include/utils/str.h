@@ -12,10 +12,10 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef CORE_UTIL_STR_H
-#define CORE_UTIL_STR_H
+#ifndef TELEMETRY_UTILS_STR_H
+#define TELEMETRY_UTILS_STR_H
 
-namespace LixProc
+namespace Telemetry
 {
 namespace Utils
 {
@@ -23,6 +23,6 @@ namespace Utils
 uint64_t ConvertToInteger(char *string);
 
 } // End Utils
-} // End LixProc
+} // End Telemetry
 
 #endif

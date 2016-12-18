@@ -16,7 +16,7 @@
 
 #include <unistd.h>
 
-namespace LixProc {
+namespace Telemetry {
 
 uid_t SystemUser::uid = 0;
 
@@ -38,4 +38,4 @@ gid_t SystemUser::GetGroupID() {
   return SystemUser::gid;
 }
 
-} // End LixProc
+} // End Telemetry

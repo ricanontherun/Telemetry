@@ -12,8 +12,8 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef REGEX_MAP_H
-#define REGEX_MAP_H
+#ifndef TELEMETRY_UTILS_REGEXMAP_H
+#define TELEMETRY_UTILS_REGEXMAP_H
 
 #include <map>
 #include <regex>

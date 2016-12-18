@@ -12,12 +12,12 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef CORE_UTILS_COMMAND_H
-#define CORE_UTILS_COMMAND_H
+#ifndef TELEMETRY_COMMAND_H
+#define TELEMETRY_COMMAND_H
 
 #include <string>
 
-namespace LixProc
+namespace Telemetry
 {
 namespace Utils
 {

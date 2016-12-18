@@ -12,14 +12,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef LIXPROC_PROCESSCOLLECTOR_H
-#define LIXPROC_PROCESSCOLLECTOR_H
+#ifndef TELEMETRY_COLLECTOR_PROCESS_H
+#define TELEMETRY_COLLECTOR_PROCESS_H
 
 #include <interfaces/Collector.h>
 #include <core/process/Process.h>
 #include <unordered_map>
 
-namespace LixProc {
+namespace Telemetry {
 
 namespace Collectors {
 
@@ -70,4 +70,4 @@ class ProcessCollector : public Interfaces::Collector {
 
 }
 
-#endif //LIXPROC_PROCESSCOLLECTOR_H
+#endif //TELEMETRY_COLLECTOR_PROCESS_H
