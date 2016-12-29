@@ -23,9 +23,10 @@ namespace Telemetry
 enum Resource
 {
   EMPTY     = 0,
-  ALL       = 2 | 4,  // All supported resources will be collected.
+  ALL = 1,  // All supported resources will be collected.
   SYSTEM    = 2,      // Brief system related info, CPU, Memory, Hard disk space?
   PROCESSES = 4,      // System processes will be collected.
+  DISK = 8
 };
 
 class Unit
@@ -34,6 +35,7 @@ class Unit
   int flags = Resource::EMPTY;
 
   void QuerySystem(nlohmann::json & json);
+  bool ResourceFlagSet(Resource r);
  public:
   Unit(int flags = Resource::ALL);
   void Read();

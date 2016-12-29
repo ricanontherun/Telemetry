@@ -107,13 +107,20 @@ void ProcessCollector::LoadProcessList() {
   }
 
   while ((de = readdir(d))) {
-    uint64_t dir_val = 0;
-    if (de->d_type != DT_DIR || !(dir_val = Telemetry::Utils::ConvertToInteger(de->d_name))) {
+    uint64_t file_name = 0;
+
+    // Not a directory.
+    if (de->d_type != DT_DIR) {
+      continue;
+    }
+
+    // Could not convert the file name to an integer.
+    if (!(file_name = Telemetry::Utils::ConvertToInteger(de->d_name))) {
       continue;
     }
 
     try {
-      this->Load(dir_val);
+      this->Load(file_name);
     } catch (std::runtime_error &e) {
 
     }
@@ -134,6 +141,7 @@ void ProcessCollector::toJSON(nlohmann::json &json) const {
 
   using json_t = nlohmann::json;
 
+  // Reserve the memory man.
   json["processes"] = {};
 
   for (auto process = iterators.first; process != iterators.second; process++) {

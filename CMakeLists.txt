@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(lixproc)
+project(telemetry)
 
 set(CMAKE_CXX_COMPILER g++)
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} --std=c++14)
@@ -19,10 +19,11 @@ set(PROJECT_SOURCE
         src/options.cpp
         src/Collectors/ProcessCollector.cpp
         src/Collectors/SystemCollector.cpp
+        src/Collectors/DiskCollector.cpp
         src/utils/shell.cpp
         src/core/sys/cpu.cpp
         src/core/sys/disk.cpp
         src/telemetry.cpp
         )
 
-add_executable(lixproc ${PROJECT_SOURCE})
+add_executable(telemetry ${PROJECT_SOURCE})

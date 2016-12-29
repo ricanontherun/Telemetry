@@ -16,7 +16,7 @@
 
 int main(int argc, char **argv)
 {
-  Telemetry::Unit unit(Telemetry::Resource::SYSTEM);
+  Telemetry::Unit unit(Telemetry::Resource::DISK);
 
   std::string json;
   unit.Read(json);

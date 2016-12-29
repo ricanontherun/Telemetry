@@ -28,6 +28,7 @@ namespace Sys {
 void Disk::Read() {
   std::string output;
 
+  // Run the command.
   if (!RunInShell(this->command_string, output)) {
     return;
   }
@@ -53,6 +54,7 @@ void Disk::Read() {
       continue;
     }
 
+    // Store this filesystem.
     this->filesystems.push_back(FileSystem(
         columns.at(0),
         (std::uint64_t) strtol(columns.at(1).c_str(), nullptr, 10),

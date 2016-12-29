@@ -2,6 +2,7 @@
 
 #include <Collectors/ProcessCollector.h>
 #include <Collectors/SystemCollector.h>
+#include <Collectors/DiskCollector.h>
 
 namespace Telemetry {
 
@@ -20,21 +21,32 @@ void Unit::Read(std::string &output) {
 
   this->QuerySystem(j);
 
-  output = j.dump();
+  output = j.dump(4);
 }
 
 void Unit::QuerySystem(nlohmann::json &json) {
-  if (this->flags & Resource::PROCESSES) {
+  if (this->ResourceFlagSet(Resource::PROCESSES)) {
     Collectors::ProcessCollector collector;
     collector.load();
     collector.toJSON(json);
   }
 
-  if (this->flags & Resource::SYSTEM) {
+  if (this->ResourceFlagSet(Resource::SYSTEM)) {
     Collectors::SystemCollector system_collector;
     system_collector.load();
     system_collector.toJSON(json);
   }
+
+  if (this->ResourceFlagSet(Resource::DISK)) {
+    Collectors::DiskCollector disk_collector;
+    disk_collector.load();
+    disk_collector.toJSON(json);
+  }
+
+}
+
+inline bool Unit::ResourceFlagSet(Resource flag) {
+  return (this->flags & (Resource::ALL | flag)) != 0;
 }
 
 }

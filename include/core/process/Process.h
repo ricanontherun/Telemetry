@@ -19,93 +19,90 @@
 
 #include <iomanip>
 
-namespace Telemetry
-{
-namespace Core
-{
-class Process
-{
-    public:
+namespace Telemetry {
+namespace Core {
+class Process {
+ public:
 
-        /**
-         * @brief Representation of proc/PID/statm columns
-         */
-        struct Memory {
-            uint64_t size;      // Total Program Size
-            uint64_t resident;  // Resident Set Size
-            uint64_t share;     // Shared Pages
-            uint64_t text;      // code
-            uint64_t lib;       // library?
-            uint64_t data;      // data/stack
-            uint64_t dirty;     // dirty pages
-        };
+  /**
+   * @brief Representation of proc/PID/statm columns
+   */
+  struct Memory {
+    uint64_t size;      // Total Program Size
+    uint64_t resident;  // Resident Set Size
+    uint64_t share;     // Shared Pages
+    uint64_t text;      // code
+    uint64_t lib;       // library?
+    uint64_t data;      // data/stack
+    uint64_t dirty;     // dirty pages
+  };
 
-        /*
-         |--------------------------------------------------
-         | Static mappings to linux /proc/PID directories.
-         |--------------------------------------------------
-        */
-        static const std::string PD_STATM, PD_CMDLINE, PD_BASE;
+  /*
+   |--------------------------------------------------
+   | Static mappings to linux /proc/PID directories.
+   |--------------------------------------------------
+  */
+  static const std::string PD_STATM, PD_CMDLINE, PD_BASE;
 
-        /**
-        * @brief Load all of the data associated with /proc/pid
-        *
-        * @param pid
-        */
-        Process(uint32_t pid);
+  /**
+  * @brief Load all of the data associated with /proc/pid
+  *
+  * @param pid
+  */
+  Process(uint32_t pid);
 
-        ~Process();
+  ~Process();
 
-        uint32_t GetPID() const;
+  uint32_t GetPID() const;
 
-        /**
-         * @brief Get the "actual" memory usage of a process.
-         *
-         * @return
-         */
-        double GetActualMemoryUsage() const;
+  /**
+   * @brief Get the "actual" memory usage of a process.
+   *
+   * @return
+   */
+  double GetActualMemoryUsage() const;
 
-        /**
-         * @brief Get the relative memory usage of a process.
-         *
-         * @return
-         */
-        double GetRelativeMemoryUsage() const;
+  /**
+   * @brief Get the relative memory usage of a process.
+   *
+   * @return
+   */
+  double GetRelativeMemoryUsage() const;
 
-        Telemetry::Utils::Command GetCommand() const;
+  Telemetry::Utils::Command GetCommand() const;
 
-        bool Kill();
+  bool Kill();
 
-        friend std::ostream &operator<<(std::ostream &stream, const Process &process);
-    private:
-        uint32_t pid;
+  friend std::ostream &operator<<(std::ostream &stream, const Process &process);
+ private:
+  uint32_t pid;
 
-        // Base path to process /proc/this->pid
-        std::string base_path;
+  // Base path to process /proc/this->pid
+  std::string base_path;
 
-        // Memory usage of this process.
-        struct Memory memory;
+  // Memory usage of this process.
+  struct Memory memory;
 
-        Telemetry::Utils::Command command;
+  Telemetry::Utils::Command command;
 
-        /** * @brief Load the process's data.  *
-        * @return
-        */
-        void LoadProcessData();
+  /** * @brief Load the process's data.  *
+  * @return
+  */
+  void LoadProcessData();
 
-        /**
-        * @brief Load the process's executable and arguments.
-        *
-        * @return
-        */
-        bool LoadProcessCommand();
+  /**
+  * @brief Load the process's executable and arguments.
+  *
+  * @return
+  */
+  bool LoadProcessCommand();
 
-        /**
-        * @brief Load the process's memory usage.
-        *
-        * @return
-        */
-        bool LoadProcessMemory();
+  /**
+  * @brief Load the process's memory usage.
+  *
+  * @return
+  */
+  bool LoadProcessMemory();
 };
 } // End Core
 } // End Telemetry
