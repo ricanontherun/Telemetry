@@ -15,29 +15,23 @@
 #ifndef TELEMETRY_ALL_H
 #define TELEMETRY_ALL_H
 
+#include <options.h>
+
 #include <json.hpp>
 
 namespace Telemetry
 {
 
-enum Resource
-{
-  EMPTY     = 0,
-  ALL = 1,  // All supported resources will be collected.
-  SYSTEM    = 2,      // Brief system related info, CPU, Memory, Hard disk space?
-  PROCESSES = 4,      // System processes will be collected.
-  DISK = 8
-};
-
 class Unit
 {
  private:
-  int flags = Resource::EMPTY;
+  Options options;
 
   void QuerySystem(nlohmann::json & json);
   bool ResourceFlagSet(Resource r);
  public:
-  Unit(int flags = Resource::ALL);
+  Unit();
+  Unit(Options options);
   void Read();
   void Read(std::string & output);
 

@@ -16,7 +16,13 @@
 
 int main(int argc, char **argv)
 {
-  Telemetry::Unit unit(Telemetry::Resource::DISK);
+  Telemetry::Options options;
+  options.resources = Telemetry::Resource::DISK;
+  options.unit = Telemetry::SizeUnit::KB;
+
+  //
+
+  Telemetry::Unit unit(options);
 
   std::string json;
   unit.Read(json);

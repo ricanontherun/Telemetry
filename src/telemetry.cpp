@@ -6,7 +6,9 @@
 
 namespace Telemetry {
 
-Unit::Unit(int flags) : flags(flags) {}
+Unit::Unit() : options(Options()) {}
+
+Unit::Unit(Options options) : options(options) {}
 
 void Unit::Read() {
   nlohmann::json j = nlohmann::json::object();
@@ -21,13 +23,14 @@ void Unit::Read(std::string &output) {
 
   this->QuerySystem(j);
 
-  output = j.dump(4);
+  output = j.dump(2);
 }
 
 void Unit::QuerySystem(nlohmann::json &json) {
   if (this->ResourceFlagSet(Resource::PROCESSES)) {
     Collectors::ProcessCollector collector;
     collector.load();
+    collector.setOptions(this->options);
     collector.toJSON(json);
   }
 
@@ -40,13 +43,14 @@ void Unit::QuerySystem(nlohmann::json &json) {
   if (this->ResourceFlagSet(Resource::DISK)) {
     Collectors::DiskCollector disk_collector;
     disk_collector.load();
+    disk_collector.setOptions(this->options); // TODO: Refactor to use a immutable shared reference to this.
     disk_collector.toJSON(json);
   }
 
 }
 
 inline bool Unit::ResourceFlagSet(Resource flag) {
-  return (this->flags & (Resource::ALL | flag)) != 0;
+  return (this->options.resources & (Resource::ALL | flag)) != 0;
 }
 
 }

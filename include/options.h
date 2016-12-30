@@ -15,23 +15,32 @@
 #ifndef TELEMETRY_OPTIONS_H
 #define TELEMETRY_OPTIONS_H
 
-#include <telemetry.h>
-
 #include <string>
 
 namespace Telemetry
 {
 
-struct options
+/**
+ * Enum of all possible resources reported by Telemetry.
+ */
+enum Resource
 {
-  options() : output_path(""), resources(static_cast<int>(Resource::ALL)) {};
-
-  std::string output_path;
-  int resources;
+  NONE = 0,
+  ALL = 1,
+  SYSTEM = 2,
+  PROCESSES = 4,
+  DISK = 8
 };
 
-void parse_options(int argc, char **argv, struct options *options);
-static void parse_resource_flags(const char *flag, struct options *options);
+enum SizeUnit {
+  KB = 0,
+  MB = 0
+};
+
+struct Options {
+  int resources = Resource::NONE;
+  int unit = SizeUnit::KB;
+};
 
 }
 

@@ -15,6 +15,7 @@
 #ifndef TELEMETRY_INTERFACES_COLLECTOR_H
 #define TELEMETRY_INTERFACES_COLLECTOR_H
 
+#include <options.h>
 #include <json.hpp>
 
 namespace Telemetry
@@ -31,6 +32,13 @@ class Collector
   virtual void toJSON(nlohmann::json &json) const = 0;
 
   virtual void load() = 0;
+
+  void setOptions(Options options) {
+    this->options = options;
+  }
+
+ protected:
+  Options options;
 };
 
 }
