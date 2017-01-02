@@ -4,12 +4,9 @@ project(telemetry)
 set(CMAKE_CXX_COMPILER g++)
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} --std=c++14)
 
-add_definitions(-DDEBUG=1)
-
 include_directories(include vendor)
 
 set(PROJECT_SOURCE
-        src/main.cpp
         src/core/process/Process.cpp
         src/utils/file.cpp
         src/utils/command.cpp
@@ -26,4 +23,4 @@ set(PROJECT_SOURCE
         src/telemetry.cpp
         )
 
-add_executable(telemetry ${PROJECT_SOURCE})
+add_library(telemetry STATIC ${PROJECT_SOURCE})

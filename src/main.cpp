@@ -17,10 +17,8 @@
 int main(int argc, char **argv)
 {
   Telemetry::Options options;
-  options.resources = Telemetry::Resource::DISK;
+  options.resources |= Telemetry::Resource::DISK;
   options.unit = Telemetry::SizeUnit::KB;
-
-  //
 
   Telemetry::Unit unit(options);
 
@@ -28,5 +26,6 @@ int main(int argc, char **argv)
   unit.Read(json);
 
   std::cout << json;
+
   return EXIT_SUCCESS;
 }
