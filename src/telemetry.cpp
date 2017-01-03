@@ -23,7 +23,7 @@ void Unit::Read(std::string &output) {
 
   this->QuerySystem(j);
 
-  output = j.dump(2);
+  output = j.dump();
 }
 
 void Unit::QuerySystem(nlohmann::json &json) {
