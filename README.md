@@ -1,6 +1,6 @@
 # Telemetry
 
-Collect data from your linux system and output to a file in JSON format.
+Collect data from your Linux machine like disk usage, processes and more.
 
 ## Dependencies
 * c++14

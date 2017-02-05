@@ -16,7 +16,6 @@
 #define TELEMETRY_INTERFACES_COLLECTOR_H
 
 #include <options.h>
-#include <json.hpp>
 
 namespace Telemetry
 {
@@ -29,11 +28,6 @@ class Collector
 {
  public:
   Collector(Results * results) : results(results) {};
-  /**
-   *
-   * @param json
-   */
-  virtual void toJSON(nlohmann::json &json) const = 0;
 
   virtual void load() = 0;
 

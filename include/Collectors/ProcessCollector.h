@@ -46,8 +46,6 @@ class ProcessCollector : public Interfaces::Collector {
    */
   Core::ProcessIterators Load(const std::string &name);
 
-  void toJSON(nlohmann::json &p) const;
-
   void load();
  private:
   // Base process directory path.

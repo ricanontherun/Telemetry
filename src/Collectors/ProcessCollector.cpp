@@ -53,9 +53,8 @@ void ProcessCollector::Load(uint64_t pid) {
   stat_i = stat(full_process_path.c_str(), &info);
 
   if (stat_i == -1) {
-    // TODO: Determine appropriate action. If the file doesn't exist,
-    // that probably shouldn't be an error. Else, write to a log?
-    std::cout << strerror(errno) << std::endl;
+      std::cout << "Failed to stat file.\n";
+      return;
   }
 
   // Are we the owner of the process?
@@ -140,28 +139,6 @@ Core::ProcessIterators ProcessCollector::MakeIterators() const {
       this->processes.begin(),
       this->processes.end()
   );
-}
-
-void ProcessCollector::toJSON(nlohmann::json &json) const {
-  Core::ProcessIterators iterators = this->MakeIterators();
-
-  using json_t = nlohmann::json;
-
-  // Reserve the memory man.
-  json["processes"] = {};
-
-  for (auto process = iterators.first; process != iterators.second; process++) {
-    json_t object = json_t::object();
-
-    object["command"] = process->second->GetCommand().GetPath();
-
-    object["memory"] = {
-        {"actual", process->second->GetActualMemoryUsage()},
-        {"relative", process->second->GetRelativeMemoryUsage()}
-    };
-
-    json["processes"].push_back(object);
-  }
 }
 
 } // Namespace Collectors

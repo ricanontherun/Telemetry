@@ -20,8 +20,6 @@
 #include <results.h>
 #include <Collectors/DiskCollector.h>
 
-#include <json.hpp>
-
 namespace Telemetry {
 
 class Unit {

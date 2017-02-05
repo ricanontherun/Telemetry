@@ -16,25 +16,5 @@ void DiskCollector::load() {
   this->results->filesystems.assign(iterators.first, iterators.second);
 }
 
-void DiskCollector::toJSON(nlohmann::json &json) const {
-  Core::Sys::FileSystemIterators iterators = this->disk.GetFileSystemIterators();
-
-  using json_t = nlohmann::json;
-
-  json["filesystems"] = {};
-
-  for (auto it = iterators.first; it != iterators.second; it++) {
-    json_t object = json_t::object();
-
-    object["label"] = it->GetSource();
-    object["size"] = it->GetSize();
-    object["used"] = it->GetUsed();
-    object["available"] = it->GetAvailable();
-    object["relative_used"] = it->GetPercentUsed();
-
-    json["filesystems"].push_back(object);
-  }
-}
-
 }
 }

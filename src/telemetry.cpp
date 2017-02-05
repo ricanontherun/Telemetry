@@ -1,7 +1,6 @@
 #include <telemetry.h>
 
 #include <Collectors/ProcessCollector.h>
-#include <Collectors/SystemCollector.h>
 #include <Collectors/DiskCollector.h>
 
 namespace Telemetry {
