@@ -17,22 +17,20 @@
 
 #include <interfaces/Collector.h>
 #include <core/process/Process.h>
-#include <unordered_map>
 
 namespace Telemetry {
 
+class Results;
+
 namespace Collectors {
-
-typedef std::unordered_map<uint32_t, std::unique_ptr<Core::Process>>::const_iterator ProcessIterator;
-
-typedef std::pair<ProcessIterator, ProcessIterator> ProcessIterators;
 
 class ProcessCollector : public Interfaces::Collector {
  public:
+  ProcessCollector(Results * results);
   /**
    * @brief Load all active processes.
    */
-  ProcessIterators Load();
+  Core::ProcessIterators Load();
 
   /**
    * @brief Load a particular process.
@@ -46,7 +44,7 @@ class ProcessCollector : public Interfaces::Collector {
    *
    * @param name
    */
-  ProcessIterators Load(const std::string &name);
+  Core::ProcessIterators Load(const std::string &name);
 
   void toJSON(nlohmann::json &p) const;
 
@@ -63,7 +61,7 @@ class ProcessCollector : public Interfaces::Collector {
    */
   void LoadProcessList();
 
-  ProcessIterators MakeIterators() const;
+  Core::ProcessIterators MakeIterators() const;
 };
 
 }

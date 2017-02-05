@@ -18,9 +18,11 @@
 #include <utils/command.h>
 
 #include <iomanip>
+#include <unordered_map>
 
 namespace Telemetry {
 namespace Core {
+
 class Process {
  public:
 
@@ -104,6 +106,10 @@ class Process {
   */
   bool LoadProcessMemory();
 };
+
+typedef std::unordered_map<uint32_t, std::unique_ptr<Process>>::const_iterator ProcessIterator;
+typedef std::pair<ProcessIterator, ProcessIterator> ProcessIterators;
+
 } // End Core
 } // End Telemetry
 

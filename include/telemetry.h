@@ -16,25 +16,24 @@
 #define TELEMETRY_ALL_H
 
 #include <options.h>
+#include <core/sys/filesystem.h>
+#include <results.h>
+#include <Collectors/DiskCollector.h>
 
 #include <json.hpp>
 
-namespace Telemetry
-{
+namespace Telemetry {
 
-class Unit
-{
+class Unit {
  private:
   Options options;
 
-  void QuerySystem(nlohmann::json & json);
+  void QuerySystem(Telemetry::Results *read);
   bool ResourceFlagSet(Resource r);
  public:
   Unit();
   Unit(Options options);
-  void Read();
-  void Read(std::string & output);
-
+  void Read(Telemetry::Results *read);
 };
 
 }

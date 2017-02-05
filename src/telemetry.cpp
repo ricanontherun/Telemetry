@@ -10,43 +10,20 @@ Unit::Unit() : options(Options()) {}
 
 Unit::Unit(Options options) : options(options) {}
 
-void Unit::Read() {
-  nlohmann::json j = nlohmann::json::object();
-
-  this->QuerySystem(j);
-
-  std::cout << j << "\n";
+void Unit::Read(Telemetry::Results * results) {
+  this->QuerySystem(results);
 }
 
-void Unit::Read(std::string &output) {
-  nlohmann::json j = nlohmann::json::object();
-
-  this->QuerySystem(j);
-
-  output = j.dump();
-}
-
-void Unit::QuerySystem(nlohmann::json &json) {
+void Unit::QuerySystem(Telemetry::Results * results) {
   if (this->ResourceFlagSet(Resource::PROCESSES)) {
-    Collectors::ProcessCollector collector;
+    Collectors::ProcessCollector collector(results);
     collector.load();
-    collector.setOptions(this->options);
-    collector.toJSON(json);
-  }
-
-  if (this->ResourceFlagSet(Resource::SYSTEM)) {
-    Collectors::SystemCollector system_collector;
-    system_collector.load();
-    system_collector.toJSON(json);
   }
 
   if (this->ResourceFlagSet(Resource::DISK)) {
-    Collectors::DiskCollector disk_collector;
+    Collectors::DiskCollector disk_collector(results);
     disk_collector.load();
-    disk_collector.setOptions(this->options); // TODO: Refactor to use a immutable shared reference to this.
-    disk_collector.toJSON(json);
   }
-
 }
 
 inline bool Unit::ResourceFlagSet(Resource flag) {

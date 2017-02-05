@@ -16,6 +16,7 @@
 
 #include <utils/str.h>
 #include <core/sys/SystemUser.h>
+#include <results.h>
 
 #include <sys/stat.h>
 #include <dirent.h>
@@ -24,17 +25,22 @@ namespace Telemetry {
 
 namespace Collectors {
 
-void ProcessCollector::load() {
-  this->LoadProcessList();
-}
+ProcessCollector::ProcessCollector(Results *results)
+: Collector(results) {}
 
 /**
  * @brief Load the process list.
  */
-ProcessIterators ProcessCollector::Load() {
+Core::ProcessIterators ProcessCollector::Load() {
   this->LoadProcessList();
 
   return this->MakeIterators();
+}
+
+void ProcessCollector::load() {
+  this->LoadProcessList();
+
+  this->results->process_iterators = this->MakeIterators();
 }
 
 void ProcessCollector::Load(uint64_t pid) {
@@ -64,7 +70,7 @@ void ProcessCollector::Load(uint64_t pid) {
   }
 }
 
-ProcessIterators ProcessCollector::Load(const std::string &name) {
+Core::ProcessIterators ProcessCollector::Load(const std::string &name) {
   // First, load all processes.
   this->Load();
 
@@ -129,7 +135,7 @@ void ProcessCollector::LoadProcessList() {
   closedir(d);
 }
 
-ProcessIterators ProcessCollector::MakeIterators() const {
+Core::ProcessIterators ProcessCollector::MakeIterators() const {
   return std::make_pair(
       this->processes.begin(),
       this->processes.end()
@@ -137,7 +143,7 @@ ProcessIterators ProcessCollector::MakeIterators() const {
 }
 
 void ProcessCollector::toJSON(nlohmann::json &json) const {
-  ProcessIterators iterators = this->MakeIterators();
+  Core::ProcessIterators iterators = this->MakeIterators();
 
   using json_t = nlohmann::json;
 

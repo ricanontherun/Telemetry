@@ -16,6 +16,8 @@
 #define TELEMETRY_CORE_SYS_FILESYSTEM_H
 
 #include <cstdint>
+#include <iostream>
+#include <iomanip>
 #include <string>
 
 namespace Telemetry {
@@ -45,6 +47,18 @@ class FileSystem {
   const std::uint64_t &GetUsed() const {
     return this->used;
   };
+
+  float GetPercentUsed() const {
+    float size = static_cast<float>(this->GetSize());
+
+    if ( size == 0.0 ) {
+      return 0.0;
+    }
+
+    float used = static_cast<float>(this->GetUsed());
+
+    return (used / size) * 100.00;
+  }
 
   const std::uint64_t &GetAvailable() const {
     return this->avail;

@@ -38,6 +38,7 @@ void Disk::Read() {
   lines.reserve((std::size_t) std::count(output.begin(), output.end(), '\n'));
   boost::split(lines, output, boost::is_any_of("\n"), boost::token_compress_on);
 
+  // At this point we know how many file systems there are, so we can reserve some space.
   this->filesystems.reserve(lines.size() - 1);
 
   std::vector<std::string> columns;

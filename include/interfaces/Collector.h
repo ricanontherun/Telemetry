@@ -20,11 +20,15 @@
 
 namespace Telemetry
 {
+
+class Results;
+
 namespace Interfaces {
 
 class Collector
 {
  public:
+  Collector(Results * results) : results(results) {};
   /**
    *
    * @param json
@@ -39,6 +43,7 @@ class Collector
 
  protected:
   Options options;
+  Results * results;
 };
 
 }
