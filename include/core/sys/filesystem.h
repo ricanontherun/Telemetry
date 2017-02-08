@@ -19,6 +19,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <vector>
 
 namespace Telemetry {
 namespace Core {
@@ -64,6 +65,9 @@ class FileSystem {
     return this->avail;
   };
 };
+
+typedef std::vector<FileSystem>::const_iterator FileSystemIterator;
+typedef std::pair<FileSystemIterator, FileSystemIterator> FileSystemIterators;
 
 }
 }

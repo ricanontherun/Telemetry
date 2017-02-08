@@ -26,40 +26,22 @@ namespace Collectors {
 
 class ProcessCollector : public Interfaces::Collector {
  public:
-  ProcessCollector(Results * results);
-  /**
-   * @brief Load all active processes.
-   */
-  Core::ProcessIterators Load();
-
   /**
    * @brief Load a particular process.
    *
    * @param pid
    */
-  void Load(uint64_t pid);
+  void Load(uint64_t pid, Results & results);
 
   /**
-   * Load all processes whose executables match a particular name.
+   * Collect all active processes into results.
    *
-   * @param name
+   * @param results
    */
-  Core::ProcessIterators Load(const std::string &name);
-
-  void load();
+  void collect(Results & results);
  private:
   // Base process directory path.
   std::string proc_root;
-
-  // Map of processes, keyed by their respective PID
-  std::unordered_map<uint32_t, std::unique_ptr<Core::Process>> processes;
-
-  /**
-   * @brief Load the process list.
-   */
-  void LoadProcessList();
-
-  Core::ProcessIterators MakeIterators() const;
 };
 
 }

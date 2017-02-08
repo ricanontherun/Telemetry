@@ -27,9 +27,7 @@ namespace Interfaces {
 class Collector
 {
  public:
-  Collector(Results * results) : results(results) {};
-
-  virtual void load() = 0;
+  virtual void collect(Results & results) = 0;
 
   void setOptions(Options options) {
     this->options = options;
@@ -37,7 +35,6 @@ class Collector
 
  protected:
   Options options;
-  Results * results;
 };
 
 }

@@ -25,25 +25,40 @@ namespace Telemetry {
 
 namespace Collectors {
 
-ProcessCollector::ProcessCollector(Results *results)
-: Collector(results) {}
+void ProcessCollector::collect(Results & results) {
+  DIR *d;
+  struct dirent *de;
 
-/**
- * @brief Load the process list.
- */
-Core::ProcessIterators ProcessCollector::Load() {
-  this->LoadProcessList();
+  d = opendir(Core::Process::PD_BASE.c_str());
 
-  return this->MakeIterators();
+  if (!d) { // If we can't open /proc something is wrong?
+    return;
+  }
+
+  while ((de = readdir(d))) {
+    uint64_t pid = 0;
+
+    // Not a directory.
+    if (de->d_type != DT_DIR) {
+      continue;
+    }
+
+    // Could not convert the file name to an integer.
+    if (!(pid = Telemetry::Utils::ConvertToInteger(de->d_name))) {
+      continue;
+    }
+
+    try {
+      this->Load(pid, results);
+    } catch (std::runtime_error &e) {
+
+    }
+  }
+
+  closedir(d);
 }
 
-void ProcessCollector::load() {
-  this->LoadProcessList();
-
-  this->results->process_iterators = this->MakeIterators();
-}
-
-void ProcessCollector::Load(uint64_t pid) {
+void ProcessCollector::Load(uint64_t pid, Results & results) {
   struct stat info;
   int stat_i;
 
@@ -63,82 +78,10 @@ void ProcessCollector::Load(uint64_t pid) {
   }
 
   try {
-    this->processes[pid] = std::make_unique<Core::Process>(pid);
+    results.processes[pid] = std::make_unique<Core::Process>(pid);
   } catch (std::runtime_error &error) {
     std::cerr << error.what() << std::endl;
   }
-}
-
-Core::ProcessIterators ProcessCollector::Load(const std::string &name) {
-  // First, load all processes.
-  this->Load();
-
-  Utils::Command command;
-
-  // Iterate and erase any processes whose executable names don't match the name filter.
-  for (auto it = this->processes.begin(); it != this->processes.end();) {
-    command = it->second->GetCommand();
-
-    if (command.name != name) {
-      // erase invalidates the it iterator and returns a new valid one.
-      it = this->processes.erase(it);
-    } else {
-      it++;
-    }
-  }
-
-  return this->MakeIterators();
-}
-
-
-/*
-|--------------------------------------------------
-| Private
-|--------------------------------------------------
-*/
-
-/**
- * @brief Load the process list.
- */
-void ProcessCollector::LoadProcessList() {
-
-  DIR *d;
-  struct dirent *de;
-
-  d = opendir(Core::Process::PD_BASE.c_str());
-
-  if (!d) { // If we can't open /proc something is wrong?
-    return;
-  }
-
-  while ((de = readdir(d))) {
-    uint64_t file_name = 0;
-
-    // Not a directory.
-    if (de->d_type != DT_DIR) {
-      continue;
-    }
-
-    // Could not convert the file name to an integer.
-    if (!(file_name = Telemetry::Utils::ConvertToInteger(de->d_name))) {
-      continue;
-    }
-
-    try {
-      this->Load(file_name);
-    } catch (std::runtime_error &e) {
-
-    }
-  }
-
-  closedir(d);
-}
-
-Core::ProcessIterators ProcessCollector::MakeIterators() const {
-  return std::make_pair(
-      this->processes.begin(),
-      this->processes.end()
-  );
 }
 
 } // Namespace Collectors

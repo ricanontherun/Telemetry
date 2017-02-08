@@ -19,7 +19,6 @@
 namespace Telemetry {
 
 uid_t SystemUser::uid = 0;
-
 gid_t SystemUser::gid = 0;
 
 uid_t SystemUser::GetUserID() {

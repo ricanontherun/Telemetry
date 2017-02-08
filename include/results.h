@@ -7,8 +7,7 @@
 #include <utility>
 #include <vector>
 
-namespace Telemetry
-{
+namespace Telemetry {
 
 // Forward declare the friend collectors so they can write
 // to the Results *'s private members.
@@ -23,25 +22,22 @@ class Results {
   friend class Collectors::DiskCollector;
   friend class Collectors::ProcessCollector;
  private:
-  std::vector<Telemetry::Core::Sys::FileSystem> filesystems;
-  Core::ProcessIterators process_iterators;
+  std::vector<Core::Sys::FileSystem> filesystems;
+  std::unordered_map<uint32_t, std::unique_ptr<Core::Process>> processes;
 
  public:
-  // TODO: Define a FileSystemIterators typedef to make this easier.
-  std::pair<
-    std::vector<Telemetry::Core::Sys::FileSystem>::const_iterator,
-    std::vector<Telemetry::Core::Sys::FileSystem>::const_iterator
-  >
-  GetFilesystemIterators() const {
+  Core::Sys::FileSystemIterators GetFilesystemIterators() const {
     return std::make_pair<
-        std::vector<Telemetry::Core::Sys::FileSystem>::const_iterator,
-        std::vector<Telemetry::Core::Sys::FileSystem>::const_iterator
-    >
-        (this->filesystems.begin(), this->filesystems.end());
+        Core::Sys::FileSystemIterator,
+        Core::Sys::FileSystemIterator
+    >(this->filesystems.begin(), this->filesystems.end());
   }
 
-  const Core::ProcessIterators & GetProcessIterators() const {
-    return this->process_iterators;
+  Core::ProcessIterators GetProcessIterators() const {
+    return std::make_pair<
+        Core::ProcessIterator,
+        Core::ProcessIterator
+    >(this->processes.begin(), this->processes.end());
   };
 };
 

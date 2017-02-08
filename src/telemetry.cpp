@@ -9,19 +9,19 @@ Unit::Unit() : options(Options()) {}
 
 Unit::Unit(Options options) : options(options) {}
 
-void Unit::Read(Telemetry::Results * results) {
+void Unit::Read(Telemetry::Results & results) {
   this->QuerySystem(results);
 }
 
-void Unit::QuerySystem(Telemetry::Results * results) {
+void Unit::QuerySystem(Telemetry::Results & results) {
   if (this->ResourceFlagSet(Resource::PROCESSES)) {
-    Collectors::ProcessCollector collector(results);
-    collector.load();
+    Collectors::ProcessCollector collector;
+    collector.collect(results);
   }
 
   if (this->ResourceFlagSet(Resource::DISK)) {
-    Collectors::DiskCollector disk_collector(results);
-    disk_collector.load();
+    Collectors::DiskCollector disk_collector;
+    disk_collector.collect(results);
   }
 }
 

@@ -2,18 +2,16 @@
 #define TELEMETRY_COLLECTOR_DISK_H
 
 #include <interfaces/Collector.h>
-#include <core/sys/disk.h>
 
 namespace Telemetry {
 namespace Collectors {
 
 class DiskCollector : public Interfaces::Collector {
  public:
-
-  DiskCollector(Results * results);
-  virtual void load();
+  virtual void collect(Results & results);
  private:
-  Core::Sys::Disk disk;
+  const short column_count = 4;
+  const char *command_string = "df --output=source,size,used,avail";
 };
 
 }

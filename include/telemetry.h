@@ -15,23 +15,25 @@
 #ifndef TELEMETRY_ALL_H
 #define TELEMETRY_ALL_H
 
-#include <options.h>
-#include <core/sys/filesystem.h>
 #include <results.h>
+#include <core/sys/filesystem.h>
 #include <Collectors/DiskCollector.h>
 
 namespace Telemetry {
+
+enum Resource;
+struct Options;
 
 class Unit {
  private:
   Options options;
 
-  void QuerySystem(Telemetry::Results *read);
+  void QuerySystem(Telemetry::Results & read);
   bool ResourceFlagSet(Resource r);
  public:
   Unit();
   Unit(Options options);
-  void Read(Telemetry::Results *read);
+  void Read(Telemetry::Results & read);
 };
 
 }

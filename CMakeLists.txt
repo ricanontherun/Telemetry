@@ -12,6 +12,8 @@ set(PROJECT_SOURCE
     src/core/process/Process.cpp
     src/utils/file.cpp
     src/utils/command.cpp
+        src/core/sys/SystemInfo.cpp
+        src/core/sys/SystemUser.cpp
         src/utils/str.cpp
         src/options.cpp
         src/Collectors/ProcessCollector.cpp

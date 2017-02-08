@@ -25,14 +25,6 @@ namespace Telemetry {
 namespace Core {
 namespace Sys {
 
-typedef
-std::vector<FileSystem>::const_iterator
-    FileSystemIterator;
-
-typedef
-std::pair<FileSystemIterator, FileSystemIterator>
-    FileSystemIterators;
-
 class Disk : public Interfaces::Readable {
  private:
   const short column_count = 4;
