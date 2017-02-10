@@ -26,46 +26,82 @@ namespace Core {
 namespace Sys {
 
 class FileSystem {
- private:
-  std::string source;
-  std::uint64_t size;
-  std::uint64_t used;
-  std::uint64_t avail;
-
  public:
-  FileSystem() : source(""), size(0), used(0), avail(0) {};
-  FileSystem(std::string source, std::uint64_t size, std::uint64_t used, std::uint64_t avail)
-      : source(source), size(size), used(used), avail(avail) {};
+  FileSystem() : label(""), size(0), used(0), avail(0) {};
+  FileSystem(std::string label, std::uint64_t size, std::uint64_t used, std::uint64_t avail)
+      : label(label), size(size), used(used), avail(avail) {};
 
-  const std::string &GetSource() const {
-    return this->source;
+  /**
+   * Get the filesystem's label.
+   *
+   * @return
+   */
+  const std::string &GetLabel() const {
+    return this->label;
   };
 
+  /**
+   * Get the filesystem's size in kbs.
+   *
+   * @return
+   */
   const std::uint64_t &GetSize() const {
     return this->size;
   }
 
+  /**
+   * Get the filesystem's used amount in kbs.
+   *
+   * @return
+   */
   const std::uint64_t &GetUsed() const {
     return this->used;
   };
 
-  float GetPercentUsed() const {
-    float size = static_cast<float>(this->GetSize());
-
-    if ( size == 0.0 ) {
-      return 0.0;
-    }
-
-    float used = static_cast<float>(this->GetUsed());
-
-    return (used / size) * 100.00;
-  }
-
+  /**
+   * Get the filesystem's available amount in kbs.
+   *
+   * @return
+   */
   const std::uint64_t &GetAvailable() const {
     return this->avail;
   };
+
+  float GetRelativeUsed() const {
+    return this->GetRelativeAmount(static_cast<float>(this->GetUsed()));
+  }
+
+  float GetRelativeAvailable() const
+  {
+    return this->GetRelativeAmount(static_cast<float>(this->GetAvailable()));
+  }
+
+  static void SetTotalFileSystemSize(std::uint64_t size)
+  {
+    FileSystem::total_size = size;
+  }
+
+  static std::uint64_t GetTotalFileSystemSize()
+  {
+    return FileSystem::total_size;
+  }
+
+ private:
+  std::string label;
+  std::uint64_t size;
+  std::uint64_t used;
+  std::uint64_t avail;
+  static std::uint64_t total_size;
+
+  float GetRelativeAmount(float amount) const {
+    float size = static_cast<float>(this->GetSize());
+
+    return size == 0.0 ? 0.0 : (amount / size) * 100.00;
+  }
+
 };
 
+// Expose some iterators for convenience's sake.
 typedef std::vector<FileSystem>::const_iterator FileSystemIterator;
 typedef std::pair<FileSystemIterator, FileSystemIterator> FileSystemIterators;
 

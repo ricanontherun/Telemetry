@@ -29,25 +29,41 @@ void DiskCollector::collect(Results & results) {
   std::vector<std::string> columns;
   columns.reserve((unsigned long) this->column_count);
 
-  // We're skipping the first line, which is the header.
   auto line_it = lines.begin() + 1;
 
-  for (line_it; line_it != lines.end(); ++line_it) {
-    boost::split(columns, *line_it, boost::is_any_of(" "), boost::token_compress_on);
+  std::uint64_t filesystem_size, filesystem_used, filesystem_available, total_filesystem_size;
+  filesystem_size = filesystem_used = filesystem_available = total_filesystem_size = 0;
 
-    if (columns.size() != this->column_count) {
-      // Log an error
-      continue;
+  std::string line;
+  for (line_it; line_it != lines.end(); ++line_it) {
+    line = *line_it;
+
+    if (line.length() == 0) {
+        continue;
     }
 
-    // Store this filesystem.
+    boost::split(columns, line, boost::is_any_of(" "), boost::token_compress_on);
+
+    if (columns.size() != this->column_count) {
+        std::cerr << "Invalid command output "<< line << "\n";
+        break;
+    }
+
+    filesystem_size = (std::uint64_t) strtol(columns.at(1).c_str(), nullptr, 10);
+    filesystem_used = (std::uint64_t) strtol(columns.at(2).c_str(), nullptr, 10);
+    filesystem_available = (std::uint64_t) strtol(columns.at(3).c_str(), nullptr, 10);
+    total_filesystem_size += filesystem_size;
+
     results.filesystems.push_back(Core::Sys::FileSystem(
         columns.at(0),
-        (std::uint64_t) strtol(columns.at(1).c_str(), nullptr, 10),
-        (std::uint64_t) strtol(columns.at(2).c_str(), nullptr, 10),
-        (std::uint64_t) strtol(columns.at(3).c_str(), nullptr, 10)
+        filesystem_size,
+        filesystem_used,
+        filesystem_available
     ));
   }
+
+  // TODO: Is there a better way to make this size available to all filesystem objects?
+  Core::Sys::FileSystem::SetTotalFileSystemSize(total_filesystem_size);
 }
 
 }

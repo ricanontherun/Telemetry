@@ -25,11 +25,10 @@ namespace Telemetry
  */
 enum Resource
 {
-  NONE = 0,
   ALL = 1,
-  SYSTEM = 2,
+  MEMORY = 2,
   PROCESSES = 4,
-  DISK = 8
+  FILESYSTEMS = 8
 };
 
 enum SizeUnit {
@@ -38,7 +37,7 @@ enum SizeUnit {
 };
 
 struct Options {
-  int resources = Resource::NONE;
+  int resources = 0;
   int unit = SizeUnit::KB;
 };
 

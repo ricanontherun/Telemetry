@@ -19,7 +19,7 @@ void Unit::QuerySystem(Telemetry::Results & results) {
     collector.collect(results);
   }
 
-  if (this->ResourceFlagSet(Resource::DISK)) {
+  if (this->ResourceFlagSet(Resource::FILESYSTEMS)) {
     Collectors::DiskCollector disk_collector;
     disk_collector.collect(results);
   }
