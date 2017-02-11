@@ -67,6 +67,11 @@ class FileSystem {
     return this->avail;
   };
 
+  float GetRelativeSize() const
+  {
+    return 1.23;
+  }
+
   float GetRelativeUsed() const {
     return this->GetRelativeAmount(static_cast<float>(this->GetUsed()));
   }
@@ -93,10 +98,30 @@ class FileSystem {
   std::uint64_t avail;
   static std::uint64_t total_size;
 
+  /**
+   * Get a size relative to the entire filesystem's size.
+   *
+   * @param amount
+   *
+   * @return
+   */
   float GetRelativeAmount(float amount) const {
-    float size = static_cast<float>(this->GetSize());
+    return this->GetRelativeAmount(
+        amount,
+        static_cast<float>(this->GetSize())
+    );
+  }
 
-    return size == 0.0 ? 0.0 : (amount / size) * 100.00;
+  /**
+   * Get the relative size of one number to another.
+   *
+   * @param relative
+   * @param of
+   *
+   * @return
+   */
+  float GetRelativeAmount(float relative, float of) const {
+    return of == 0.0 ? 0.0 : (relative / of) * 100.00;
   }
 
 };
