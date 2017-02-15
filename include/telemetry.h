@@ -33,7 +33,7 @@ class Unit {
  public:
   Unit();
   Unit(Options options);
-  void Read(Telemetry::Results & read);
+  void Read(const Options & options, Telemetry::Results & read);
 };
 
 }

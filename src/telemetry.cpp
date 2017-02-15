@@ -9,7 +9,9 @@ Unit::Unit() : options(Options()) {}
 
 Unit::Unit(Options options) : options(options) {}
 
-void Unit::Read(Telemetry::Results & results) {
+void Unit::Read(const Options & options,Telemetry::Results & results) {
+  this->options = options;
+
   this->QuerySystem(results);
 }
 
