@@ -27,6 +27,7 @@ namespace Interfaces {
 class Collector
 {
  public:
+  // collect a particular resource
   virtual void collect(Results & results) = 0;
 
   void setOptions(Options options) {

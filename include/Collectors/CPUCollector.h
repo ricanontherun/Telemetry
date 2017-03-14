@@ -12,8 +12,24 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#ifndef TELEMTRY_COLLECTOR_SYSTEM_H
+#define TELEMTRY_COLLECTOR_SYSTEM_H
 
-namespace Telemetry
-{
+#include <interfaces/Collector.h>
+
+namespace Telemetry {
+
+// Forward declaration
+class Results;
+
+namespace Collectors {
+
+class CPUCollector: public Interfaces::Collector {
+ public:
+  void collect(Results & results);
+};
 
 }
+}
+
+#endif //TELEMTRY_COLLECTOR_SYSTEM_H

@@ -16,12 +16,11 @@
 #define TELEMETRY_ALL_H
 
 #include <results.h>
-#include <core/sys/filesystem.h>
-#include <Collectors/DiskCollector.h>
+#include <options.h>
 
 namespace Telemetry {
 
-enum Resource;
+enum class Resource;
 struct Options;
 
 class Unit {
@@ -33,7 +32,7 @@ class Unit {
  private:
   Options options;
 
-  void QuerySystem(Telemetry::Results & read);
+  void Read(Telemetry::Results & read);
   bool ResourceFlagSet(Resource r);
 };
 

@@ -19,6 +19,7 @@ set(PROJECT_SOURCE
     src/options.cpp
     src/Collectors/ProcessCollector.cpp
     src/Collectors/DiskCollector.cpp
+    src/Collectors/CPUCollector.cpp
     src/utils/shell.cpp
     src/core/sys/cpu.cpp
     src/core/sys/disk.cpp

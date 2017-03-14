@@ -12,21 +12,20 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef TELEMTRY_COLLECTOR_SYSTEM_H
-#define TELEMTRY_COLLECTOR_SYSTEM_H
+#include <Collectors/CPUCollector.h>
+#include <core/sys/SystemInfo.h>
+#include <results.h>
+#include <core/sys/cpu.h>
 
-#include <interfaces/Collector.h>
+#include <iostream>
 
 namespace Telemetry {
 namespace Collectors {
 
-class SystemCollector : public Interfaces::Collector {
- public:
-  void toJSON(nlohmann::json &json) const;
-  void load();
-};
-
-}
+void CPUCollector::collect(Results & results) {
+  results.cpu = Core::Sys::CPU{};
+  results.cpu.Read();
 }
 
-#endif //TELEMTRY_COLLECTOR_SYSTEM_H
+} // End Collectors
+} // End Telemetry

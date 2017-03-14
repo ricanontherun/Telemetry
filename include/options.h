@@ -15,32 +15,30 @@
 #ifndef TELEMETRY_OPTIONS_H
 #define TELEMETRY_OPTIONS_H
 
-#include <string>
+#include <cstdint>
 
 namespace Telemetry
 {
 
-/**
- * Enum of all possible resources reported by Telemetry.
- */
-enum Resource
+enum class Resource
 {
-  ALL = 1,
-  MEMORY = 2,
-  PROCESSES = 4,
-  FILESYSTEMS = 8
+  ALL         = 1,
+  MEMORY      = 2,
+  PROCESSES   = 4,
+  FILESYSTEMS = 8,
+  CPU         = 16
 };
 
-enum SizeUnit {
+enum class SizeUnit {
   KB = 0,
-  MB = 0
+  MB = 1
 };
 
 struct Options {
-  int resources = 0;
-  int unit = SizeUnit::KB;
+  std::uint16_t resources = 0;
+  SizeUnit unit = SizeUnit::KB;
 };
 
-}
+} // End Telemetry
 
 #endif //TELEMETRY_OPTIONS_H

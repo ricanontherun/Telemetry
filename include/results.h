@@ -3,6 +3,7 @@
 
 #include <core/sys/filesystem.h>
 #include <core/process/Process.h>
+#include <core/sys/cpu.h>
 
 #include <utility>
 #include <vector>
@@ -14,6 +15,7 @@ namespace Telemetry {
 namespace Collectors {
 class DiskCollector;
 class ProcessCollector;
+class CPUCollector;
 }
 
 // This class should contain const references to
@@ -21,9 +23,11 @@ class ProcessCollector;
 class Results {
   friend class Collectors::DiskCollector;
   friend class Collectors::ProcessCollector;
+  friend class Collectors::CPUCollector;
  private:
   std::vector<Core::Sys::FileSystem> filesystems;
-  std::unordered_map<uint32_t, std::unique_ptr<Core::Process>> processes;
+  std::unordered_map<std::uint32_t, std::unique_ptr<Core::Process>> processes;
+  Core::Sys::CPU cpu;
 
  public:
   Core::Sys::FileSystemIterators GetFilesystemIterators() const {

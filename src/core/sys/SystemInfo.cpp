@@ -14,6 +14,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <core/sys/SystemInfo.h>
 
+#include <iostream>
+
 namespace Telemetry {
 
 struct sysinfo SystemInfo::sys_info;
@@ -23,7 +25,6 @@ int SystemInfo::pagesize = 0;
 bool SystemInfo::captured = false;
 
 Core::Sys::CPU SystemInfo::cpu = Core::Sys::CPU();
-Core::Sys::Disk SystemInfo::disk = Core::Sys::Disk();
 
 void SystemInfo::Capture() {
   if (SystemInfo::captured) {
@@ -35,8 +36,6 @@ void SystemInfo::Capture() {
   SystemInfo::CapturePageSize();
 
   SystemInfo::CaptureCPU();
-
-  SystemInfo::CaptureDisk();
 
   SystemInfo::captured = true;
 }
@@ -53,27 +52,19 @@ int SystemInfo::GetPageSize() {
   return SystemInfo::pagesize;
 }
 
-void SystemInfo::CaptureCPU() {
-  SystemInfo::cpu.Read();
-}
-
-void SystemInfo::CaptureDisk() {
-  SystemInfo::disk.Read();
-}
-
-const Core::Sys::CPU &SystemInfo::GetCPU() {
+const Core::Sys::CPU & SystemInfo::GetCPU() {
   return SystemInfo::cpu;
 }
 
-const Core::Sys::Disk &SystemInfo::GetDisk() {
-  return SystemInfo::disk;
+void SystemInfo::CaptureCPU() {
+  SystemInfo::cpu.Read();
 }
 
 void SystemInfo::CaptureSystemStatistics() {
   int reti = sysinfo(&SystemInfo::sys_info);
 
   if (reti == -1) {
-    std::cerr << "sysinfo call failed. Exiting.." << std::endl;
+    std::cerr << "sysinfo call failed. Exiting.." << "\n";
     exit(EXIT_FAILURE);
   }
 }
@@ -82,4 +73,4 @@ void SystemInfo::CapturePageSize() {
   SystemInfo::pagesize = getpagesize();
 }
 
-} // End
+} // End Telemetry

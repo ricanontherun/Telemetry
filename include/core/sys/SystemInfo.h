@@ -16,10 +16,8 @@
 #define TELEMETRY_CORE_SYS_INFO_H
 
 #include <core/sys/cpu.h>
-#include <core/sys/disk.h>
 
 #include <unistd.h>
-#include <iostream>
 #include <stdint.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -47,18 +45,15 @@ class SystemInfo {
   static int GetPageSize();
 
   static const Core::Sys::CPU &GetCPU();
-  static const Core::Sys::Disk &GetDisk();
  private:
   static struct sysinfo sys_info;
   static int pagesize;
   static bool captured;
   static Core::Sys::CPU cpu;
-  static Core::Sys::Disk disk;
 
   static void CaptureSystemStatistics();
   static void CapturePageSize();
   static void CaptureCPU();
-  static void CaptureDisk();
 };
 
 }
