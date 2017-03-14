@@ -25,15 +25,16 @@ enum Resource;
 struct Options;
 
 class Unit {
+ public:
+  Unit();
+  Unit(Options options);
+  void Read(const Options & options, Telemetry::Results & read);
+
  private:
   Options options;
 
   void QuerySystem(Telemetry::Results & read);
   bool ResourceFlagSet(Resource r);
- public:
-  Unit();
-  Unit(Options options);
-  void Read(const Options & options, Telemetry::Results & read);
 };
 
 }

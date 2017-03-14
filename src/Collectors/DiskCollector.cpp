@@ -62,7 +62,6 @@ void DiskCollector::collect(Results & results) {
     ));
   }
 
-  // TODO: Is there a better way to make this size available to all filesystem objects?
   Core::Sys::FileSystem::SetTotalFileSystemSize(total_filesystem_size);
 }
 

@@ -25,6 +25,9 @@ void Unit::QuerySystem(Telemetry::Results & results) {
     Collectors::DiskCollector disk_collector;
     disk_collector.collect(results);
   }
+
+  if ( this->ResourceFlagSet(Resource::MEMORY) ) {
+  }
 }
 
 inline bool Unit::ResourceFlagSet(Resource flag) {
