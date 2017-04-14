@@ -43,6 +43,11 @@ class Results {
         Core::ProcessIterator
     >(this->processes.begin(), this->processes.end());
   };
+
+  const Core::Sys::CPU & GetCPU() const
+  {
+    return this->cpu;
+  }
 };
 
 }

@@ -25,6 +25,14 @@ namespace Core {
 namespace Sys {
 
 class CPU {
+ public:
+  CPU();
+  void Read();
+
+  const std::string &GetArchitecture() const;
+  const std::string &GetModel() const;
+  const std::string &GetCPUCount() const;
+
  private:
   const char *command_string = "lscpu";
 
@@ -40,13 +48,6 @@ class CPU {
       std::string, std::set<std::string>
   > key_map;
 
- public:
-  CPU();
-  void Read();
-
-  const std::string &GetArchitecture() const;
-  const std::string &GetModel() const;
-  const std::string &GetCPUCount() const;
 };
 
 } // Sys
