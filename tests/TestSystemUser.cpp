@@ -3,7 +3,7 @@
 
 #include <core/sys/SystemUser.h>
 
-TEST_CASE("LixProc::SystemUser")
+TEST_CASE("Telemetry::SystemUser")
 {
     SECTION("GetUserID will equal the current running user's uid")
     {

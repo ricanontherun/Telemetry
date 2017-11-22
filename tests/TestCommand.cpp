@@ -71,13 +71,13 @@ TEST_CASE("Telemetry::Core::Utils::ParseCommandString()")
 
     SECTION("It can parse a local script in the form ./exe")
     {
-        std::string command_string = "./lixproc";
+        std::string command_string = "./heck";
         Command command;
 
         ParseCommandString(command_string, command);
 
         REQUIRE(command.path == "./");
-        REQUIRE(command.name == "lixproc");
+        REQUIRE(command.name == "heck");
         REQUIRE(command.arguments.empty());
     }
 }
