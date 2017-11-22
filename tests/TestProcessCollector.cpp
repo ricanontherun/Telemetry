@@ -7,14 +7,11 @@
 
 TEST_CASE("ProcessCollector")
 {
-    // TODO: Find a better way to get this during runtime.
-    std::string test_process_name = "tests";
-
     using Telemetry::Collectors::ProcessCollector;
     using Telemetry::Core::ProcessIterators;
 
     // Load() iterators must point to at least one process.
-    SECTION("Load() must find at least one process.")
+    SECTION("collect() must find at least one process.")
     {
         Telemetry::Results process_results;
         ProcessCollector collector;

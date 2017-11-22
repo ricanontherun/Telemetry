@@ -31,7 +31,8 @@ void ProcessCollector::collect(Results & results) {
 
   d = opendir(Core::Process::PD_BASE.c_str());
 
-  if (!d) { // If we can't open /proc something is wrong?
+  if (!d) {
+    std::cerr << "Failed to open " + Core::Process::PD_BASE << "\n";
     return;
   }
 
@@ -48,39 +49,27 @@ void ProcessCollector::collect(Results & results) {
       continue;
     }
 
-    try {
-      this->Load(pid, results);
-    } catch (std::runtime_error &e) {
-
-    }
+    Load(pid, results);
   }
 
   closedir(d);
 }
 
-void ProcessCollector::Load(uint64_t pid, Results & results) {
+void ProcessCollector::Load(uint64_t pid, Results & results) noexcept {
   struct stat info;
-  int stat_i;
 
   std::string dir_name = std::to_string(pid);
   std::string full_process_path = Core::Process::PD_BASE + dir_name;
 
-  stat_i = stat(full_process_path.c_str(), &info);
-
-  if (stat_i == -1) {
-      std::cout << "Failed to stat file.\n";
+  if (stat(full_process_path.c_str(), &info) == -1) {
+      std::cerr << "Failed to stat file " + full_process_path << "\n";
       return;
-  }
-
-  // Are we the owner of the process?
-  if (SystemUser::GetUserID() != info.st_uid || SystemUser::GetGroupID() != info.st_gid) {
-    return;
   }
 
   try {
     results.processes[pid] = std::make_unique<Core::Process>(pid);
-  } catch (std::runtime_error &error) {
-    std::cerr << error.what() << std::endl;
+  } catch (std::exception &e) {
+    std::cerr << e.what() << std::endl;
   }
 }
 

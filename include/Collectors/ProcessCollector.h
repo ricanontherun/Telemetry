@@ -26,12 +26,6 @@ namespace Collectors {
 
 class ProcessCollector : public Interfaces::Collector {
  public:
-  /**
-   * @brief Load a particular process.
-   *
-   * @param pid
-   */
-  void Load(uint64_t pid, Results & results);
 
   /**
    * Collect all active processes into results.
@@ -42,6 +36,8 @@ class ProcessCollector : public Interfaces::Collector {
  private:
   // Base process directory path.
   std::string proc_root;
+
+  void Load(uint64_t pid, Results & results);
 };
 
 }
