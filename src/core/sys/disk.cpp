@@ -29,7 +29,7 @@ void Disk::Read() {
   std::string output;
 
   // Run the command.
-  if (!RunInShell(this->command_string, output)) {
+  if (!Telemetry::Utils::RunInShell(this->command_string, output)) {
     return;
   }
 

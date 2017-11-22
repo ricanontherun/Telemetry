@@ -26,25 +26,23 @@ namespace Telemetry {
 namespace Collectors {
 
 void ProcessCollector::collect(Results & results) {
-  DIR *d;
-  struct dirent *de;
-
-  d = opendir(Core::Process::PD_BASE.c_str());
+  DIR *d = opendir(Core::Process::PD_BASE.c_str());
 
   if (!d) {
     std::cerr << "Failed to open " + Core::Process::PD_BASE << "\n";
     return;
   }
 
-  while ((de = readdir(d))) {
-    uint64_t pid = 0;
+  struct dirent *de;
 
-    // Not a directory.
+  while ((de = readdir(d))) { 
     if (de->d_type != DT_DIR) {
       continue;
     }
 
-    // Could not convert the file name to an integer.
+    uint64_t pid = 0;
+
+    // Process directories are integers, thus, if we can't convert the directory name to an integer it's not a pid directory.
     if (!(pid = Telemetry::Utils::ConvertToInteger(de->d_name))) {
       continue;
     }

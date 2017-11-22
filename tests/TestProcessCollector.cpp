@@ -4,8 +4,9 @@
 
 #include <results.h>
 #include <Collectors/ProcessCollector.h>
+#include <utils/shell.h>
 
-TEST_CASE("ProcessCollector")
+TEST_CASE("ProcessCollector", "[ProcessCollector] [Collectors]")
 {
     using Telemetry::Collectors::ProcessCollector;
     using Telemetry::Core::ProcessIterators;
@@ -20,7 +21,15 @@ TEST_CASE("ProcessCollector")
 
         ProcessIterators iterators = process_results.GetProcessIterators();
 
-        REQUIRE(std::distance(iterators.first, iterators.second) >= 1);
+        auto num_procs = std::distance(iterators.first, iterators.second);
+
+        REQUIRE(num_procs >= 1);
+
+        std::string proc_ls_output;
+        Telemetry::Utils::RunInShell("ls /proc | grep \"[0-9]\" | wc -l", proc_ls_output);
+
+        std::cout << num_procs << "\n";
+        std::cout << proc_ls_output << "\n";
     }
 
     SECTION("Load(exe) returns a at least one process, if it exists")

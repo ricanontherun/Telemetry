@@ -56,7 +56,7 @@ CPU::CPU() : cpus(""), ghz("") {
 void CPU::Read() {
   std::string out;
 
-  if (!RunInShell(this->command_string, out)) {
+  if (!Telemetry::Utils::RunInShell(this->command_string, out)) {
     return;
   }
 

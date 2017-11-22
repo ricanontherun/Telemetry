@@ -37,7 +37,7 @@ class ProcessCollector : public Interfaces::Collector {
   // Base process directory path.
   std::string proc_root;
 
-  void Load(uint64_t pid, Results & results);
+  void Load(uint64_t pid, Results & results) noexcept;
 };
 
 }

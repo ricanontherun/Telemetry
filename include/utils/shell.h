@@ -17,7 +17,7 @@
 
 #include <string>
 
-namespace Telemetry {
+namespace Telemetry { namespace Utils {
 
 /**
  * Run a shell command and return it's output via out.
@@ -28,6 +28,7 @@ namespace Telemetry {
  */
 bool RunInShell(const char *command, std::string &out);
 
-}
+} // End Utils
+} // End Telemetry
 
 #endif //TELEMETRY_UTILS_SHELL_H

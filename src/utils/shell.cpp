@@ -17,7 +17,7 @@
 #include <algorithm>
 #include <iostream>
 
-namespace Telemetry {
+namespace Telemetry { namespace Utils {
 
 bool RunInShell(const char *command, std::string &out) {
   FILE *fp = popen(command, "r");
@@ -27,10 +27,11 @@ bool RunInShell(const char *command, std::string &out) {
   char buf[BUFSIZ];
 
   while (fgets(buf, BUFSIZ, fp)) {
-    out += std::string(buf); // We're modifying their string argument in loop.
+    out += std::string(buf);
   }
 
   return pclose(fp) != -1;
 }
 
-}
+} // End Utils
+} // End Telemetry
