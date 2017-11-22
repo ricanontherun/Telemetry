@@ -1,5 +1,5 @@
 #include <unistd.h>
-#include "test_header.h"
+#include "tests.h"
 
 #include <core/sys/SystemInfo.h>
 

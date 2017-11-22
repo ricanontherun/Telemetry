@@ -1,13 +1,13 @@
 #include <iostream>
 #include <unistd.h>
-#include "test_header.h"
+#include "tests.h"
 
 #include <utils/command.h>
 
 using Telemetry::Utils::ParseCommandString;
 using Telemetry::Utils::Command;
 
-TEST_CASE("Telemetry::Core::Utils::ParseCommandString()")
+TEST_CASE("Telemetry::Core::Utils::ParseCommandString()", "[command]")
 {
     SECTION("It can parse an empty string")
     {
@@ -19,6 +19,11 @@ TEST_CASE("Telemetry::Core::Utils::ParseCommandString()")
         REQUIRE(command.path.empty());
         REQUIRE(command.name.empty());
         REQUIRE(command.arguments.empty());
+
+        std::ostringstream actual;
+        actual << command;
+
+        REQUIRE(actual.str() == command_string);
     }
 
     SECTION("It can parse just an name")
@@ -31,6 +36,11 @@ TEST_CASE("Telemetry::Core::Utils::ParseCommandString()")
         REQUIRE(command.path.empty());
         REQUIRE(command.name == command_string);
         REQUIRE(command.arguments.empty());
+
+        std::ostringstream actual;
+        actual << command;
+
+        REQUIRE(actual.str() == command_string);
     }
 
     SECTION("It can parse a path and an name")
@@ -43,6 +53,11 @@ TEST_CASE("Telemetry::Core::Utils::ParseCommandString()")
         REQUIRE(command.path =="/path/to/");
         REQUIRE(command.name == "name");
         REQUIRE(command.arguments.empty());
+
+        std::ostringstream actual;
+        actual << command;
+
+        REQUIRE(actual.str() == command_string);
     }
 
     SECTION("It can parse a path, an name and arguments")
@@ -55,6 +70,11 @@ TEST_CASE("Telemetry::Core::Utils::ParseCommandString()")
         REQUIRE(command.path == "/path/to/");
         REQUIRE(command.name == "name");
         REQUIRE(command.arguments == "-rf --argument1=value1");
+
+        std::ostringstream actual;
+        actual << command;
+
+        REQUIRE(actual.str() == command_string);
     }
 
     SECTION("It can parse an name and arguments")
@@ -67,6 +87,11 @@ TEST_CASE("Telemetry::Core::Utils::ParseCommandString()")
         REQUIRE(command.path.empty());
         REQUIRE(command.name == "name");
         REQUIRE(command.arguments == "-rf --argument1=value1");
+
+        std::ostringstream actual;
+        actual << command;
+
+        REQUIRE(actual.str() == command_string);
     }
 
     SECTION("It can parse a local script in the form ./exe")
@@ -79,5 +104,10 @@ TEST_CASE("Telemetry::Core::Utils::ParseCommandString()")
         REQUIRE(command.path == "./");
         REQUIRE(command.name == "heck");
         REQUIRE(command.arguments.empty());
+
+        std::ostringstream actual;
+        actual << command;
+
+        REQUIRE(actual.str() == command_string);
     }
 }

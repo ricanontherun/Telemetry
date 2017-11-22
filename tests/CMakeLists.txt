@@ -10,7 +10,7 @@ set(SOURCES
     TestSystemInfo.cpp
     TestCommand.cpp
     TestRegexMap.cpp
-    TestProcessManager.cpp
+    TestProcessCollector.cpp
 
     ../src/core/process/Process.cpp
     ../src/utils/file.cpp

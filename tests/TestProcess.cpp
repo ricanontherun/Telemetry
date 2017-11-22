@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 
-#include "test_header.h"
+#include "tests.h"
 
 #include <memory>
 #include <unistd.h>

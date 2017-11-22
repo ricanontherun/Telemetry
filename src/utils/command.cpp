@@ -29,8 +29,7 @@ bool ParseCommandString(std::string command_str, Command &command)
     std::vector<std::string> chunks;
     boost::split(chunks, command_str, boost::is_any_of(" "));
 
-    if ( chunks.size() == 0 )
-    {
+    if ( chunks.size() == 0 ) {
         return false;
     }
 

@@ -95,7 +95,7 @@ std::ostream &operator<<(std::ostream &stream, const Process &process)
     stream << std::setw(10) << process.GetPID();
     stream << std::setw(10) << std::fixed << std::setprecision(2) << process.GetActualMemoryUsage();
     stream << std::setw(10) << std::fixed << std::setprecision(1) <<  relative_memory_usage;
-    stream << process.command() << " ";
+    stream << process.command << " ";
 
     return stream;
 }
