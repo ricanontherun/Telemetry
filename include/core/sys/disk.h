@@ -27,7 +27,7 @@ namespace Sys {
 
 class Disk : public Interfaces::Readable {
  private:
-  const short column_count = 4;
+  std::size_t column_count = 4;
   const char *command_string = "df --output=source,size,used,avail";
 
   std::vector<FileSystem> filesystems;

@@ -3,18 +3,17 @@
 
 #include <core/sys/SystemInfo.h>
 
-TEST_CASE("LixProc::SystemInfo")
+TEST_CASE("Telemetry::SystemInfo")
 {
-    LixProc::SystemInfo::Capture();
+    Telemetry::SystemInfo::Capture();
 
     SECTION("GetPageSize() should return the current system's pagesize.")
     {
-        REQUIRE(LixProc::SystemInfo::GetPageSize() == getpagesize());
+        REQUIRE(Telemetry::SystemInfo::GetPageSize() == getpagesize());
     }
 
     SECTION("GetTotalSystemMemory should a number greater than zero.")
     {
-        REQUIRE(LixProc::SystemInfo::GetTotalSystemMemory() > 0.0);
+        REQUIRE(Telemetry::SystemInfo::GetTotalSystemMemory() > 0.0);
     }
 }
-

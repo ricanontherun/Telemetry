@@ -8,13 +8,13 @@ TEST_CASE("LixProc::SystemUser")
     SECTION("GetUserID will equal the current running user's uid")
     {
         uid_t uid = getuid();
-        REQUIRE(LixProc::SystemUser::GetUserID() == uid);
+        REQUIRE(Telemetry::SystemUser::GetUserID() == uid);
     }
 
     SECTION("GetGroupID will equal the current running user's gid")
     {
         gid_t gid = getgid();
-        REQUIRE(LixProc::SystemUser::GetGroupID() == gid);
+        REQUIRE(Telemetry::SystemUser::GetGroupID() == gid);
 
     }
 }

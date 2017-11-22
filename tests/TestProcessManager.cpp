@@ -2,28 +2,32 @@
 
 #include <iterator>
 
-#include <manager/ProcessManager.h>
+#include <results.h>
+#include <Collectors/ProcessCollector.h>
 
-TEST_CASE("LixProc::Manager::ProcessManager")
+TEST_CASE("ProcessCollector")
 {
     // TODO: Find a better way to get this during runtime.
     std::string test_process_name = "tests";
 
-    using LixProc::Manager::ProcessManager;
-    using LixProc::Manager::ProcessIterators;
+    using Telemetry::Collectors::ProcessCollector;
+    using Telemetry::Core::ProcessIterators;
 
     // Load() iterators must point to at least one process.
     SECTION("Load() must find at least one process.")
     {
-        ProcessIterators iterators = ProcessManager::Load();
+        Telemetry::Results process_results;
+        ProcessCollector collector;
+
+        collector.collect(process_results);
+
+        ProcessIterators iterators = process_results.GetProcessIterators();
 
         REQUIRE(std::distance(iterators.first, iterators.second) >= 1);
     }
 
     SECTION("Load(exe) returns a at least one process, if it exists")
     {
-        ProcessIterators iterators = ProcessManager::Load(test_process_name);
-
-        REQUIRE(std::distance(iterators.first, iterators.second) >= 1);
+        // Get the pid of the tests exe, load that.
     }
 }

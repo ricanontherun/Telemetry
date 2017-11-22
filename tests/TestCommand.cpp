@@ -4,10 +4,10 @@
 
 #include <utils/command.h>
 
-using LixProc::Utils::ParseCommandString;
-using LixProc::Utils::Command;
+using Telemetry::Utils::ParseCommandString;
+using Telemetry::Utils::Command;
 
-TEST_CASE("LixProc::Core::Utils::ParseCommandString()")
+TEST_CASE("Telemetry::Core::Utils::ParseCommandString()")
 {
     SECTION("It can parse an empty string")
     {

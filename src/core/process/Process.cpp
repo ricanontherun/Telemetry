@@ -20,6 +20,7 @@
 
 #include <fstream>
 #include <cmath>
+#include <iostream>
 
 namespace Telemetry
 {
@@ -69,7 +70,7 @@ double Process::GetRelativeMemoryUsage() const
 
     unsigned long system_memory_bytes = SystemInfo::GetTotalSystemMemory();
 
-  return round((process_memory_bytes / system_memory_bytes) * 100.00);
+    return round((process_memory_bytes / system_memory_bytes) * 100.00);
 }
 
 uint32_t Process::GetPID() const
@@ -77,6 +78,7 @@ uint32_t Process::GetPID() const
   return this->pid;
 }
 
+// TODO: are we sure this is needed feature? The ability to kill a running process...
 bool Process::Kill()
 {
   return true;

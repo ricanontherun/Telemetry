@@ -27,7 +27,7 @@ void DiskCollector::collect(Results & results) {
   results.filesystems.reserve(lines.size() - 1);
 
   std::vector<std::string> columns;
-  columns.reserve((unsigned long) this->column_count);
+  columns.reserve(this->column_count);
 
   auto line_it = lines.begin() + 1;
 
@@ -35,7 +35,7 @@ void DiskCollector::collect(Results & results) {
   filesystem_size = filesystem_used = filesystem_available = total_filesystem_size = 0;
 
   std::string line;
-  for (line_it; line_it != lines.end(); ++line_it) {
+  for (; line_it != lines.end(); ++line_it) {
     line = *line_it;
 
     if (line.length() == 0) {

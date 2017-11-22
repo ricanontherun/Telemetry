@@ -45,9 +45,7 @@ void Disk::Read() {
   columns.reserve((unsigned long) this->column_count);
 
   // We're skipping the first line, which is the header.
-  auto line_it = lines.begin() + 1;
-
-  for (line_it; line_it != lines.end(); ++line_it) {
+  for (auto line_it = lines.begin() + 1; line_it != lines.end(); ++line_it) {
     boost::split(columns, *line_it, boost::is_any_of(" "), boost::token_compress_on);
 
     if (columns.size() != this->column_count) {

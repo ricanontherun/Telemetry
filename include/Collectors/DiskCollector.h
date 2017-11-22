@@ -10,7 +10,7 @@ class DiskCollector : public Interfaces::Collector {
  public:
   virtual void collect(Results & results);
  private:
-  const short column_count = 4;
+  std::size_t column_count = 4;
   const char *command_string = "df --output=source,size,used,avail";
 };
 
