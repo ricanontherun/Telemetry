@@ -16,6 +16,8 @@
 #define TELEMETRY_COMMAND_H
 
 #include <string>
+#include <cctype>
+#include <algorithm>
 
 namespace Telemetry
 {
@@ -33,7 +35,19 @@ struct Command {
     std::string arguments;
 
     friend std::ostream & operator<<(std::ostream & os, const Command & command) {
-        os << (command.path + " " + command.name + " " + command.arguments);
+        std::string command_string = command.path + command.name + " " + command.arguments;
+
+        // Trim leading whitespace.
+        command_string.erase(command_string.begin(), std::find_if(command_string.begin(), command_string.end(), [](char c) {
+            return !std::isspace(c);
+        }));
+
+        // Trim the trailing whitespace.
+        command_string.erase(std::find_if(command_string.rbegin(), command_string.rend(), [](char c) {
+            return !std::isspace(c);
+        }).base(), command_string.end());
+
+        os << std::move(command_string);
 
         return os;
     }
