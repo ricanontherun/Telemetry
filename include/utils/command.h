@@ -23,17 +23,19 @@ namespace Utils
 {
 
 struct Command {
+    // Path with trailing forward slash.
     std::string path;
+
+    // Executable name
     std::string name;
+
+    // CLI arguments passed to executable.
     std::string arguments;
 
-    std::string operator()() const
-    {
-        return this->GetPath() + " " + this->arguments;
-    }
+    friend std::ostream & operator<<(std::ostream & os, const Command & command) {
+        os << (command.path + " " + command.name + " " + command.arguments);
 
-  std::string GetPath() const {
-      return this->path + this->name;
+        return os;
     }
 };
 
