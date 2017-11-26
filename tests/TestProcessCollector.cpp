@@ -24,12 +24,6 @@ TEST_CASE("ProcessCollector", "[ProcessCollector] [Collectors]")
         auto num_procs = std::distance(iterators.first, iterators.second);
 
         REQUIRE(num_procs >= 1);
-
-        std::string proc_ls_output;
-        Telemetry::Utils::RunInShell("ls /proc | grep \"[0-9]\" | wc -l", proc_ls_output);
-
-        std::cout << num_procs << "\n";
-        std::cout << proc_ls_output << "\n";
     }
 
     SECTION("Load(exe) returns a at least one process, if it exists")

@@ -35,7 +35,7 @@ void ProcessCollector::collect(Results & results) {
 
   struct dirent *de;
 
-  while ((de = readdir(d))) { 
+  while ((de = readdir(d))) {
     if (de->d_type != DT_DIR) {
       continue;
     }
